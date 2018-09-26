@@ -3,15 +3,10 @@
 [%bs.raw {|require("antd/lib/form/style")|}];
 
 [@bs.deriving jsConverter]
-type formLayout = [
-  | [@bs.as "horizontal"] `Horizontal
-  | [@bs.as "inline"] `Inline
-  | [@bs.as "vertical"] `Vertical
-];
+type formLayout = [ | [@bs.as "horizontal"] `Horizontal | [@bs.as "inline"] `Inline | [@bs.as "vertical"] `Vertical];
 
 module Item = {
-  [@bs.module]
-  external reactClass: ReasonReact.reactClass = "antd/lib/form/FormItem";
+  [@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/form/FormItem";
 
   [@bs.deriving jsConverter]
   type validateStatus = [ | `success | `warning | `error | `validating];
@@ -66,8 +61,7 @@ module Item = {
           ~wrapperCol?,
           ~help?,
           ~extra?,
-          ~validateStatus=?
-            Js.Option.map((. b) => validateStatusToJs(b), validateStatus),
+          ~validateStatus=?Js.Option.map((. b) => validateStatusToJs(b), validateStatus),
           ~hasFeedback?,
           ~required?,
           ~style?,
@@ -92,16 +86,7 @@ external makeProps:
   _ =
   "";
 
-let make =
-    (
-      ~layout=?,
-      ~onSubmit=?,
-      ~style=?,
-      ~className=?,
-      ~prefixCls=?,
-      ~hideRequiredMark=?,
-      children,
-    ) =>
+let make = (~layout=?, ~onSubmit=?, ~style=?, ~className=?, ~prefixCls=?, ~hideRequiredMark=?, children) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
     ~props=

@@ -15,7 +15,7 @@ external makeProps:
     ~accordion: bool=?,
     ~activeKey: array(string)=?,
     ~bordered: bool=?,
-    ~defaultActiveKey: string=?,
+    ~defaultActiveKey: array(string)=?,
     ~onChange: string => unit=?,
     ~destroyInactivePanel: bool=?,
     ~id: string=?,

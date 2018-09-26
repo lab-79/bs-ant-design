@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "antd": "^3.9.3",
+    "bs-moment": "^0.3.1",
     "re-classnames": "^3.0.0"
   }
 }

@@ -1,5 +1,4 @@
-[@bs.module "antd/lib/radio"]
-external reactClass: ReasonReact.reactClass = "default";
+[@bs.module "antd/lib/radio"] external reactClass: ReasonReact.reactClass = "default";
 
 [%bs.raw {|require("antd/lib/radio/style")|}];
 
@@ -20,50 +19,28 @@ external makeProps:
   "";
 
 let make =
-    (
-      ~autoFocus=?,
-      ~checked=?,
-      ~defaultChecked=?,
-      ~disabled=?,
-      ~value=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
+    (~autoFocus=?, ~checked=?, ~defaultChecked=?, ~disabled=?, ~value=?, ~id=?, ~className=?, ~style=?, children) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
-    ~props=
-      makeProps(
-        ~autoFocus?,
-        ~checked?,
-        ~defaultChecked?,
-        ~disabled?,
-        ~value?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
+    ~props=makeProps(~autoFocus?, ~checked?, ~defaultChecked?, ~disabled?, ~value?, ~id?, ~className?, ~style?, ()),
     children,
   );
 
 module Group = {
-  [@bs.module "antd/lib/radio"]
-  external reactClass: ReasonReact.reactClass = "Group";
+  [@bs.module "antd/lib/radio"] external reactClass: ReasonReact.reactClass = "Group";
   [@bs.deriving jsConverter]
   type size = [ | `default | `small | `large];
   [@bs.obj]
   external makeProps:
     (
-      ~defaultValue: string,
+      ~defaultValue: string=?,
       ~disabled: bool=?,
       ~name: string=?,
       /* @todo: type me */
       ~options: 'a=?,
       ~size: string=?,
       ~value: string,
-      ~onChange: ReactEvent.Form.t => unit,
+      ~onChange: ReactEvent.Form.t => unit=?,
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
@@ -73,13 +50,13 @@ module Group = {
     "";
   let make =
       (
-        ~defaultValue,
+        ~defaultValue=?,
         ~disabled=?,
         ~name=?,
         ~options=?,
         ~size=?,
         ~value,
-        ~onChange,
+        ~onChange=?,
         ~id=?,
         ~className=?,
         ~style=?,
@@ -89,13 +66,13 @@ module Group = {
       ~reactClass,
       ~props=
         makeProps(
-          ~defaultValue,
+          ~defaultValue?,
           ~disabled?,
           ~name?,
           ~options?,
           ~size=?Js.Option.map((. b) => sizeToJs(b), size),
           ~value,
-          ~onChange,
+          ~onChange?,
           ~id?,
           ~className?,
           ~style?,
