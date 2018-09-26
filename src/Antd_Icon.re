@@ -1,3 +1,5 @@
+/* svg not working */
+
 let component = ReasonReact.statelessComponent("Icon");
 
 let make = (~type_: Antd_IconName.t, ~className=?, ~title=?, ~onClick=?, ~spin=?, ~style=?, _children) => {

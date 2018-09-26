@@ -63,33 +63,24 @@ let make =
     children,
   );
 
+/*
+ Was in autocomplete file for some reason
+ [@bs.module "antd/lib/input"] external reactClass: ReasonReact.reactClass = "TextArea";
+ let make = (~value=?, ~defaultValue=?, ~onChange=?, ~onPressEnter=?, ~onBlur=?, ~className=?, ~style=?, children) =>
+   ReasonReact.wrapJsForReason(
+     ~reactClass,
+     ~props=makeProps(~value?, ~defaultValue?, ~onChange?, ~onPressEnter?, ~onBlur?, ~className?, ~style?, ()),
+     children,
+   );
+
+ */
+
 module TextArea = {
-  [@bs.module "antd/lib/input"]
-  external reactClass: ReasonReact.reactClass = "TextArea";
-  let make =
-      (
-        ~value=?,
-        ~defaultValue=?,
-        ~onChange=?,
-        ~onPressEnter=?,
-        ~onBlur=?,
-        ~className=?,
-        ~style=?,
-        children,
-      ) =>
+  [@bs.module "antd/lib/input"] external reactClass: ReasonReact.reactClass = "TextArea";
+  let make = (~value=?, ~defaultValue=?, ~onChange=?, ~onPressEnter=?, ~onBlur=?, ~className=?, ~style=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props=
-        makeProps(
-          ~value?,
-          ~defaultValue?,
-          ~onChange?,
-          ~onPressEnter?,
-          ~onBlur?,
-          ~className?,
-          ~style?,
-          (),
-        ),
+      ~props=makeProps(~value?, ~defaultValue?, ~onChange?, ~onPressEnter?, ~onBlur?, ~className?, ~style?, ()),
       children,
     );
 };
