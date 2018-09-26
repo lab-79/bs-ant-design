@@ -1,4 +1,5 @@
-[@bs.module] external datePicker: ReasonReact.reactClass = "antd/lib/date-picker";
+[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/date-picker";
+
 [%bs.raw {|require("antd/lib/date-picker/style")|}];
 
 /*
@@ -37,16 +38,48 @@
  onOk	callback when click ok button	function()	-
  */
 
-let optBoolToOptJsBoolean =
-  fun
-  | None => None
-  | Some(v) => Some(v);
+[@bs.deriving jsConverter]
+type mode = [ | `time | `date | `month | `year];
 
-let unwrapBool = v => Js.Undefined.fromOption @@ optBoolToOptJsBoolean(v);
+[@bs.obj]
+external makeProps:
+  (
+    ~allowClear: bool=?,
+    ~allowFocus: bool=?,
+    ~className: string=?,
+    ~dateRender: array(string) => unit=?,
+    ~disabled: bool=?,
+    ~disabledDate: string => unit=?,
+    ~dropdownClassName: string=?,
+    ~getCalendarContainer: string=?,
+    ~locale: string=?,
+    ~mode: string=?,
+    ~_open: bool=?,
+    ~placeholder: string=?,
+    ~popupStyle: ReactDOMRe.Style.t=?,
+    ~size: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~onOpenChange: array(string) => unit=?,
+    ~onPanelChange: array(string) => unit=?,
+    ~defaultValue: string=?,
+    ~disabledTime: string => unit=?,
+    ~format: string=?,
+    ~renderExtraFooter: string => unit=?,
+    ~showTime: bool=?,
+    ~showTimeDefaultValue: string=?,
+    ~showToday: bool=?,
+    ~value: string=?,
+    ~onCalendarChange: array(string) => unit=?,
+    ~onChange: array(string) => unit=?,
+    ~onOk: array(string) => unit=?,
+    ~id: string=?,
+    unit
+  ) =>
+  _ =
+  "";
 
 let make =
     (
-      ~allowClear=?,
       ~allowFocus=?,
       ~className=?,
       ~dateRender=?,
@@ -56,8 +89,9 @@ let make =
       ~getCalendarContainer=?,
       ~locale=?,
       ~mode=?,
-      ~open_=?,
+      ~_open=?,
       ~placeholder=?,
+      ~popupStyle=?,
       ~size=?,
       ~style=?,
       ~onOpenChange=?,
@@ -74,40 +108,43 @@ let make =
       ~onChange=?,
       ~onOk=?,
       ~id=?,
+      children,
     ) =>
   ReasonReact.wrapJsForReason(
-    ~reactClass=datePicker,
+    ~reactClass,
     ~props=
-      Js.Undefined.{
-        "allowClear": unwrapBool(allowClear),
-        "allowFocus": unwrapBool(allowFocus),
-        "className": fromOption(className),
-        "dateRender": fromOption(dateRender),
-        "disabled": unwrapBool(disabled),
-        "disabledDate": fromOption(disabledDate),
-        "dropdownClassName": fromOption(dropdownClassName),
-        "getCalendarContainer": fromOption(getCalendarContainer),
-        "locale": fromOption(locale),
-        "mode": fromOption(mode),
-        "open": unwrapBool(open_),
-        "placeholder": fromOption(placeholder),
-        "size": fromOption(size),
-        "style": fromOption(style),
-        "onOpenChange": fromOption(onOpenChange),
-        "onPanelChange": fromOption(onPanelChange),
-        "defaultValue": fromOption(defaultValue),
-        "disabledTime": fromOption(disabledTime),
-        "format": fromOption(format),
-        "renderExtraFooter": fromOption(renderExtraFooter),
-        "showTime": fromOption(showTime),
-        "showTime.defaultValue": fromOption(showTimeDefaultValue),
-        "showToday": unwrapBool(showToday),
-        "value": fromOption(value),
-        "onCalendarChange": fromOption(onCalendarChange),
-        "onChange": fromOption(onChange),
-        "onOk": fromOption(onOk),
-        "id": fromOption(id),
-      },
+      makeProps(
+        ~allowFocus?,
+        ~className?,
+        ~dateRender?,
+        ~disabled?,
+        ~disabledDate?,
+        ~dropdownClassName?,
+        ~getCalendarContainer?,
+        ~locale?,
+        ~mode=?Js.Option.map((. b) => modeToJs(b), mode),
+        ~_open?,
+        ~placeholder?,
+        ~popupStyle?,
+        ~size?,
+        ~style?,
+        ~onOpenChange?,
+        ~onPanelChange?,
+        ~defaultValue?,
+        ~disabledTime?,
+        ~format?,
+        ~renderExtraFooter?,
+        ~showTime?,
+        ~showTimeDefaultValue?,
+        ~showToday?,
+        ~value?,
+        ~onCalendarChange?,
+        ~onChange?,
+        ~onOk?,
+        ~id?,
+        (),
+      ),
+    children,
   );
 
 module Locale = {
