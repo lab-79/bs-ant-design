@@ -1,6 +1,10 @@
-# bs-ant-design
+# bs-ant-design-alt
 
 ## Introduction
+
+** See forked repo for details.  This repo is a staging area for me to test out components not in original bs-ant-design before doing a pull request.
+I am new to reason-react and these are my first bindings. Many have incorrect types for parameters (especially callbacks) I don't happen to be using yet.  
+I will fix them up before pull request to parent repo. **
 
 Bucklescript + ReasonReact binding for [Ant Design](https://ant.design) components. I write bindings when I needed them in my projects. If you find a component is missing, it's because I don't need it (yet).
 
@@ -13,16 +17,16 @@ I also attempted to rewrite the components when possible for a better integratio
 * With npm:
 
 ```
-npm install --save bs-ant-design
+npm install --save bs-ant-design-alt
 ```
 
 * With yarn:
 
 ```
-yarn add bs-ant-design
+yarn add bs-ant-design-alt
 ```
 
-* Add `bs-ant-design` to `bs-dependencies` in `bsconfig.json`.
+* Add `bs-ant-design-alt` to `bs-dependencies` in `bsconfig.json`.
 * You also need to set up your bundler to handle less files (This is a requirement from ant-design)
 
 For webpack, you can do this:
@@ -61,88 +65,12 @@ Some common patterns I used:
 
 ## Components
 
-### Note:
-
-* 🔗: a binding
-* ✍️: rewrite in ReasonML
-* 🆕: new helpers
-
-### Implemented components
-
-#### 🔗 AutoComplete
-
-#### 🔗 Avatar
-
-#### 🔗 Breadcrumb
-
-#### 🔗 Button
-
-#### 🔗 Divider
-
-#### 🔗 Grid
-
-#### 🔗 Input
-
-#### 🔗 Select
-
-#### 🔗 Steps
-
-Usage:
-
-* Single gutter size in pixels:
-
-```reason
-open Antd.Grid;
-
-<Row gutter=Row.SingleGutterInPx(4) align=`top>
-    <Col span=12 xs=Col.FullColSize(makeColSize(~span=5,()))>  
-        (ReasonReact.stringToElement("A"))
-    </Col>
-    <Col span=8 xs=Col.SingleColSize(4)>  
-        (ReasonReact.stringToElement("B"))
-    </Col>
-</Row>
-```
-
-* Responsive gutter:
-
-```reason
-open Antd.Grid;
-
-<Row gutter=Row.ResponsiveBreakpoints(makeGutterBreakpoints(~sm=5, ()))>
-    <Col span=8>  
-        (ReasonReact.stringToElement("A"))
-    </Col>
-    <Col span=8>  
-        (ReasonReact.stringToElement("B"))
-    </Col>
-    <Col span=8>  
-        (ReasonReact.stringToElement("C"))
-    </Col>
-</Row>
-```
-
-#### ✍️ Icon
-
-This uses IconName
-
-#### ️🆕 IconName
-
-Typesafe way (only way) to access icon's name
-
-#### 🔗 Layout
-
-#### 🔗 Menu
-
-#### 🔗 Radio
-
-#### 🔗 Spin
-
----
+Almost all of them are done, some completely, some superficially with params I needed. 
+Refer to src for specifics.
 
 ## Contributions
 
-All contributions are welcomed.
+All contributions are welcomed.  I intend to merge and release quickly.
 
 ## LICENSE
 
