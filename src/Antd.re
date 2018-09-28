@@ -1,3 +1,5 @@
+module Affix = Antd_Affix;
+
 module Alert = Antd_Alert;
 
 module AutoComplete = Antd_AutoComplete;
@@ -66,6 +68,8 @@ module Rate = Antd_Rate;
 
 module Select = Antd_Select;
 
+module Skeleton = Antd_Skeleton;
+
 module Spin = Antd_Spin;
 
 module Steps = Antd_Steps;
@@ -91,3 +95,5 @@ module Tooltip = Antd_Tooltip;
 module Upload = Antd_Upload;
 
 module Pagination = Antd_Pagination;
+
+module Message = Antd_Message;
