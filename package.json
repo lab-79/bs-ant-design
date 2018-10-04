@@ -12,7 +12,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^4.0.5",
+    "bs-platform": "^4.0.6",
     "cheerio": "^1.0.0-rc.2",
     "got": "^9.2.2",
     "lodash": "^4.17.11",
@@ -24,7 +24,6 @@
   "dependencies": {
     "antd": "^3.10.0",
     "bs-moment": "^0.3.1",
-    "bs-platform": "^4.0.6",
     "re-classnames": "^3.0.0"
   }
 }
