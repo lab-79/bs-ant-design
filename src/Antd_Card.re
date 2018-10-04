@@ -75,7 +75,7 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~actions?,
+        ~actions=?Js.Option.map((. b) => Array.of_list(b), actions),
         ~activeTabKey?,
         ~headStyle?,
         ~bodyStyle?,
@@ -85,7 +85,7 @@ let make =
         ~extra?,
         ~hoverable?,
         ~loading?,
-        ~tabList?,
+        ~tabList=?Js.Option.map((. b) => Array.of_list(b), tabList),
         ~title?,
         ~_type?,
         ~onTabChange?,

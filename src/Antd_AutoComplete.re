@@ -86,7 +86,7 @@ let make =
         ~allowClear?,
         ~autoFocus?,
         ~backfill?,
-        ~dataSource?,
+        ~dataSource=?Js.Option.map((. b) => Array.of_list(b), dataSource),
         ~defaultActiveFirstOption?,
         ~defaultValue?,
         ~disabled?,

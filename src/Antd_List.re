@@ -90,7 +90,7 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~dataSource?,
+        ~dataSource=?Js.Option.map((. b) => Array.of_list(b), dataSource),
         ~renderItem?,
         ~bordered?,
         ~footer?,

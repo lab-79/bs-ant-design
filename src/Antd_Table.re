@@ -85,6 +85,16 @@ external makeProps:
 let make = (~bordered=?, ~childrenColumnName=?, ~columns=?, ~dataSource=?, ~id=?, ~className=?, ~style=?, children) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
-    ~props=makeProps(~bordered?, ~childrenColumnName?, ~columns?, ~dataSource?, ~id?, ~className?, ~style?, ()),
+    ~props=
+      makeProps(
+        ~bordered?,
+        ~childrenColumnName=?Js.Option.map((. b) => Array.of_list(b), childrenColumnName),
+        ~columns=?Js.Option.map((. b) => Array.of_list(b), columns),
+        ~dataSource=?Js.Option.map((. b) => Array.of_list(b), dataSource),
+        ~id?,
+        ~className?,
+        ~style?,
+        (),
+      ),
     children,
   );

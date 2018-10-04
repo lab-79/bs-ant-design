@@ -85,7 +85,7 @@ let make =
         ~mode=?Js.Option.map((. b) => modeToJs(b), mode),
         ~monthCellRender?,
         ~monthFullCellRender?,
-        ~validRange?,
+        ~validRange=?Js.Option.map((. b) => Array.of_list(b), validRange),
         ~value?,
         ~onPanelChange?,
         ~onSelect?,

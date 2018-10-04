@@ -60,7 +60,7 @@ let make =
         ~hideOnSinglePage?,
         ~itemRender?,
         ~pageSize?,
-        ~pageSizeOptions?,
+        ~pageSizeOptions=?Js.Option.map((. b) => Array.of_list(b), pageSizeOptions),
         ~showQuickJumper?,
         ~showSizeChanger?,
         ~showTotal?,

@@ -44,9 +44,9 @@ let make =
     ~props=
       makeProps(
         ~accordion?,
-        ~activeKey?,
+        ~activeKey=?Js.Option.map((. b) => Array.of_list(b), activeKey),
         ~bordered?,
-        ~defaultActiveKey?,
+        ~defaultActiveKey=?Js.Option.map((. b) => Array.of_list(b), defaultActiveKey),
         ~onChange?,
         ~destroyInactivePanel?,
         ~id?,

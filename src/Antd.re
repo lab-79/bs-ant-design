@@ -114,6 +114,8 @@ module Pagination = Antd_Pagination;
  */
 
 module Message = {
+  [%bs.raw {|require("antd/lib/message/style")|}];
+
   type content = ReasonReact.reactElement;
   type duration = int;
   type options;
@@ -140,6 +142,8 @@ module Message = {
  */
 
 module Notification = {
+  [%bs.raw {|require("antd/lib/notification/style")|}];
+
   type stringOrNode;
   [@bs.deriving abstract]
   type options = {
