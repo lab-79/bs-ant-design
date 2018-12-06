@@ -38,6 +38,7 @@ external makeProps:
     ~value: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~onPressEnter: ReactEvent.Keyboard.t=?,
+    ~autoComplete: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -60,6 +61,7 @@ let make =
       ~value=?,
       ~onChange=?,
       ~onPressEnter=?,
+      ~autoComplete=?,
       ~className=?,
       ~style=?,
       children,
@@ -81,6 +83,7 @@ let make =
         ~value?,
         ~onChange?,
         ~onPressEnter?,
+        ~autoComplete?,
         ~className?,
         ~style?,
         (),
