@@ -67,11 +67,24 @@ type trigger = [ | [@bs.as "click"] `click | [@bs.as "hover"] `hover | [@bs.as "
 
  */
 
+/*
+ disabled	whether the dropdown menu is disabled	boolean	-
+ getPopupContainer	to set the container of the dropdown menu. The default is to create a div element in body, you can reset it to the scrolling area and make a relative reposition. example	Function(triggerNode)	() => document.body
+ overlay	the dropdown menu	Menu	-
+ overlayClassName	Class name of the dropdown root element	string	-
+ overlayStyle	Style of the dropdown root element	object	-
+ placement	placement of pop menu: bottomLeft bottomCenter bottomRight topLeft topCenter topRight	String	bottomLeft
+ trigger	the trigger mode which executes the drop-down action, hover doesn't work on mobile device	Array<click|hover|contextMenu>	['hover']
+ visible	whether the dropdown menu is visible	boolean	-
+ onVisibleChange	a callback function takes an argument: visible, is executed when the visible state is changed	Function(visible)
+ */
+
 [@bs.obj]
 external makeProps:
   (
     ~disabled: bool=?,
     ~overlay: ReasonReact.reactElement=?,
+    ~overlayClassName: string=?,
     ~placement: string=?,
     ~trigger: array(string)=?,
     ~visible: bool=?,
@@ -88,6 +101,7 @@ let make =
     (
       ~disabled=?,
       ~overlay=?,
+      ~overlayClassName=?,
       ~placement=?,
       ~trigger=?,
       ~visible=?,
@@ -103,6 +117,7 @@ let make =
       makeProps(
         ~disabled?,
         ~overlay?,
+        ~overlayClassName?,
         ~placement=?Js.Option.map((. b) => placementToJs(b), placement),
         ~trigger=?Js.Option.map((. b) => Array.of_list(b), trigger),
         ~visible?,
