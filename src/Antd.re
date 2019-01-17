@@ -44,9 +44,9 @@ module InputNumber = Antd_InputNumber;
 
 module Layout = Antd_Layout;
 
-module List = Antd_List;
+module ListAnt = Antd_List;
 
-module Header = Antd_Layout.Header;
+module HeaderAnt = Antd_Layout.Header;
 
 module Content = Antd_Layout.Content;
 
