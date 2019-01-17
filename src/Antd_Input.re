@@ -37,7 +37,7 @@ external makeProps:
     ~_type: string=?,
     ~value: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
-    ~onPressEnter: ReactEvent.Keyboard.t=?,
+    ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
     ~autoComplete: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -111,7 +111,8 @@ let make =
  */
 
 module TextArea = {
-  [@bs.module "antd/lib/input"] external reactClass: ReasonReact.reactClass = "TextArea";
+  [@bs.module "antd/lib/input"]
+  external reactClass: ReasonReact.reactClass = "TextArea";
 
   [@bs.obj]
   external makeProps:
@@ -120,9 +121,9 @@ module TextArea = {
       ~autosize: bool=?,
       ~defaultValue: string=?,
       ~value: string=?,
-      ~onPressEnter: ReactEvent.Keyboard.t=?,
-      ~onChange: ReactEvent.Keyboard.t=?,
-      ~onBlur: ReactEvent.Keyboard.t=?,
+      ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
+      ~onChange: ReactEvent.Form.t => unit=?,
+      ~onBlur: ReactEvent.Form.t => unit=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
       ~id: string=?,
