@@ -13,6 +13,10 @@
  onChange	The callback triggered when the value is changed.	function(value: number | string)
  */
 
+type value =
+  | Float(float)
+  | String(string);
+
 [@bs.module]
 external reactClass: ReasonReact.reactClass = "antd/lib/input-number";
 
@@ -24,7 +28,7 @@ external makeProps:
     ~autoFocus: bool=?,
     ~defaultValue: float=?,
     ~disabled: bool=?,
-    ~formatter: (float | string) => string=?,
+    ~formatter: value => string=?,
     ~max: float=?,
     ~min: float=?,
     ~parser: string => float=?,
@@ -32,7 +36,7 @@ external makeProps:
     ~size: string=?,
     ~step: int=?,
     ~value: int=?,
-    ~onChange: (float | string) => unit=?,
+    ~onChange: value => unit=?,
     ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~className: string=?,
