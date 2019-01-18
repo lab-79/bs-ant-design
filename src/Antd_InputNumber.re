@@ -13,7 +13,8 @@
  onChange	The callback triggered when the value is changed.	function(value: number | string)
  */
 
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/input-number";
+[@bs.module]
+external reactClass: ReasonReact.reactClass = "antd/lib/input-number";
 
 [%bs.raw {|require("antd/lib/input-number/style")|}];
 
@@ -31,9 +32,9 @@ external makeProps:
     ~size: string=?,
     ~step: string=?,
     ~value: string=?,
-    ~onChange: ReactEvent.Keyboard.t=?,
-    ~onPressEnter: ReactEvent.Keyboard.t=?,
-    ~onBlur: ReactEvent.Keyboard.t=?,
+    ~onChange: int => unit=?,
+    ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~id: string=?,
