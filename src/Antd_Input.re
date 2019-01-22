@@ -37,7 +37,7 @@ external makeProps:
     ~_type: string=?,
     ~value: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
-    ~onFocus: ReactEfent.Form.t => unit=?,
+    ~onFocus: ReactEvent.Form.t => unit=?,
     ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
     ~autoComplete: string=?,
     ~className: string=?,
