@@ -83,6 +83,20 @@ let make =
     children,
   );
 
+module Dragger = {
+  [@bs.module "antd/lib/upload"]
+  external reactClass: ReasonReact.reactClass = "Dragger";
+
+  [@bs.obj] external makeProps: (~height: int=?, unit) => _ = "";
+
+  let make = (~height=?, children) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props=makeProps(~height?),
+      children,
+    );
+};
+
 /*
  accept	File types that can be accepted. See input accept Attribute	string	-
  action	Required. Uploading URL	string|(file) => Promise	-
