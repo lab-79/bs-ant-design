@@ -40,7 +40,7 @@ external makeProps:
     ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
     ~onBlur: ReactEvent.Form.t => unit=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
-    ~onKeyDown: ReactEvent.Keyboard.t => unit=?
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~_type: string=?,
     ~readOnly: bool=?,
     ~autoComplete: string=?,
