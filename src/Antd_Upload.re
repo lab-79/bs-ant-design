@@ -8,6 +8,7 @@ type listType = [ | `text | `picture | [@bs.as "picture-card"] `pictureCard];
 [@bs.obj]
 external makePropsUpload:
   (
+    ~height: int=?,
     ~accept: string=?,
     ~action: string,
     ~directory: bool=?,
@@ -41,7 +42,6 @@ let make =
       ~customRequest=?,
       ~disabled=?,
       ~listType=?,
-      ~_type=?,
       ~multiple=?,
       ~name=?,
       ~showUploadList=?,
@@ -66,7 +66,6 @@ let make =
         ~customRequest?,
         ~disabled?,
         ~listType=?Js.Option.map((. b) => listTypeToJs(b), listType),
-        ~_type?,
         ~multiple?,
         ~name?,
         ~showUploadList?,
@@ -86,8 +85,6 @@ let make =
 module Dragger = {
   [@bs.module "antd/lib/upload"]
   external reactClass: ReasonReact.reactClass = "Dragger";
-
-  [@bs.obj] external makeProps: (~height: int=?, unit) => _ = "";
 
   let make =
       (
@@ -115,9 +112,9 @@ module Dragger = {
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props=(
-        makeProps(~height?),
+      ~props=
         makePropsUpload(
+          ~height?,
           ~accept?,
           ~action,
           ~directory?,
@@ -139,7 +136,6 @@ module Dragger = {
           ~style?,
           (),
         ),
-      ),
       children,
     );
 };
