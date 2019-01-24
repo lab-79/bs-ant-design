@@ -6,7 +6,7 @@
 type listType = [ | `text | `picture | [@bs.as "picture-card"] `pictureCard];
 
 [@bs.obj]
-external makeProps:
+external makePropsUpload:
   (
     ~accept: string=?,
     ~action: string,
@@ -58,7 +58,7 @@ let make =
   ReasonReact.wrapJsForReason(
     ~reactClass,
     ~props=
-      makeProps(
+      makePropsUpload(
         ~accept?,
         ~action,
         ~directory?,
@@ -89,10 +89,57 @@ module Dragger = {
 
   [@bs.obj] external makeProps: (~height: int=?, unit) => _ = "";
 
-  let make = (~height=?, children) =>
+  let make =
+      (
+        ~height=?,
+        ~accept=?,
+        ~action,
+        ~directory=?,
+        ~beforeUpload=?,
+        ~customRequest=?,
+        ~disabled=?,
+        ~listType=?,
+        ~_type=?,
+        ~multiple=?,
+        ~name=?,
+        ~showUploadList=?,
+        ~supportServerRender=?,
+        ~withCredentials=?,
+        ~onChange=?,
+        ~onPreview=?,
+        ~onRemove=?,
+        ~id=?,
+        ~className=?,
+        ~style=?,
+        children,
+      ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props=makeProps(~height?),
+      ~props=(
+        makeProps(~height?),
+        makePropsUpload(
+          ~accept?,
+          ~action,
+          ~directory?,
+          ~beforeUpload?,
+          ~customRequest?,
+          ~disabled?,
+          ~listType=?Js.Option.map((. b) => listTypeToJs(b), listType),
+          ~_type?,
+          ~multiple?,
+          ~name?,
+          ~showUploadList?,
+          ~supportServerRender?,
+          ~withCredentials?,
+          ~onChange?,
+          ~onPreview?,
+          ~onRemove?,
+          ~id?,
+          ~className?,
+          ~style?,
+          (),
+        ),
+      ),
       children,
     );
 };
