@@ -1,7 +1,7 @@
 [@bs.module]
-external reactClass: ReasonReact.reactClass = "antd/lib/treeSelect";
+external reactClass: ReasonReact.reactClass = "antd/lib/tree-select";
 
-[%bs.raw {|require("antd/lib/treeSelect/style")|}];
+[%bs.raw {|require("antd/lib/tree-select/style")|}];
 
 [@bs.deriving jsConverter]
 type size = [ | `large | `default | `small];
