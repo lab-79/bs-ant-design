@@ -159,4 +159,60 @@ let make =
     children,
   );
 
-module TreeNode = {};
+module TreeNode = {
+  /* selectable	can be selected	boolean	true
+     disableCheckbox	Disables the checkbox of the treeNode	boolean	false
+     disabled	Disabled or not	boolean	false
+     isLeaf	Leaf node or not	boolean	false
+     key	Required property (unless using treeDataSimpleMode), should be unique in the tree	string	-
+     title	Content showed on the treeNodes	string|ReactNode	'---'
+     value	Will be treated as treeNodeFilterProp by default, should be unique in the tree	string	- */
+
+  [@bs.module "antd/lib/tree-select"]
+  external treeNode: ReasonReact.reactClass = "TreeNode";
+
+  [@bs.obj]
+  external makeProps:
+    (
+      ~className: string=?,
+      ~selectable: bool=?,
+      ~disableCheckbox: bool=?,
+      ~disabled: bool=?,
+      ~isLeaf: bool=?,
+      ~key: string,
+      ~title: ReasonReact.reactElement=?,
+      ~value: string,
+      unit
+    ) =>
+    _ =
+    "";
+
+  let make =
+      (
+        ~className=?,
+        ~selectable=?,
+        ~disableCheckbox=?,
+        ~disabled=?,
+        ~isLeaf=?,
+        ~key,
+        ~title=?,
+        ~value,
+        children,
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass=treeNode,
+      ~props=
+        makeProps(
+          ~className?,
+          ~selectable?,
+          ~disableCheckbox?,
+          ~disabled?,
+          ~isLeaf?,
+          ~key,
+          ~title?,
+          ~value,
+          (),
+        ),
+      children,
+    );
+};
