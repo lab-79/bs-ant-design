@@ -96,6 +96,8 @@ module Upload = Antd_Upload;
 
 module Pagination = Antd_Pagination;
 
+module TreeSelect = Antd_TreeSelect;
+
 /*
  module Message = {
    type content = ReasonReact.reactElement;
