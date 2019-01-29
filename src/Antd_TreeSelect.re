@@ -47,6 +47,7 @@ external makeProps:
   (
     ~allowClear: bool=?,
     ~autoClearSearchValue: bool=?,
+    ~className: string=?,
     ~defaultValue: string=?, /* string | string[] */
     ~disabled: bool=?,
     ~dropdownClassName: string=?,
@@ -85,6 +86,7 @@ let make =
     (
       ~allowClear=?,
       ~autoClearSearchValue=?,
+      ~className=?,
       ~defaultValue=?,
       ~disabled=?,
       ~dropdownClassName=?,
@@ -122,6 +124,7 @@ let make =
       makeProps(
         ~allowClear?,
         ~autoClearSearchValue?,
+        ~className?,
         ~defaultValue?,
         ~disabled?,
         ~dropdownClassName?,
@@ -155,3 +158,5 @@ let make =
       ),
     children,
   );
+
+module TreeNode = {};
