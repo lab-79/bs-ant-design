@@ -5,6 +5,10 @@
 [@bs.deriving jsConverter]
 type mode = [ | `default | `multiple | `tags];
 
+type value = 
+| String(string)
+| List(list(string));
+
 /*
  allowClear	Show clear button.	boolean	false
  autoFocus	Get focus by default	boolean	false
@@ -68,9 +72,9 @@ external makeProps:
     ~showSearch: bool=?,
     ~size: string=?,
     ~tokenSeparators: array(string)=?,
-    ~value: string=?,
-    ~onBlur: string => unit=?,
-    ~onChange: string => unit=?,
+    ~value: value=?,
+    ~onBlur: value => unit=?,
+    ~onChange: value => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
