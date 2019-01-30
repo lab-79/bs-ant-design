@@ -5,6 +5,7 @@
 [@bs.deriving jsConverter]
 type mode = [ | `default | `multiple | `tags];
 
+[@bs.deriving accessors]
 type value = 
 | String(string)
 | List(list(string));
