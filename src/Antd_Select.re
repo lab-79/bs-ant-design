@@ -6,9 +6,9 @@
 type mode = [ | `default | `multiple | `tags];
 
 [@bs.deriving accessors]
-type value = 
-| String(string)
-| List(list(string));
+type value =
+  | String(string)
+  | List(list(string));
 
 /*
  allowClear	Show clear button.	boolean	false
@@ -56,7 +56,7 @@ external makeProps:
     ~allowClear: bool=?,
     ~autoFocus: bool=?,
     ~defaultActiveFirstOption: bool=?,
-    ~defaultValue: `value=?,
+    ~defaultValue: 'value=?,
     ~disabled: bool=?,
     ~dropdownClassName: string=?,
     ~dropdownMatchSelectWidth: bool=?,
@@ -73,9 +73,9 @@ external makeProps:
     ~showSearch: bool=?,
     ~size: string=?,
     ~tokenSeparators: array(string)=?,
-    ~value: `value=?,
-    ~onBlur: `value => unit=?,
-    ~onChange: `value => unit=?,
+    ~value: 'value=?,
+    ~onBlur: 'value => unit=?,
+    ~onChange: 'value => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -126,7 +126,8 @@ let make =
         ~dropdownMatchSelectWidth?,
         ~dropdownStyle?,
         ~filterOption?,
-        ~firstActiveValue=?Js.Option.map((. b) => Array.of_list(b), firstActiveValue),
+        ~firstActiveValue=?
+          Js.Option.map((. b) => Array.of_list(b), firstActiveValue),
         ~labelInValue?,
         ~maxTagCount?,
         ~maxTagPlaceholder?,
@@ -136,7 +137,8 @@ let make =
         ~showArrow?,
         ~showSearch?,
         ~size?,
-        ~tokenSeparators=?Js.Option.map((. b) => Array.of_list(b), tokenSeparators),
+        ~tokenSeparators=?
+          Js.Option.map((. b) => Array.of_list(b), tokenSeparators),
         ~value?,
         ~onBlur?,
         ~onChange?,
@@ -156,10 +158,17 @@ let make =
  */
 
 module Option = {
-  [@bs.module "antd/lib/select"] external reactClass: ReasonReact.reactClass = "Option";
+  [@bs.module "antd/lib/select"]
+  external reactClass: ReasonReact.reactClass = "Option";
 
-  [@bs.obj] external makeProps: (~disabled: bool=?, ~key: string=?, ~value: string, ~title: string=?) => _ = "";
+  [@bs.obj]
+  external makeProps:
+    (~disabled: bool=?, ~key: string=?, ~value: string, ~title: string=?) => _ =
+    "";
 
   let make = (~disabled=?, ~key=?, ~value, ~title=?) =>
-    ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(~disabled?, ~key?, ~value, ~title?));
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props=makeProps(~disabled?, ~key?, ~value, ~title?),
+    );
 };
