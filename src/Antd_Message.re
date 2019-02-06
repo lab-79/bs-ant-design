@@ -1,20 +1,3 @@
-/*
- module Message = {
-   type content = ReasonReact.reactElement;
-   type duration = int;
-   type options;
-   type callback = (. unit) => unit;
-   [@bs.module "antd/lib/message"] external success: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external error: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external info: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external warning: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external warn: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external loading: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external config: options => unit = "";
-   [@bs.module "antd/lib/message"] external destroy: unit => unit = "";
- };
- */
-
 [@bs.module] external message: ReasonReact.reactClass = "antd/lib/message";
 [%bs.raw {|require("antd/lib/message/style")|}];
 type content = ReasonReact.reactElement;
