@@ -131,3 +131,9 @@ let make =
       ),
     children,
   );
+
+module Actions = {
+  [@bs.module "antd/lib/breadcrumb"] external info: unit => unit = "Info";
+
+  let info = () => info();
+};
