@@ -1,4 +1,6 @@
 [@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/modal";
+[@bs.deriving abstract]
+type reactClass = ReasonReact.reactClass;
 
 [%bs.raw {|require("antd/lib/modal/style")|}];
 
@@ -132,8 +134,21 @@ let make =
     children,
   );
 
-module Actions = {
-  [@bs.module "antd/lib/breadcrumb"] external info: unit => unit = "Info";
-
-  let info = () => info();
+[@bs.deriving]
+type props = {
+  .
+  "title": ReasonReact.reactElement,
+  "content": ReasonReact.reactElement,
 };
+
+[@bs.send] external info: (reactClass, props) => unit = "";
+[@bs.send] external success: (reactClass, props) => unit = "";
+[@bs.send] external error: (reactClass, props) => unit = "";
+[@bs.send] external warning: (reactClass, props) => unit = "";
+[@bs.send] external confirm: (reactClass, props) => unit = "";
+
+let info = props => info(reactClass, props);
+let success = props => success(reactClass, props);
+let error = props => error(reactClass, props);
+let warning = props => warning(reactClass, props);
+let confirm = props => confirm(reactClass, props);
