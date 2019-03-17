@@ -121,7 +121,7 @@ module TextArea = {
       ~defaultValue: string=?,
       ~value: string=?,
       ~onPressEnter: ReactEvent.Keyboard.t=?,
-      ~onChange: ReactEvent.Keyboard.t=?,
+      ~onChange: ReactEvent.Form.t => unit=?,
       ~onBlur: ReactEvent.Keyboard.t=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
