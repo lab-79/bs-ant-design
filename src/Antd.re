@@ -42,6 +42,8 @@ module Input = Antd_Input;
 
 module InputNumber = Antd_InputNumber;
 
+module InputFloat = Antd_InputFloat;
+
 module Layout = Antd_Layout;
 
 module List = Antd_List;
