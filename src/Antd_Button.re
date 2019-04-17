@@ -1,7 +1,5 @@
 module IconName = Antd_IconName;
 
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/button";
-
 [%bs.raw {|require("antd/lib/button/style")|}];
 
 [@bs.deriving jsConverter]
@@ -27,8 +25,8 @@ module LoadingProps = {
     | Delay(a) => a |> ofDelay;
 };
 
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/button"] [@react.component]
+external make:
   (
     ~_type: string=?,
     ~htmlType: string=?,
@@ -48,56 +46,7 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element
   ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~_type=?,
-      ~htmlType=?,
-      ~icon=?,
-      ~shape=?,
-      ~size=?,
-      ~onClick=?,
-      ~onMouseUp=?,
-      ~onMouseDown=?,
-      ~tabIndex=?,
-      ~loading: option(LoadingProps.t)=?,
-      ~disabled=?,
-      ~ghost=?,
-      ~target=?,
-      ~href=?,
-      ~download=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_type=?Js.Option.map((. b) => buttonTypeToJs(b), _type),
-        ~htmlType?,
-        ~icon?,
-        ~shape=?Js.Option.map((. b) => buttonShapeToJs(b), shape),
-        ~size=?Js.Option.map((. b) => buttonSizeToJs(b), size),
-        ~onClick?,
-        ~onMouseUp?,
-        ~onMouseDown?,
-        ~tabIndex?,
-        ~loading=?Js.Option.map((. b) => LoadingProps.toJs(b), loading),
-        ~disabled?,
-        ~ghost?,
-        ~target?,
-        ~href?,
-        ~download?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "default";
