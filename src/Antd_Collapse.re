@@ -1,16 +1,5 @@
-[@bs.module] external collapse: ReasonReact.reactClass = "antd/lib/collapse";
-
-/*
- accordion	If true, Collapse renders as Accordion	boolean	false
- activeKey	Key of the active panel	string[]|string	No default value. In accordion mode, it's the key of the first panel.
- bordered	Toggles rendering of the border around the collapse block	boolean	true
- defaultActiveKey	Key of the initial active panel	string	-
- onChange	Callback function executed when active panel is changed	Function	-
- destroyInactivePanel	Destroy Inactive Panel
- */
-
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/collapse"] [@react.component]
+external make:
   (
     ~accordion: bool=?,
     ~activeKey: array(string)=?,
@@ -21,41 +10,19 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element=?
   ) =>
-  _ =
-  "";
+  React.element =
+  "default";
 
-let make =
-    (
-      ~accordion=?,
-      ~activeKey=?,
-      ~bordered=?,
-      ~defaultActiveKey=?,
-      ~onChange=?,
-      ~destroyInactivePanel=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=collapse,
-    ~props=
-      makeProps(
-        ~accordion?,
-        ~activeKey=?Js.Option.map((. b) => Array.of_list(b), activeKey),
-        ~bordered?,
-        ~defaultActiveKey=?Js.Option.map((. b) => Array.of_list(b), defaultActiveKey),
-        ~onChange?,
-        ~destroyInactivePanel?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+/*
+ accordion	If true, Collapse renders as Accordion	boolean	false
+ activeKey	Key of the active panel	string[]|string	No default value. In accordion mode, it's the key of the first panel.
+ bordered	Toggles rendering of the border around the collapse block	boolean	true
+ defaultActiveKey	Key of the initial active panel	string	-
+ onChange	Callback function executed when active panel is changed	Function	-
+ destroyInactivePanel	Destroy Inactive Panel
+ */
 
 /*
  disabled	If true, panel cannot be opened or closed	boolean	false
@@ -66,9 +33,8 @@ let make =
   */
 
 module Panel = {
-  [@bs.module "antd/lib/collapse"] external panel: ReasonReact.reactClass = "Panel";
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/collapse"] [@react.component]
+  external make:
     (
       ~disabled: bool=?,
       ~forceRender: bool=?,
@@ -78,14 +44,8 @@ module Panel = {
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-  let make = (~disabled=?, ~forceRender=?, ~header=?, ~key_=?, ~showArrow=?, ~id=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=panel,
-      ~props=makeProps(~disabled?, ~forceRender?, ~header?, ~key=?key_, ~showArrow?, ~id?, ~className?, ~style?, ()),
-      children,
-    );
+    React.element =
+    "Panel";
 };

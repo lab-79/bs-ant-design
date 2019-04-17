@@ -1,6 +1,3 @@
-[@bs.module]
-external localeProvider : ReasonReact.reactClass = "antd/lib/locale-provider";
-
 [%bs.raw {|require("antd/lib/locale-provider/style")|}];
 
 module Locale = {
@@ -91,11 +88,6 @@ module Locale = {
     };
 };
 
-[@bs.obj] external makeProps : (~locale: Locale.t) => _ = "";
-
-let make = (~locale, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=localeProvider,
-    ~props=makeProps(~locale),
-    children,
-  );
+[@bs.module "antd/lib/locale-provider"] [@react.component]
+external make: (~locale: Locale.t, ~children: React.element=?) => React.element =
+  "default";

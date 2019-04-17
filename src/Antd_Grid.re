@@ -1,8 +1,6 @@
 [%bs.raw {|require("antd/lib/grid/style")|}];
 
 module Row = {
-  [@bs.module]
-  external reactClass: ReasonReact.reactClass = "antd/lib/grid/row";
   [@bs.deriving jsConverter]
   type rowType = [ | `flex];
   [@bs.deriving jsConverter]
@@ -48,8 +46,9 @@ module Row = {
     | SingleGutterInPx(int) => int
     | ResponsiveBreakpoints(complexGutter) => complexGutter
     };
-  [@bs.obj]
-  external makeProps:
+
+  [@bs.module "antd/lib/grid/row"] [@react.component]
+  external make:
     (
       ~className: string=?,
       ~_type: string=?,
@@ -58,41 +57,13 @@ module Row = {
       ~gutter: 'a=?,
       ~style: ReactDOMRe.Style.t=?,
       ~prefixCls: string=?,
-      unit
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-  let make =
-      (
-        ~className=?,
-        ~gutter=?,
-        ~_type=?,
-        ~align=?,
-        ~justify=?,
-        ~style=?,
-        ~prefixCls=?,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=
-        makeProps(
-          ~className?,
-          ~_type=?Js.Option.map((. b) => rowTypeToJs(b), _type),
-          ~align=?Js.Option.map((. b) => rowAlignToJs(b), align),
-          ~justify=?Js.Option.map((. b) => rowJustifyToJs(b), justify),
-          ~gutter=?Js.Option.map((. b) => gutterToProp(b), gutter),
-          ~style?,
-          ~prefixCls?,
-          (),
-        ),
-      children,
-    );
+    React.element =
+    "default";
 };
 
 module Col = {
-  [@bs.module]
-  external reactClass: ReasonReact.reactClass = "antd/lib/grid/col";
   type fullColSize;
   [@bs.obj]
   external makeColSize:
@@ -116,8 +87,9 @@ module Col = {
     };
 
   type props;
-  [@bs.obj]
-  external makeProps:
+
+  [@bs.module "antd/lib/grid/col"] [@react.component]
+  external make:
     (
       ~className: string=?,
       ~span: int=?,
@@ -133,50 +105,10 @@ module Col = {
       ~xxl: 'f=?,
       ~prefixCls: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
-    props =
-    "";
-  let make =
-      (
-        ~className=?,
-        ~span=?,
-        ~order=?,
-        ~offset=?,
-        ~push=?,
-        ~pull=?,
-        ~xs=?,
-        ~sm=?,
-        ~md=?,
-        ~lg=?,
-        ~xl=?,
-        ~xxl=?,
-        ~prefixCls=?,
-        ~style=?,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=
-        makeProps(
-          ~className?,
-          ~span?,
-          ~order?,
-          ~offset?,
-          ~push?,
-          ~pull?,
-          ~xs=?Js.Option.map((. b) => colSizeToProp(b), xs),
-          ~sm=?Js.Option.map((. b) => colSizeToProp(b), sm),
-          ~md=?Js.Option.map((. b) => colSizeToProp(b), md),
-          ~lg=?Js.Option.map((. b) => colSizeToProp(b), lg),
-          ~xl=?Js.Option.map((. b) => colSizeToProp(b), xl),
-          ~xxl=?Js.Option.map((. b) => colSizeToProp(b), xxl),
-          ~prefixCls?,
-          ~style?,
-          (),
-        ),
-      children,
-    );
+    React.element =
+    "default";
 };
 
 let makeGutterBreakpoints = Row.makeGutterBreakpoints;

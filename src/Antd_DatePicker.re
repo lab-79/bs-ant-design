@@ -1,7 +1,5 @@
 [%bs.raw {|require("antd/lib/date-picker/style")|}];
 
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/date-picker";
-
 [@bs.deriving jsConverter]
 type pickerSize = [ | `small | `default | `large];
 
@@ -9,7 +7,8 @@ type moment = MomentRe.Moment.t;
 
 type boolOrProps(_) =
   | ShowTimeBool(bool): boolOrProps(bool)
-  | ShowTimeProps(Antd_TimePicker.t('a)): boolOrProps(Antd_TimePicker.t('a));
+  | ShowTimeProps(Antd_TimePicker.t('a))
+    : boolOrProps(Antd_TimePicker.t('a));
 
 let boolOrPropsToProp = (type a, boolOrProps: boolOrProps(a)): a =>
   switch (boolOrProps) {
@@ -19,9 +18,8 @@ let boolOrPropsToProp = (type a, boolOrProps: boolOrProps(a)): a =>
 
 type t('a) = Js.t({. datePickerProps: int} as 'a);
 
-[@bs.obj]
-/*export interface DatePickerProps extends PickerProps, SinglePickerProps*/
-external makeProps:
+[@bs.module "antd/lib/date-picker"] [@react.component]
+external make:
   (
     ~showTime: 'a=?, /* TimePickerProps | boolean; */
     ~showToday: bool=?,
@@ -51,86 +49,18 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element=?
   ) =>
-  t(_) =
-  "";
-
-let make =
-    (
-      ~showTime=?,
-      ~showToday=?,
-      ~_open=?,
-      ~disabledTime=?,
-      ~onOpenChange=?,
-      ~onOk=?,
-      ~placeholder=?,
-      ~value=?,
-      ~defaultValue=?,
-      ~defaultPickerValue=?,
-      ~onChange=?,
-      ~prefixCls=?,
-      ~inputPrefixCls=?,
-      ~format=?,
-      ~disabled=?,
-      ~renderExtraFooter=?,
-      ~allowClear=?,
-      ~popupStyle=?,
-      ~locale=?,
-      ~size=?,
-      ~getCalendarContainer=?,
-      ~disabledDate=?,
-      ~dateRender=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~showTime=?Js.Option.map((. b) => boolOrPropsToProp(b), showTime),
-        ~showToday?,
-        ~_open?,
-        ~disabledTime?,
-        ~onOpenChange?,
-        ~onOk?,
-        ~placeholder?,
-        ~value?,
-        ~defaultValue?,
-        ~defaultPickerValue?,
-        ~onChange?,
-        ~prefixCls?,
-        ~inputPrefixCls?,
-        ~format?,
-        ~disabled?,
-        ~renderExtraFooter?,
-        ~allowClear?,
-        ~popupStyle?,
-        ~locale?,
-        ~size=?Js.Option.map((. b) => pickerSizeToJs(b), size),
-        ~getCalendarContainer?,
-        ~disabledDate?,
-        ~dateRender?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "default";
 
 module RangePicker = {
-  [@bs.module "antd/lib/date-picker"] external reactClass: ReasonReact.reactClass = "RangePicker";
-  /* it is using rc-calendar internally and just passing the mode to it. */
-  /* enum('time', 'date', 'month', 'year', 'decade') */
   [@bs.deriving jsConverter]
   type rangePickerMode = [ | `time | `date | `month | `year | `decade];
   type t('a) = Js.t({. rangePickerProps: int} as 'a);
-  [@bs.obj]
-  /*export interface RangePickerProps extends PickerProps*/
-  external makeProps:
+
+  [@bs.module "antd/lib/date-picker"] [@react.component]
+  external make:
     (
       ~value: 'a=?,
       ~defaultValue: 'b=?,
@@ -161,86 +91,17 @@ module RangePicker = {
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
-    t(_) =
-    "";
-  let make =
-      (
-        ~value=?,
-        ~defaultValue=?,
-        ~defaultPickerValue=?,
-        ~onChange=?,
-        ~onCalendarChange=?,
-        ~onOk=?,
-        ~showTime=?,
-        ~ranges=?,
-        ~placeholder=?,
-        ~mode=?,
-        ~disabledTime=?,
-        ~onPanelChange=?,
-        ~prefixCls=?,
-        ~inputPrefixCls=?,
-        ~format=?,
-        ~disabled=?,
-        ~allowClear=?,
-        ~popupStyle=?,
-        ~locale=?,
-        ~size=?,
-        ~getCalendarContainer=?,
-        ~_open=?,
-        ~disabledDate=?,
-        ~renderExtraFooter=?,
-        ~dateRender=?,
-        ~id=?,
-        ~className=?,
-        ~style=?,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=
-        makeProps(
-          ~onChange?,
-          ~onCalendarChange?,
-          ~ranges?,
-          ~mode=?Js.Option.map((. b) => rangePickerModeToJs(b), mode),
-          ~showTime=?Js.Option.map((. b) => boolOrPropsToProp(b), showTime),
-          ~_open?,
-          ~disabledTime?,
-          ~onOk?,
-          ~placeholder?,
-          ~value?,
-          ~defaultValue?,
-          ~defaultPickerValue?,
-          ~onPanelChange?,
-          ~prefixCls?,
-          ~inputPrefixCls?,
-          ~format?,
-          ~disabled?,
-          ~renderExtraFooter?,
-          ~allowClear?,
-          ~popupStyle?,
-          ~locale?,
-          ~size=?Js.Option.map((. b) => pickerSizeToJs(b), size),
-          ~getCalendarContainer?,
-          ~disabledDate?,
-          ~dateRender?,
-          ~id?,
-          ~className?,
-          ~style?,
-          (),
-        ),
-      children,
-    );
+    React.element =
+    "RangePicker";
 };
 
 module MonthPicker = {
-  [@bs.module "antd/lib/date-picker"] external reactClass: ReasonReact.reactClass = "MonthPicker";
   type t('a) = Js.t({. monthPickerProps: int} as 'a);
-  [@bs.obj]
-  /*export interface MonthPickerProps extends PickerProps, SinglePickerProps*/
-  external makeProps:
+
+  [@bs.module "antd/lib/date-picker"] [@react.component]
+  external make:
     (
       ~_open: bool=?,
       ~onOpenChange: bool => unit=?,
@@ -269,74 +130,14 @@ module MonthPicker = {
       ~style: ReactDOMRe.Style.t=?,
       unit
     ) =>
-    t(_) =
-    "";
-  let make =
-      (
-        ~_open=?,
-        ~onOpenChange=?,
-        ~placeholder=?,
-        ~monthCellContentRender=?,
-        ~value=?,
-        ~defaultValue=?,
-        ~defaultPickerValue=?,
-        ~onChange=?,
-        ~prefixCls=?,
-        ~inputPrefixCls=?,
-        ~format=?,
-        ~disabled=?,
-        ~allowClear=?,
-        ~popupStyle=?,
-        ~locale=?,
-        ~size=?,
-        ~getCalendarContainer=?,
-        ~disabledDate=?,
-        ~renderExtraFooter=?,
-        ~dateRender=?,
-        ~id=?,
-        ~className=?,
-        ~style=?,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=
-        makeProps(
-          ~onChange?,
-          ~onOpenChange?,
-          ~_open?,
-          ~placeholder?,
-          ~monthCellContentRender?,
-          ~value?,
-          ~defaultValue?,
-          ~defaultPickerValue?,
-          ~prefixCls?,
-          ~inputPrefixCls?,
-          ~format?,
-          ~disabled?,
-          ~renderExtraFooter?,
-          ~allowClear?,
-          ~popupStyle?,
-          ~locale?,
-          ~size=?Js.Option.map((. b) => pickerSizeToJs(b), size),
-          ~getCalendarContainer?,
-          ~disabledDate?,
-          ~dateRender?,
-          ~id?,
-          ~className?,
-          ~style?,
-          (),
-        ),
-      children,
-    );
+    React.element =
+    "MonthPicker";
 };
 
 module WeekPicker = {
-  [@bs.module "antd/lib/date-picker"] external reactClass: ReasonReact.reactClass = "WeekPicker";
   type t('a) = Js.t({. weekPickerProps: int} as 'a);
-  [@bs.obj]
-  /*export interface WeekPickerProps extends PickerProps, SinglePickerProps*/
-  external makeProps:
+  [@bs.module "antd/lib/date-picker"] [@react.component]
+  external make:
     (
       ~_open: bool=?,
       ~onOpenChange: bool => unit=?,
@@ -362,66 +163,10 @@ module WeekPicker = {
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
-    t(_) =
-    "";
-  let make =
-      (
-        ~_open=?,
-        ~onOpenChange=?,
-        ~placeholder=?,
-        ~value=?,
-        ~defaultValue=?,
-        ~defaultPickerValue=?,
-        ~onChange=?,
-        ~prefixCls=?,
-        ~inputPrefixCls=?,
-        ~format=?,
-        ~disabled=?,
-        ~allowClear=?,
-        ~popupStyle=?,
-        ~locale=?,
-        ~size=?,
-        ~getCalendarContainer=?,
-        ~disabledDate=?,
-        ~renderExtraFooter=?,
-        ~dateRender=?,
-        ~id=?,
-        ~className=?,
-        ~style=?,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=
-        makeProps(
-          ~onChange?,
-          ~onOpenChange?,
-          ~_open?,
-          ~placeholder?,
-          ~value?,
-          ~defaultValue?,
-          ~defaultPickerValue?,
-          ~prefixCls?,
-          ~inputPrefixCls?,
-          ~format?,
-          ~disabled?,
-          ~renderExtraFooter?,
-          ~allowClear?,
-          ~popupStyle?,
-          ~locale?,
-          ~size=?Js.Option.map((. b) => pickerSizeToJs(b), size),
-          ~getCalendarContainer?,
-          ~disabledDate?,
-          ~dateRender?,
-          ~id?,
-          ~className?,
-          ~style?,
-          (),
-        ),
-      children,
-    );
+    React.element =
+    "WeekPicker";
 };
 
 /*

@@ -9,8 +9,7 @@ external make:
     ~dash: bool=?,
     ~id: string=?,
     ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element
+    ~style: ReactDOMRe.Style.t=?
   ) =>
   React.element =
   "defualt";

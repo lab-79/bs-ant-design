@@ -1,18 +1,32 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/form";
-
 [%bs.raw {|require("antd/lib/form/style")|}];
 
 [@bs.deriving jsConverter]
-type formLayout = [ | [@bs.as "horizontal"] `Horizontal | [@bs.as "inline"] `Inline | [@bs.as "vertical"] `Vertical];
+type formLayout = [
+  | [@bs.as "horizontal"] `Horizontal
+  | [@bs.as "inline"] `Inline
+  | [@bs.as "vertical"] `Vertical
+];
+
+[@bs.module "antd/lib/form"] [@react.component]
+external make:
+  (
+    ~layout: string=?,
+    ~onSubmit: ReactEvent.Form.t => unit=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~className: string=?,
+    ~prefixCls: string=?,
+    ~hideRequiredMark: bool=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "default";
 
 module Item = {
-  [@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/form/FormItem";
-
   [@bs.deriving jsConverter]
   type validateStatus = [ | `success | `warning | `error | `validating];
 
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/form/FormItem"]
+  external make:
     (
       ~prefixCls: string=?,
       ~className: string=?,
@@ -27,77 +41,8 @@ module Item = {
       ~required: bool=?,
       ~style: ReactDOMRe.Style.t=?,
       ~colon: bool=?,
-      unit
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-
-  let make =
-      (
-        ~prefixCls=?,
-        ~className=?,
-        ~id=?,
-        ~label=?,
-        ~labelCol=?,
-        ~wrapperCol=?,
-        ~help=?,
-        ~extra=?,
-        ~validateStatus=?,
-        ~hasFeedback=?,
-        ~required=?,
-        ~style=?,
-        ~colon=?,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=
-        makeProps(
-          ~prefixCls?,
-          ~className?,
-          ~id?,
-          ~label?,
-          ~labelCol?,
-          ~wrapperCol?,
-          ~help?,
-          ~extra?,
-          ~validateStatus=?Js.Option.map((. b) => validateStatusToJs(b), validateStatus),
-          ~hasFeedback?,
-          ~required?,
-          ~style?,
-          ~colon?,
-          (),
-        ),
-      children,
-    );
+    React.element =
+    "default";
 };
-
-[@bs.obj]
-external makeProps:
-  (
-    ~layout: string=?,
-    ~onSubmit: ReactEvent.Form.t => unit=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~className: string=?,
-    ~prefixCls: string=?,
-    ~hideRequiredMark: bool=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make = (~layout=?, ~onSubmit=?, ~style=?, ~className=?, ~prefixCls=?, ~hideRequiredMark=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~layout=?Js.Option.map((. b) => formLayoutToJs(b), layout),
-        ~onSubmit?,
-        ~style?,
-        ~className?,
-        ~prefixCls?,
-        ~hideRequiredMark?,
-        (),
-      ),
-    children,
-  );

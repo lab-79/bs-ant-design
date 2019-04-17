@@ -1,6 +1,31 @@
-[@bs.module] external autoComplete: ReasonReact.reactClass = "antd/lib/auto-complete";
-
 [%bs.raw {|require("antd/lib/auto-complete/style")|}];
+[@bs.module "antd/lib/auto-complete"] [@react.component]
+external make:
+  (
+    ~allowClear: bool=?,
+    ~autoFocus: bool=?,
+    ~backfill: bool=?,
+    ~dataSource: array(string)=?,
+    ~defaultActiveFirstOption: bool=?,
+    ~defaultValue: string=?,
+    ~disabled: bool=?,
+    ~filterOption: bool=?,
+    ~optionLabelProp: string=?,
+    ~placeholder: string=?,
+    ~value: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~onFocus: ReactEvent.Form.t => unit=?,
+    ~onSearch: ReactEvent.Form.t => unit=?,
+    ~onSelect: ReactEvent.Form.t => unit=?,
+    ~defaultOpen: bool=?,
+    ~open_: bool=?,
+    ~onDropdownVisibleChange: string => unit=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?
+  ) =>
+  React.element =
+  "default";
 
 /*
  allowClear	Show clear button, effective in multiple mode only.	boolean	false
@@ -25,85 +50,3 @@
  open	Controlled open state of dropdown	boolean	-
  onDropdownVisibleChange	Call when dropdown open
  */
-
-[@bs.obj]
-external makeProps:
-  (
-    ~allowClear: bool=?,
-    ~autoFocus: bool=?,
-    ~backfill: bool=?,
-    ~dataSource: array(string)=?,
-    ~defaultActiveFirstOption: bool=?,
-    ~defaultValue: string=?,
-    ~disabled: bool=?,
-    ~filterOption: bool=?,
-    ~optionLabelProp: string=?,
-    ~placeholder: string=?,
-    ~value: string=?,
-    ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: ReactEvent.Form.t => unit=?,
-    ~onFocus: ReactEvent.Form.t => unit=?,
-    ~onSearch: ReactEvent.Form.t => unit=?,
-    ~onSelect: ReactEvent.Form.t => unit=?,
-    ~defaultOpen: bool=?,
-    ~open_: bool=?,
-    ~onDropdownVisibleChange: string => unit=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~allowClear=?,
-      ~autoFocus=?,
-      ~backfill=?,
-      ~dataSource=?,
-      ~defaultActiveFirstOption=?,
-      ~defaultValue=?,
-      ~disabled=?,
-      ~filterOption=?,
-      ~optionLabelProp=?,
-      ~placeholder=?,
-      ~value=?,
-      ~onBlur=?,
-      ~onChange=?,
-      ~onFocus=?,
-      ~onSearch=?,
-      ~onSelect=?,
-      ~defaultOpen=?,
-      ~open_=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=autoComplete,
-    ~props=
-      makeProps(
-        ~allowClear?,
-        ~autoFocus?,
-        ~backfill?,
-        ~dataSource=?Js.Option.map((. b) => Array.of_list(b), dataSource),
-        ~defaultActiveFirstOption?,
-        ~defaultValue?,
-        ~disabled?,
-        ~filterOption?,
-        ~optionLabelProp?,
-        ~placeholder?,
-        ~value?,
-        ~onBlur?,
-        ~onChange?,
-        ~onFocus?,
-        ~onSearch?,
-        ~onSelect?,
-        ~defaultOpen?,
-        ~open_?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );

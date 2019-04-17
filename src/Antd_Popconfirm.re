@@ -1,5 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/popconfirm";
-
 [%bs.raw {|require("antd/lib/popconfirm/style")|}];
 
 [@bs.deriving jsConverter]
@@ -20,6 +18,36 @@ type placementType = [
 
 [@bs.deriving jsConverter]
 type triggerType = [ | `hover | `focus | `click | `contextMenu];
+
+[@bs.module "antd/lib/popconfirm"] [@react.component]
+external make:
+  (
+    ~arrowPointAtCenter: bool=?,
+    ~autoAdjustOverflow: bool=?,
+    ~defaultVisible: bool=?,
+    ~getPopupContainer: Dom.element => Dom.htmlElement=?,
+    ~mouseEnterDelay: float=?,
+    ~mouseLeaveDelay: float=?,
+    ~overlayClassName: string=?,
+    ~overlayStyle: ReactDOMRe.Style.t=?,
+    ~placement: string=?,
+    ~trigger: string=?,
+    ~visible: bool=?,
+    ~onVisibleChange: bool => unit=?,
+    ~cancelText: string=?,
+    ~okText: string=?,
+    ~okType: string=?,
+    ~title: ReasonReact.reactElement=?,
+    ~onCancel: ReactEvent.Mouse.t => unit=?,
+    ~onConfirm: ReactEvent.Mouse.t => unit=?,
+    ~icon: ReasonReact.reactElement=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "default";
 
 /*
  COMMON API
@@ -49,90 +77,3 @@ type triggerType = [ | `hover | `focus | `click | `contextMenu];
  onConfirm	callback of confirmation	function(e)	-
  icon	customize icon of confirmation	ReactNode	<Icon type="exclamation-circle" />
   */
-
-[@bs.obj]
-external makeProps:
-  (
-    ~arrowPointAtCenter: bool=?,
-    ~autoAdjustOverflow: bool=?,
-    ~defaultVisible: bool=?,
-    ~getPopupContainer: Dom.element => Dom.htmlElement=?,
-    ~mouseEnterDelay: float=?,
-    ~mouseLeaveDelay: float=?,
-    ~overlayClassName: string=?,
-    ~overlayStyle: ReactDOMRe.Style.t=?,
-    ~placement: string=?,
-    ~trigger: string=?,
-    ~visible: bool=?,
-    ~onVisibleChange: bool => unit=?,
-    ~cancelText: string=?,
-    ~okText: string=?,
-    ~okType: string=?,
-    ~title: ReasonReact.reactElement=?,
-    ~onCancel: ReactEvent.Mouse.t => unit=?,
-    ~onConfirm: ReactEvent.Mouse.t => unit=?,
-    ~icon: ReasonReact.reactElement=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~arrowPointAtCenter=?,
-      ~autoAdjustOverflow=?,
-      ~defaultVisible=?,
-      ~getPopupContainer=?,
-      ~mouseEnterDelay=?,
-      ~mouseLeaveDelay=?,
-      ~overlayClassName=?,
-      ~overlayStyle=?,
-      ~placement=?,
-      ~trigger=?,
-      ~visible=?,
-      ~onVisibleChange=?,
-      ~cancelText=?,
-      ~okText=?,
-      ~okType=?,
-      ~title=?,
-      ~onCancel=?,
-      ~onConfirm=?,
-      ~icon=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~arrowPointAtCenter?,
-        ~autoAdjustOverflow?,
-        ~defaultVisible?,
-        ~getPopupContainer?,
-        ~mouseEnterDelay?,
-        ~mouseLeaveDelay?,
-        ~overlayClassName?,
-        ~overlayStyle?,
-        ~placement=?Js.Option.map((. b) => placementTypeToJs(b), placement),
-        ~trigger=?Js.Option.map((. b) => triggerTypeToJs(b), trigger),
-        ~visible?,
-        ~onVisibleChange?,
-        ~cancelText?,
-        ~okText?,
-        ~okType?,
-        ~title?,
-        ~onCancel?,
-        ~onConfirm?,
-        ~icon?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );

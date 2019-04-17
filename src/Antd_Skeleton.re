@@ -1,5 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/skeleton";
-
 [%bs.raw {|require("antd/lib/skeleton/style")|}];
 
 /*
@@ -55,9 +53,18 @@ external makeProps:
   _ =
   "";
 
-let make = (~active=?, ~avatar=?, ~loading=?, ~paragraph=?, ~title=?, ~id=?, ~className=?, ~style=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=makeProps(~active?, ~avatar?, ~loading?, ~paragraph?, ~title?, ~id?, ~className?, ~style?, ()),
-    children,
-  );
+[@bs.module "antd/lib/skeleton"]
+external make:
+  (
+    ~active: bool=?,
+    ~avatar: bool=?,
+    ~loading: bool=?,
+    ~paragraph: paragraphProps=?,
+    ~title: bool=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "default";

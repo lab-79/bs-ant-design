@@ -1,12 +1,10 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/switch";
-
 [%bs.raw {|require("antd/lib/switch/style")|}];
 
 [@bs.deriving jsConverter]
 type size = [ | `default | `small];
 
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/switch"]
+external make:
   (
     ~autoFocus: bool=?,
     ~checked: bool=?,
@@ -20,47 +18,10 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element=?
   ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~autoFocus=?,
-      ~checked=?,
-      ~checkedChildren=?,
-      ~defaultChecked=?,
-      ~disabled=?,
-      ~loading=?,
-      ~size=?,
-      ~unCheckedChildren=?,
-      ~onChange=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~autoFocus?,
-        ~checked?,
-        ~checkedChildren?,
-        ~defaultChecked?,
-        ~disabled?,
-        ~loading?,
-        ~size=?Js.Option.map((. b) => sizeToJs(b), size),
-        ~unCheckedChildren?,
-        ~onChange?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "default";
 
 /*
  autoFocus	get focus when component mounted	boolean	false

@@ -1,5 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/tooltip";
-
 [%bs.raw {|require("antd/lib/tooltip/style")|}];
 
 [@bs.deriving jsConverter]
@@ -20,6 +18,30 @@ type placementType = [
 
 [@bs.deriving jsConverter]
 type triggerType = [ | `hover | `focus | `click | `contextMenu];
+
+[@bs.module "antd/lib/tooltop"] [@react.component]
+external make:
+  (
+    ~arrowPointAtCenter: bool=?,
+    ~autoAdjustOverflow: bool=?,
+    ~defaultVisible: bool=?,
+    ~getPopupContainer: Dom.element => Dom.htmlElement=?,
+    ~mouseEnterDelay: float=?,
+    ~mouseLeaveDelay: float=?,
+    ~overlayClassName: string=?,
+    ~overlayStyle: ReactDOMRe.Style.t=?,
+    ~placement: string=?,
+    ~trigger: string=?,
+    ~visible: bool=?,
+    ~onVisibleChange: bool => unit=?,
+    ~title: ReasonReact.reactElement=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "default";
 
 /*
  COMMON API
@@ -43,72 +65,3 @@ type triggerType = [ | `hover | `focus | `click | `contextMenu];
 /*
  title	Title of the card	string|ReactNode	-
  */
-
-[@bs.obj]
-external makeProps:
-  (
-    ~arrowPointAtCenter: bool=?,
-    ~autoAdjustOverflow: bool=?,
-    ~defaultVisible: bool=?,
-    ~getPopupContainer: Dom.element => Dom.htmlElement=?,
-    ~mouseEnterDelay: float=?,
-    ~mouseLeaveDelay: float=?,
-    ~overlayClassName: string=?,
-    ~overlayStyle: ReactDOMRe.Style.t=?,
-    ~placement: string=?,
-    ~trigger: string=?,
-    ~visible: bool=?,
-    ~onVisibleChange: bool => unit=?,
-    ~title: ReasonReact.reactElement=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~arrowPointAtCenter=?,
-      ~autoAdjustOverflow=?,
-      ~defaultVisible=?,
-      ~getPopupContainer=?,
-      ~mouseEnterDelay=?,
-      ~mouseLeaveDelay=?,
-      ~overlayClassName=?,
-      ~overlayStyle=?,
-      ~placement=?,
-      ~trigger=?,
-      ~visible=?,
-      ~onVisibleChange=?,
-      ~title=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~arrowPointAtCenter?,
-        ~autoAdjustOverflow?,
-        ~defaultVisible?,
-        ~getPopupContainer?,
-        ~mouseEnterDelay?,
-        ~mouseLeaveDelay?,
-        ~overlayClassName?,
-        ~overlayStyle?,
-        ~placement=?Js.Option.map((. b) => placementTypeToJs(b), placement),
-        ~trigger=?Js.Option.map((. b) => triggerTypeToJs(b), trigger),
-        ~visible?,
-        ~onVisibleChange?,
-        ~title?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );

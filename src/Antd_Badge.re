@@ -1,12 +1,10 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/badge";
-
 [%bs.raw {|require("antd/lib/badge/style")|}];
 
 [@bs.deriving jsConverter]
 type status = [ | `success | `processing | `default | `error | `warning];
 
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/badge"] [@reacon.component]
+external make:
   (
     ~count: int=?,
     ~dot: bool=?,
@@ -19,45 +17,10 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element
   ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~count=?,
-      ~dot=?,
-      ~offset=?,
-      ~overflowCount=?,
-      ~showZero=?,
-      ~status=?,
-      ~text=?,
-      ~title=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~count?,
-        ~dot?,
-        ~offset?,
-        ~overflowCount?,
-        ~showZero?,
-        ~status=?Js.Option.map((. b) => statusToJs(b), status),
-        ~text?,
-        ~title?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "default";
 
 /*
  count	Number to show in badge	number|ReactNode

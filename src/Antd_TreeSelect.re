@@ -1,11 +1,47 @@
-[@bs.module]
-external reactClass: ReasonReact.reactClass = "antd/lib/tree-select";
-
 [%bs.raw {|require("antd/lib/tree-select/style")|}];
 
 [@bs.deriving jsConverter]
 type size = [ | `large | `default | `small];
 
+[@bs.module "antd/lib/tree-select"]
+external make:
+  (
+    ~allowClear: bool=?,
+    ~autoClearSearchValue: bool=?,
+    ~className: string=?,
+    ~defaultValue: string=?, /* string | string[] */
+    ~disabled: bool=?,
+    ~dropdownClassName: string=?,
+    ~dropdownMatchSelectWidth: bool=?,
+    ~dropdownStyle: ReactDOMRe.Style.t=?,
+    ~filterTreeNode: bool=?,
+    ~labelInValue: bool=?,
+    ~maxTagCount: int=?,
+    ~maxTagPlaceholder: ReasonReact.reactElement=?,
+    ~multiple: bool=?,
+    ~placeholder: string=?,
+    ~searchPlaceholder: string=?,
+    ~searchValue: string=?,
+    ~treeIcon: bool=?,
+    ~showSearch: bool=?,
+    ~size: string=?,
+    ~suffixIcon: ReasonReact.reactElement=?,
+    ~treeCheckable: bool=?,
+    /* treeData */
+    ~treeDefaultExpandAll: bool=?,
+    ~treeDefaultExpandedKeys: list(string)=?,
+    ~treeExpandedKeys: list(string)=?,
+    ~treeNodeFilterProp: string=?,
+    ~treeNodeLabelProp: string=?,
+    ~value: string=?, /* string | string[] */
+    ~onChange: (string, string) => unit=?,
+    ~onSearch: string => unit=?,
+    ~onSelect: (string, ReasonReact.reactElement) => unit=?,
+    ~onTreeExpand: list(string) => unit=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "default";
 /* allowClear	Whether allow clear	boolean	false
    autoClearSearchValue	auto clear search input value when multiple select is selected/deselected	boolean	true
    defaultValue	To set the initial selected treeNode(s).	string|string[]	-
@@ -42,123 +78,6 @@ type size = [ | `large | `default | `small];
    onSelect	A callback function, can be executed when you select a treeNode.	function(value, node, extra)	-
    onTreeExpand	A callback function, can be executed when treeNode expanded	function(expandedKeys)	 */
 
-[@bs.obj]
-external makeProps:
-  (
-    ~allowClear: bool=?,
-    ~autoClearSearchValue: bool=?,
-    ~className: string=?,
-    ~defaultValue: string=?, /* string | string[] */
-    ~disabled: bool=?,
-    ~dropdownClassName: string=?,
-    ~dropdownMatchSelectWidth: bool=?,
-    ~dropdownStyle: ReactDOMRe.Style.t=?,
-    ~filterTreeNode: bool=?,
-    ~labelInValue: bool=?,
-    ~maxTagCount: int=?,
-    ~maxTagPlaceholder: ReasonReact.reactElement=?,
-    ~multiple: bool=?,
-    ~placeholder: string=?,
-    ~searchPlaceholder: string=?,
-    ~searchValue: string=?,
-    ~treeIcon: bool=?,
-    ~showSearch: bool=?,
-    ~size: string=?,
-    ~suffixIcon: ReasonReact.reactElement=?,
-    ~treeCheckable: bool=?,
-    /* treeData */
-    ~treeDefaultExpandAll: bool=?,
-    ~treeDefaultExpandedKeys: list(string)=?,
-    ~treeExpandedKeys: list(string)=?,
-    ~treeNodeFilterProp: string=?,
-    ~treeNodeLabelProp: string=?,
-    ~value: string=?, /* string | string[] */
-    ~onChange: (string, string) => unit=?,
-    ~onSearch: string => unit=?,
-    ~onSelect: (string, ReasonReact.reactElement) => unit=?,
-    ~onTreeExpand: list(string) => unit=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~allowClear=?,
-      ~autoClearSearchValue=?,
-      ~className=?,
-      ~defaultValue=?,
-      ~disabled=?,
-      ~dropdownClassName=?,
-      ~dropdownMatchSelectWidth=?,
-      ~dropdownStyle=?,
-      ~filterTreeNode=?,
-      ~labelInValue=?,
-      ~maxTagCount=?,
-      ~maxTagPlaceholder=?,
-      ~multiple=?,
-      ~placeholder=?,
-      ~searchPlaceholder=?,
-      ~searchValue=?,
-      ~treeIcon=?,
-      ~showSearch=?,
-      ~size=?,
-      ~suffixIcon=?,
-      ~treeCheckable=?,
-      /* treeData */
-      ~treeDefaultExpandAll=?,
-      ~treeDefaultExpandedKeys=?,
-      ~treeExpandedKeys=?,
-      ~treeNodeFilterProp=?,
-      ~treeNodeLabelProp=?,
-      ~value=?, /* string | string[] */
-      ~onChange=?,
-      ~onSearch=?,
-      ~onSelect=?,
-      ~onTreeExpand=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~allowClear?,
-        ~autoClearSearchValue?,
-        ~className?,
-        ~defaultValue?,
-        ~disabled?,
-        ~dropdownClassName?,
-        ~dropdownMatchSelectWidth?,
-        ~dropdownStyle?,
-        ~filterTreeNode?,
-        ~labelInValue?,
-        ~maxTagCount?,
-        ~maxTagPlaceholder?,
-        ~multiple?,
-        ~placeholder?,
-        ~searchPlaceholder?,
-        ~searchValue?,
-        ~treeIcon?,
-        ~showSearch?,
-        ~size=?Js.Option.map((. b) => sizeToJs(b), size),
-        ~suffixIcon?,
-        ~treeCheckable?,
-        /* treeData */
-        ~treeDefaultExpandAll?,
-        ~treeDefaultExpandedKeys?,
-        ~treeExpandedKeys?,
-        ~treeNodeFilterProp?,
-        ~treeNodeLabelProp?,
-        ~value?, /* string | string[] */
-        ~onChange?,
-        ~onSearch?,
-        ~onSelect?,
-        ~onTreeExpand?,
-        (),
-      ),
-    children,
-  );
-
 module TreeNode = {
   /* selectable	can be selected	boolean	true
      disableCheckbox	Disables the checkbox of the treeNode	boolean	false
@@ -168,11 +87,8 @@ module TreeNode = {
      title	Content showed on the treeNodes	string|ReactNode	'---'
      value	Will be treated as treeNodeFilterProp by default, should be unique in the tree	string	- */
 
-  [@bs.module "antd/lib/tree-select"]
-  external treeNode: ReasonReact.reactClass = "TreeNode";
-
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/tree-select"] [@react.component]
+  external make:
     (
       ~className: string=?,
       ~selectable: bool=?,
@@ -182,37 +98,8 @@ module TreeNode = {
       ~key_: string,
       ~title: ReasonReact.reactElement=?,
       ~value: string,
-      unit
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-
-  let make =
-      (
-        ~className=?,
-        ~selectable=?,
-        ~disableCheckbox=?,
-        ~disabled=?,
-        ~isLeaf=?,
-        ~key_,
-        ~title=?,
-        ~value,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=treeNode,
-      ~props=
-        makeProps(
-          ~className?,
-          ~selectable?,
-          ~disableCheckbox?,
-          ~disabled?,
-          ~isLeaf?,
-          ~key_,
-          ~title?,
-          ~value,
-          (),
-        ),
-      children,
-    );
+    React.element =
+    "TreeNode";
 };

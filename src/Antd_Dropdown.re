@@ -1,8 +1,6 @@
-module Menu = Antd_Menu;
-
-[@bs.module] external dropdown: ReasonReact.reactClass = "antd/lib/dropdown";
-
 [%bs.raw {|require("antd/lib/dropdown/style")|}];
+
+module Menu = Antd_Menu;
 
 [@bs.deriving jsConverter]
 type placement = [
@@ -21,7 +19,29 @@ type buttonSize = [ | `small | `default | `large];
 type buttonType = [ | `primary | `ghost | `dashed | `danger];
 
 [@bs.deriving jsConverter]
-type trigger = [ | [@bs.as "click"] `click | [@bs.as "hover"] `hover | [@bs.as "contextMenu"] `contextMenu];
+type trigger = [
+  | [@bs.as "click"] `click
+  | [@bs.as "hover"] `hover
+  | [@bs.as "contextMenu"] `contextMenu
+];
+
+[@bs.module "antd/lib/dropdown"] [@react.component]
+external make:
+  (
+    ~disabled: bool=?,
+    ~overlay: ReasonReact.reactElement=?,
+    ~overlayClassName: string=?,
+    ~placement: string=?,
+    ~trigger: array(string)=?,
+    ~visible: bool=?,
+    ~onVisibleChange: ReactEvent.Mouse.t => unit=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "default";
 
 /*
  module Dropdown = {
@@ -79,57 +99,6 @@ type trigger = [ | [@bs.as "click"] `click | [@bs.as "hover"] `hover | [@bs.as "
  onVisibleChange	a callback function takes an argument: visible, is executed when the visible state is changed	Function(visible)
  */
 
-[@bs.obj]
-external makeProps:
-  (
-    ~disabled: bool=?,
-    ~overlay: ReasonReact.reactElement=?,
-    ~overlayClassName: string=?,
-    ~placement: string=?,
-    ~trigger: array(string)=?,
-    ~visible: bool=?,
-    ~onVisibleChange: ReactEvent.Mouse.t => unit=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~disabled=?,
-      ~overlay=?,
-      ~overlayClassName=?,
-      ~placement=?,
-      ~trigger=?,
-      ~visible=?,
-      ~onVisibleChange=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=dropdown,
-    ~props=
-      makeProps(
-        ~disabled?,
-        ~overlay?,
-        ~overlayClassName?,
-        ~placement=?Js.Option.map((. b) => placementToJs(b), placement),
-        ~trigger=?Js.Option.map((. b) => Array.of_list(b), trigger),
-        ~visible?,
-        ~onVisibleChange?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
-
 /*
  disabled	whether the dropdown menu is disabled	boolean	-
  overlay	the dropdown menu	Menu	-
@@ -143,9 +112,8 @@ let make =
  */
 
 module Button = {
-  [@bs.module "antd/lib/dropdown"] external dropdownButton: ReasonReact.reactClass = "Dropdown.Button";
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/dropdown"] [@react.component]
+  external make:
     (
       ~disabled: bool=?,
       ~overlay: ReasonReact.reactElement=?,
@@ -160,46 +128,8 @@ module Button = {
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-  let make =
-      (
-        ~disabled=?,
-        ~overlay=?,
-        ~placement=?,
-        ~size=?,
-        ~trigger=?,
-        ~_type=?,
-        ~visible=?,
-        ~onClick=?,
-        ~onVisibleChange=?,
-        ~key_=?,
-        ~id=?,
-        ~className=?,
-        ~style=?,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=dropdownButton,
-      ~props=
-        makeProps(
-          ~disabled?,
-          ~overlay?,
-          ~placement=?Js.Option.map((. b) => placementToJs(b), placement),
-          ~size=?Js.Option.map((. b) => buttonSizeToJs(b), size),
-          ~trigger=?Js.Option.map((. b) => Array.of_list(b), trigger),
-          ~_type=?Js.Option.map((. b) => buttonTypeToJs(b), _type),
-          ~visible?,
-          ~onClick?,
-          ~onVisibleChange?,
-          ~key=?key_,
-          ~id?,
-          ~className?,
-          ~style?,
-          (),
-        ),
-      children,
-    );
+    React.element =
+    "Dropdown.Button";
 };

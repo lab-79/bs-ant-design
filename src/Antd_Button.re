@@ -46,7 +46,7 @@ external make:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element
+    ~children: React.element=?
   ) =>
   React.element =
   "default";

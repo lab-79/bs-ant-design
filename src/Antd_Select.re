@@ -1,5 +1,3 @@
-[@bs.module] external select: ReasonReact.reactClass = "antd/lib/select";
-
 [%bs.raw {|require("antd/lib/select/style")|}];
 
 [@bs.deriving jsConverter]
@@ -50,8 +48,8 @@ type value =
  onDropdownVisibleChange	Call when dropdown open	function(open)	-
   */
 
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/select"]
+external make:
   (
     ~allowClear: bool=?,
     ~autoFocus: bool=?,
@@ -79,76 +77,10 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element=?
   ) =>
-  _ =
-  "";
-let make =
-    (
-      ~allowClear=?,
-      ~autoFocus=?,
-      ~defaultActiveFirstOption=?,
-      ~defaultValue=?,
-      ~disabled=?,
-      ~dropdownClassName=?,
-      ~dropdownMatchSelectWidth=?,
-      ~dropdownStyle=?,
-      ~filterOption=?,
-      ~firstActiveValue=?,
-      ~labelInValue=?,
-      ~maxTagCount=?,
-      ~maxTagPlaceholder=?,
-      ~mode=?,
-      ~notFoundContent=?,
-      ~placeholder=?,
-      ~showArrow=?,
-      ~showSearch=?,
-      ~size=?,
-      ~tokenSeparators=?,
-      ~value=?,
-      ~onBlur=?,
-      ~onChange=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=select,
-    ~props=
-      makeProps(
-        ~allowClear?,
-        ~autoFocus?,
-        ~defaultActiveFirstOption?,
-        ~defaultValue?,
-        ~disabled?,
-        ~dropdownClassName?,
-        ~dropdownMatchSelectWidth?,
-        ~dropdownStyle?,
-        ~filterOption?,
-        ~firstActiveValue=?
-          Js.Option.map((. b) => Array.of_list(b), firstActiveValue),
-        ~labelInValue?,
-        ~maxTagCount?,
-        ~maxTagPlaceholder?,
-        ~mode=?Js.Option.map((. b) => modeToJs(b), mode),
-        ~notFoundContent?,
-        ~placeholder?,
-        ~showArrow?,
-        ~showSearch?,
-        ~size?,
-        ~tokenSeparators=?
-          Js.Option.map((. b) => Array.of_list(b), tokenSeparators),
-        ~value?,
-        ~onBlur?,
-        ~onChange?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "default";
 
 /*
  disabled	Disable this option	boolean	false
@@ -158,17 +90,9 @@ let make =
  */
 
 module Option = {
-  [@bs.module "antd/lib/select"]
-  external reactClass: ReasonReact.reactClass = "Option";
-
-  [@bs.obj]
-  external makeProps:
-    (~disabled: bool=?, ~key: string=?, ~value: string, ~title: string=?) => _ =
-    "";
-
-  let make = (~disabled=?, ~key=?, ~value, ~title=?) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=makeProps(~disabled?, ~key?, ~value, ~title?),
-    );
+  [@bs.module "antd/lib/select"] [@react.component]
+  external make:
+    (~disabled: bool=?, ~key: string=?, ~value: string, ~title: string=?) =>
+    React.element =
+    "Option";
 };

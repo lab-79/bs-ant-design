@@ -1,18 +1,14 @@
-module IconName = Antd_IconName;
-
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/avatar";
-
 [%bs.raw {|require("antd/lib/avatar/style")|}];
+module IconName = Antd_IconName;
 
 [@bs.deriving jsConverter]
 type avatarShape = [ | `circle | `square];
 
-/* leaving this as int */
 [@bs.deriving jsConverter]
 type avatarSize = [ | `small | `default | `large];
 
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/avatar"] [@react.component]
+external make:
   (
     ~icon: IconName.t=?,
     ~shape: string=?,
@@ -23,29 +19,10 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element=?
   ) =>
-  _ =
-  "";
-
-let make = (~icon=?, ~shape=?, ~size=?, ~src=?, ~alt=?, ~onError=?, ~id=?, ~className=?, ~style=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~icon?,
-        ~shape=?Js.Option.map((. b) => avatarShapeToJs(b), shape),
-        ~size?,
-        ~src?,
-        ~alt?,
-        ~onError?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "default";
 
 /*
  icon	the Icon type for an icon avatar, see Icon Component	string	-
