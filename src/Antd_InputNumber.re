@@ -1,7 +1,7 @@
 [%bs.raw {|require("antd/lib/input-number/style")|}];
 
 [@bs.module "antd/lib/input-number"]
-external reactClass:
+external make:
   (
     ~autoFocus: bool=?,
     ~defaultValue: float=?,

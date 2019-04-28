@@ -9,7 +9,7 @@
 [%bs.raw {|require("antd/lib/checkbox/style")|}];
 type clickParams = {. "domEvent": ReactEvent.Mouse.t};
 [@bs.module "antd/lib/checkbox"] [@react.component]
-external reactClass:
+external make:
   (
     ~autoFocus: bool=?,
     ~checked: bool=?,
