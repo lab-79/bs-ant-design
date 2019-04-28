@@ -11,8 +11,8 @@ type avatarSize = [ | `small | `default | `large];
 external make:
   (
     ~icon: IconName.t=?,
-    ~shape: string=?,
-    ~size: int=?,
+    ~shape: avatarShape=?,
+    ~size: avatarSize=?,
     ~src: string=?,
     ~alt: string=?,
     ~onError: unit => bool=?,
