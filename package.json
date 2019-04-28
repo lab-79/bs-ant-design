@@ -21,9 +21,7 @@
     "reason-react": "^0.7.0"
   },
   "peerDependencies": {
-    "antd": ">=3.10.0",
-    "bs-platform": "^4.0.5",
-    "reason-react": ">=0.5.3"
+    "antd": ">=3.10.0"
   },
   "dependencies": {
     "bs-moment": "^0.4.1",
