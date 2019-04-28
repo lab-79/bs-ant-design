@@ -64,7 +64,7 @@ external make:
     ~labelInValue: bool=?,
     ~maxTagCount: int=?,
     ~maxTagPlaceholder: ReasonReact.reactElement=?,
-    ~mode: string=?,
+    ~mode: mode=?,
     ~notFoundContent: string=?,
     ~placeholder: ReasonReact.reactElement=?,
     ~showArrow: bool=?,
