@@ -1,3 +1,10 @@
+/*
+ offsetBottom	Pixels to offset from bottom when calculating position of scroll	number	-
+ offsetTop	Pixels to offset from top when calculating position of scroll	number	0
+ target	specifies the scrollable area dom node	() => HTMLElement	() => window
+ onChange	Callback for when affix state is changed	Function(affixed)	-
+ */
+
 [%bs.raw {|require("antd/lib/affix/style")|}];
 [@bs.module "antd/lib/affix"] [@react.component]
 external make:
@@ -14,9 +21,4 @@ external make:
   React.element =
   "default";
 
-/*
- offsetBottom	Pixels to offset from bottom when calculating position of scroll	number	-
- offsetTop	Pixels to offset from top when calculating position of scroll	number	0
- target	specifies the scrollable area dom node	() => HTMLElement	() => window
- onChange	Callback for when affix state is changed	Function(affixed)	-
- */
+let make = make;

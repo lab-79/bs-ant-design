@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.merlin": true,
+        "**/.bsb.lock": true,
+        "**/npm-debug.log": true,
+        "lib/": true,
+        "node_modules/": true,
+        "dist/": true,
+        "src/**/*.js": true,
+        "**/.idea": true,
+        "**/*.tgz": true
+    }
+}

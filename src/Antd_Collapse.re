@@ -48,4 +48,8 @@ module Panel = {
     ) =>
     React.element =
     "Panel";
+
+  let make = make;
 };
+
+let make = make;

@@ -109,6 +109,8 @@ module Col = {
     ) =>
     React.element =
     "default";
+
+  let make = make;
 };
 
 let makeGutterBreakpoints = Row.makeGutterBreakpoints;

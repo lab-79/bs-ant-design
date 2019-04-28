@@ -132,4 +132,7 @@ module Button = {
     ) =>
     React.element =
     "Dropdown.Button";
+  let make = make;
 };
+
+let make = make;

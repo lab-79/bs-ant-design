@@ -12,3 +12,5 @@ external make:
   ) =>
   React.element =
   "defualt";
+
+let make = make;

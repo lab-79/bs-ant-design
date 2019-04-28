@@ -3,7 +3,7 @@
 [@bs.deriving jsConverter]
 type size = [ | `default | `small];
 
-[@bs.module "antd/lib/switch"]
+[@bs.module "antd/lib/switch"] [@react.component]
 external make:
   (
     ~autoFocus: bool=?,
@@ -34,3 +34,5 @@ external make:
  unCheckedChildren	content to be shown when the state is unchecked	string|ReactNode
  onChange	a callback function, can be executed when the checked state is changing	Function(checked:Boolean)
   */
+
+let make = make;

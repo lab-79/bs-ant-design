@@ -65,3 +65,5 @@ external make:
 /*
  title	Title of the card	string|ReactNode	-
  */
+
+let make = make;

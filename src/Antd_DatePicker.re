@@ -95,6 +95,7 @@ module RangePicker = {
     ) =>
     React.element =
     "RangePicker";
+  let make = make;
 };
 
 module MonthPicker = {
@@ -132,6 +133,8 @@ module MonthPicker = {
     ) =>
     React.element =
     "MonthPicker";
+
+  let make = make;
 };
 
 module WeekPicker = {
@@ -167,6 +170,8 @@ module WeekPicker = {
     ) =>
     React.element =
     "WeekPicker";
+
+  let make = make;
 };
 
 /*
@@ -364,3 +369,5 @@ module Locale = {
       timePickerLocale: Antd_TimePicker.Locale.t,
     };
 };
+
+let make = make;
