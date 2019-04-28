@@ -1,12 +1,10 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/upload";
-
 [%bs.raw {|require("antd/lib/upload/style")|}];
 
 [@bs.deriving jsConverter]
 type listType = [ | `text | `picture | [@bs.as "picture-card"] `pictureCard];
 
-[@bs.obj]
-external makePropsUpload:
+[@bs.module "antd/lib/upload"] [@react.component]
+external make:
   (
     ~height: int=?,
     ~accept: string=?,
@@ -23,121 +21,44 @@ external makePropsUpload:
     ~supportServerRender: bool=?,
     ~withCredentials: bool=?,
     ~onChange: Js.t({..}) => unit=?,
-    ~onPreview:Js.t({..}) => unit=?,
+    ~onPreview: Js.t({..}) => unit=?,
     ~onRemove: Js.t({..}) => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~accept=?,
-      ~action,
-      ~directory=?,
-      ~beforeUpload=?,
-      ~customRequest=?,
-      ~disabled=?,
-      ~listType=?,
-      ~multiple=?,
-      ~name=?,
-      ~showUploadList=?,
-      ~supportServerRender=?,
-      ~withCredentials=?,
-      ~onChange=?,
-      ~onPreview=?,
-      ~onRemove=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makePropsUpload(
-        ~accept?,
-        ~action,
-        ~directory?,
-        ~beforeUpload?,
-        ~customRequest?,
-        ~disabled?,
-        ~listType=?Js.Option.map((. b) => listTypeToJs(b), listType),
-        ~multiple?,
-        ~name?,
-        ~showUploadList?,
-        ~supportServerRender?,
-        ~withCredentials?,
-        ~onChange?,
-        ~onPreview?,
-        ~onRemove?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "default";
 
 module Dragger = {
-  [@bs.module "antd/lib/upload"]
-  external reactClass: ReasonReact.reactClass = "Dragger";
-
-  let make =
-      (
-        ~height=?,
-        ~accept=?,
-        ~action,
-        ~directory=?,
-        ~beforeUpload=?,
-        ~customRequest=?,
-        ~disabled=?,
-        ~listType=?,
-        ~_type=?,
-        ~multiple=?,
-        ~name=?,
-        ~showUploadList=?,
-        ~supportServerRender=?,
-        ~withCredentials=?,
-        ~onChange=?,
-        ~onPreview=?,
-        ~onRemove=?,
-        ~id=?,
-        ~className=?,
-        ~style=?,
-        children,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=
-        makePropsUpload(
-          ~height?,
-          ~accept?,
-          ~action,
-          ~directory?,
-          ~beforeUpload?,
-          ~customRequest?,
-          ~disabled?,
-          ~listType=?Js.Option.map((. b) => listTypeToJs(b), listType),
-          ~_type?,
-          ~multiple?,
-          ~name?,
-          ~showUploadList?,
-          ~supportServerRender?,
-          ~withCredentials?,
-          ~onChange?,
-          ~onPreview?,
-          ~onRemove?,
-          ~id?,
-          ~className?,
-          ~style?,
-          (),
-        ),
-      children,
-    );
+  [@bs.module "antd/lib/upload"] [@react.component]
+  external make:
+    (
+      ~height: int=?,
+      ~accept: string=?,
+      ~action: string,
+      ~directory: bool=?,
+      ~beforeUpload: string => unit=?,
+      ~customRequest: string => unit=?,
+      ~disabled: bool=?,
+      ~listType: string=?,
+      ~_type: string=?,
+      ~multiple: bool=?,
+      ~name: string=?,
+      ~showUploadList: bool=?,
+      ~supportServerRender: bool=?,
+      ~withCredentials: bool=?,
+      ~onChange: Js.t({..}) => unit=?,
+      ~onPreview: Js.t({..}) => unit=?,
+      ~onRemove: Js.t({..}) => unit=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      unit
+    ) =>
+    React.element =
+    "Dragger";
 };
 
 /*

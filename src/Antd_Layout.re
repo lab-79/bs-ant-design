@@ -1,8 +1,6 @@
 /* last checked v3.10 */
 [%bs.raw {|require("antd/lib/layout/style")|}];
 
-open Antd_Helpers;
-
 [@bs.module "antd/lib/layout"] [@react.component]
 external make:
   (
