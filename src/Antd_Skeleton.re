@@ -37,23 +37,7 @@ type paragraphProps = {
  title	Show title placeholder	boolean | SkeletonTitleProps	true
  */
 
-[@bs.obj]
-external makeProps:
-  (
-    ~active: bool=?,
-    ~avatar: bool=?,
-    ~loading: bool=?,
-    ~paragraph: paragraphProps=?,
-    ~title: bool=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-[@bs.module "antd/lib/skeleton"]
+[@bs.module "antd/lib/skeleton"] [@react.component]
 external make:
   (
     ~active: bool=?,
