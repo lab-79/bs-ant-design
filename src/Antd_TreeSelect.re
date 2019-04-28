@@ -38,7 +38,7 @@ external make:
     ~onSearch: string => unit=?,
     ~onSelect: (string, ReasonReact.reactElement) => unit=?,
     ~onTreeExpand: list(string) => unit=?,
-    ~children: React.element=?
+    ~children: list(React.element)=?
   ) =>
   React.element =
   "default";
