@@ -37,7 +37,7 @@ external make:
     ~onMouseUp: ReactEvent.Mouse.t => unit=?,
     ~onMouseDown: ReactEvent.Mouse.t => unit=?,
     ~tabIndex: int=?,
-    ~loading: LoadingProps.js=?,
+    ~loading: bool=?,
     ~disabled: bool=?,
     ~ghost: bool=?,
     ~target: string=?,
