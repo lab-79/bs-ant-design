@@ -48,7 +48,7 @@ type value =
  onDropdownVisibleChange	Call when dropdown open	function(open)	-
   */
 
-[@bs.module "antd/lib/select"]
+[@bs.module "antd/lib/select"] [@react.component]
 external make:
   (
     ~allowClear: bool=?,
