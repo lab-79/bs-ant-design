@@ -3,7 +3,7 @@
 [@bs.deriving jsConverter]
 type size = [ | `large | `default | `small];
 
-[@bs.module "antd/lib/tree-select"]
+[@bs.module "antd/lib/tree-select"] [@react.component]
 external make:
   (
     ~allowClear: bool=?,
@@ -98,7 +98,7 @@ module TreeNode = {
       ~key_: string,
       ~title: ReasonReact.reactElement=?,
       ~value: string,
-      ~children: React.element=?
+      ~children: list(React.element)=?
     ) =>
     React.element =
     "TreeNode";
