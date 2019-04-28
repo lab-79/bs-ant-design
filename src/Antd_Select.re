@@ -92,7 +92,13 @@ external make:
 module Option = {
   [@bs.module "antd/lib/select"] [@react.component]
   external make:
-    (~disabled: bool=?, ~key: string=?, ~value: string, ~title: string=?) =>
+    (
+      ~disabled: bool=?,
+      ~key: string=?,
+      ~value: string,
+      ~title: string=?,
+      ~string: React.element=?
+    ) =>
     React.element =
     "Option";
 };
