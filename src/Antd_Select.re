@@ -97,7 +97,7 @@ module Option = {
       ~key: string=?,
       ~value: string,
       ~title: string=?,
-      ~string: React.element=?
+      ~children: React.element=?
     ) =>
     React.element =
     "Option";
