@@ -1,7 +1,7 @@
 [%bs.raw {|require("antd/lib/breadcrumb/style")|}];
 
 [@bs.module "antd/lib/breadcrumb"] [@react.component]
-external breadcrumb:
+external make:
   (
     ~separator: React.element=?,
     ~id: string=?,
