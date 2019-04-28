@@ -26,7 +26,7 @@ external make:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element=?
   ) =>
   React.element =
   "default";
@@ -55,7 +55,7 @@ module Dragger = {
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
     React.element =
     "Dragger";
