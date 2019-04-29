@@ -15,3 +15,4 @@ external make:
   "defualt";
 
 let make = make;
+let default = make;

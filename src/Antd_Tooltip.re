@@ -67,3 +67,4 @@ external make:
  */
 
 let make = make;
+let default = make;

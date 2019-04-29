@@ -84,3 +84,4 @@ module Dragger = {
  */
 
 let make = make;
+let default = make;

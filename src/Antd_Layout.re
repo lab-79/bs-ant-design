@@ -14,6 +14,7 @@ external make:
   "default";
 
 let make = make;
+let default = make;
 
 /*
  className	container className	string	-
@@ -35,6 +36,7 @@ module Header = {
     "Header";
 
   let make = make;
+let default = make;
 };
 
 module Footer = {
@@ -51,6 +53,7 @@ module Footer = {
     "Footer";
 
   let make = make;
+let default = make;
 };
 
 module Content = {
@@ -67,6 +70,7 @@ module Content = {
     "Content";
 
   let make = make;
+let default = make;
 };
 
 /*
@@ -109,4 +113,5 @@ module Sider = {
     "Sider";
 
   let make = make;
+let default = make;
 };

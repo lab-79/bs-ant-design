@@ -103,6 +103,8 @@ module TreeNode = {
     React.element =
     "TreeNode";
   let make = make;
+let default = make;
 };
 
 let make = make;
+let default = make;

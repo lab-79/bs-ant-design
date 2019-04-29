@@ -89,6 +89,8 @@ module TextArea = {
     "TextArea";
 
   let make = make;
+let default = make;
 };
 
 let make = make;
+let default = make;

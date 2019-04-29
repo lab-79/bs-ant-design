@@ -111,6 +111,7 @@ module Col = {
     "default";
 
   let make = make;
+let default = make;
 };
 
 let makeGutterBreakpoints = Row.makeGutterBreakpoints;
