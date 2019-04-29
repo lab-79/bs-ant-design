@@ -31,5 +31,3 @@ external make:
   ) =>
   React.element =
   "default";
-
-let make = make;

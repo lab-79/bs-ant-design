@@ -82,5 +82,3 @@ module Dragger = {
  onPreview	A callback function, will be executed when file link or preview icon is clicked.	Function(file)	-
  onRemove	A callback function, will be executed when removing file button is clicked, remove event will be prevented when return value is false or a Promise which resolve(false) or reject.	Function(file): boolean | Promise	-
  */
-
-let make = make;

@@ -39,8 +39,6 @@ external make:
   React.element =
   "";
 
-let make = make;
-
 /*
  column	column of grid	number	-
  gutter	spacing between grid	number	0
@@ -82,8 +80,6 @@ module Item = {
     ) =>
     React.element =
     "Item";
-
-  let make = make;
 };
 /*
  avatar	The avatar of list item	ReactNode	-
@@ -104,6 +100,4 @@ module Meta = {
     ) =>
     React.element =
     "Meta";
-
-  let make = make;
 };

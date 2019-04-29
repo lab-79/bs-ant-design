@@ -40,5 +40,3 @@ external make:
  value	current value	number
  onChange	The callback triggered when the value is changed.	function(value: number | string)
  */
-
-let make = make;

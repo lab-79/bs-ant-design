@@ -82,8 +82,6 @@ external make:
   React.element =
   "default";
 
-let make = make;
-
 /*
  disabled	Disable this option	boolean	false
  key	Same usage as value. If React request you to set this property, you can set it to value of option, and then omit value property.	string
@@ -103,6 +101,4 @@ module Option = {
     ) =>
     React.element =
     "Option";
-
-  let make = make;
 };

@@ -102,7 +102,4 @@ module TreeNode = {
     ) =>
     React.element =
     "TreeNode";
-  let make = make;
 };
-
-let make = make;

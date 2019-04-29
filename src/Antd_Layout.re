@@ -13,8 +13,6 @@ external make:
   React.element =
   "default";
 
-let make = make;
-
 /*
  className	container className	string	-
  hasSider	whether contain Sider in children, don't have to assign it normally. Useful in ssr avoid style flickering	boolean	-
@@ -33,8 +31,6 @@ module Header = {
     ) =>
     React.element =
     "Header";
-
-  let make = make;
 };
 
 module Footer = {
@@ -49,8 +45,6 @@ module Footer = {
     ) =>
     React.element =
     "Footer";
-
-  let make = make;
 };
 
 module Content = {
@@ -65,8 +59,6 @@ module Content = {
     ) =>
     React.element =
     "Content";
-
-  let make = make;
 };
 
 /*
@@ -107,6 +99,4 @@ module Sider = {
     ) =>
     React.element =
     "Sider";
-
-  let make = make;
 };
