@@ -41,7 +41,7 @@ external make:
     ~children: list(React.element)=?
   ) =>
   React.element =
-  "antd/lib/tooltip";
+  "antd/lib/tree-select";
 /* allowClear	Whether allow clear	boolean	false
    autoClearSearchValue	auto clear search input value when multiple select is selected/deselected	boolean	true
    defaultValue	To set the initial selected treeNode(s).	string|string[]	-
@@ -102,7 +102,5 @@ module TreeNode = {
     ) =>
     React.element =
     "TreeNode";
-
-  let make = make;
 };
 let make = make;
