@@ -3,7 +3,7 @@
 [@bs.deriving jsConverter]
 type listType = [ | `text | `picture | [@bs.as "picture-card"] `pictureCard];
 
-[@bs.module "antd/lib/upload"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~height: int=?,
@@ -29,7 +29,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/upload";
 
 module Dragger = {
   [@bs.module "antd/lib/upload"] [@react.component]

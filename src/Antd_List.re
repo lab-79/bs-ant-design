@@ -16,7 +16,7 @@ type grid = {
   "xxl": int,
 };
 
-[@bs.module "antd/lib/list"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~dataSource: array(ReasonReact.reactElement)=?,
@@ -37,7 +37,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "";
+  "antd/lib/list";
 
 /*
  column	column of grid	number	-

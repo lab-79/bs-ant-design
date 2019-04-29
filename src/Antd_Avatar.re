@@ -15,7 +15,7 @@ type avatarShape = [ | `circle | `square];
 [@bs.deriving jsConverter]
 type avatarSize = [ | `small | `default | `large];
 
-[@bs.module "antd/lib/avatar"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~icon: IconName.t=?,
@@ -30,4 +30,4 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/avatar";

@@ -3,7 +3,7 @@
 [@bs.deriving jsConverter]
 type size = [ | `large | `default | `small];
 
-[@bs.module "antd/lib/input"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~placeholder: string=?,
@@ -31,7 +31,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/input";
 
 /*
 

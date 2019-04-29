@@ -7,7 +7,7 @@ type formLayout = [
   | [@bs.as "vertical"] `Vertical
 ];
 
-[@bs.module "antd/lib/form"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~layout: string=?,
@@ -19,7 +19,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/form";
 
 module Item = {
   [@bs.deriving jsConverter]

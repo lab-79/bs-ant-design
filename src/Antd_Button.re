@@ -25,7 +25,7 @@ module LoadingProps = {
     | Delay(a) => a |> ofDelay;
 };
 
-[@bs.module "antd/lib/button"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~_type: string=?,
@@ -49,4 +49,4 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/button";

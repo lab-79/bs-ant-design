@@ -8,7 +8,7 @@
  */
 [%bs.raw {|require("antd/lib/checkbox/style")|}];
 type clickParams = {. "domEvent": ReactEvent.Mouse.t};
-[@bs.module "antd/lib/checkbox"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~autoFocus: bool=?,
@@ -23,4 +23,4 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/checkbox";

@@ -3,7 +3,7 @@
 [@bs.deriving jsConverter]
 type size = [ | `default | `small];
 
-[@bs.module "antd/lib/switch"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~autoFocus: bool=?,
@@ -21,7 +21,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/switch";
 
 /*
  autoFocus	get focus when component mounted	boolean	false

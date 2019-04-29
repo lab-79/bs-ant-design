@@ -6,7 +6,7 @@
  */
 
 [%bs.raw {|require("antd/lib/affix/style")|}];
-[@bs.module "antd/lib/affix"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~offsetBottom: int=?,
@@ -19,4 +19,4 @@ external make:
     ~children: React.element
   ) =>
   React.element =
-  "default";
+  "antd/lib/affix";

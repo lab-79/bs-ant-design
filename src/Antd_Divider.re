@@ -2,7 +2,7 @@
 [@bs.deriving jsConverter]
 type dividerType = [ | `horizontal | `vertical];
 
-[@bs.module "antd/lib/divider"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~_type: string=?,
@@ -12,4 +12,4 @@ external make:
     ~style: ReactDOMRe.Style.t=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/divider";

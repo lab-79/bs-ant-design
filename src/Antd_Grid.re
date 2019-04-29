@@ -47,7 +47,7 @@ module Row = {
     | ResponsiveBreakpoints(complexGutter) => complexGutter
     };
 
-  [@bs.module "antd/lib/grid/row"] [@react.component]
+  [@bs.module] [@react.component]
   external make:
     (
       ~className: string=?,
@@ -60,7 +60,7 @@ module Row = {
       ~children: React.element=?
     ) =>
     React.element =
-    "default";
+    "antd/lib/grid/row";
 };
 
 module Col = {

@@ -15,7 +15,7 @@
 type alertType = [ | `success | `info | `warning | `error];
 
 [%bs.raw {|require("antd/lib/alert/style")|}];
-[@bs.module "antd/lib/alert"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~afterClose: unit => unit=?,
@@ -33,4 +33,4 @@ external make:
     ~style: ReactDOMRe.Style.t=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/alert";

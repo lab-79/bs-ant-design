@@ -5,7 +5,7 @@ type tab = {
   "tab": string,
 };
 
-[@bs.module "antd/lib/card"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~actions: array(ReasonReact.reactElement)=?,
@@ -28,7 +28,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/card";
 
 /*
  actions	The action list, shows at the bottom of the Card.	Array	-

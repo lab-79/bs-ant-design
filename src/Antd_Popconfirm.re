@@ -19,7 +19,7 @@ type placementType = [
 [@bs.deriving jsConverter]
 type triggerType = [ | `hover | `focus | `click | `contextMenu];
 
-[@bs.module "antd/lib/popconfirm"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~arrowPointAtCenter: bool=?,
@@ -47,7 +47,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/popconfirm";
 
 /*
  COMMON API

@@ -6,7 +6,7 @@ type mode = [ | `line | `dashboard | `circle];
 [@bs.deriving jsConverter]
 type status = [ | `success | `exception_ | `active | `normal];
 
-[@bs.module "antd/lib/progress"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~type_: mode=?,
@@ -20,7 +20,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/progress";
 
 /* type	to set the type, options: line circle dashboard	string	line
    format	template function of the content	function(percent, successPercent)	percent => percent + '%'

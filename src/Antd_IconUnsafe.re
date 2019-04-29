@@ -1,6 +1,6 @@
 /* from bs-ant */
 
-[@bs.module "antd/lib/icon"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~type_: string=?,
@@ -11,4 +11,4 @@ external make:
     ~style: ReactDOMRe.Style.t=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/icon";

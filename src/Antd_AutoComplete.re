@@ -22,7 +22,7 @@
  onDropdownVisibleChange	Call when dropdown open
  */
 [%bs.raw {|require("antd/lib/auto-complete/style")|}];
-[@bs.module "antd/lib/auto-complete"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~allowClear: bool=?,
@@ -48,4 +48,4 @@ external make:
     ~style: ReactDOMRe.Style.t=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/auto-complete";

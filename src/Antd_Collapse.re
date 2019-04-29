@@ -1,4 +1,4 @@
-[@bs.module "antd/lib/collapse"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~accordion: bool=?,
@@ -13,7 +13,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/collapse";
 
 /*
  accordion	If true, Collapse renders as Accordion	boolean	false

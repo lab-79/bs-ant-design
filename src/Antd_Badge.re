@@ -13,7 +13,7 @@
 [@bs.deriving jsConverter]
 type status = [ | `success | `processing | `default | `error | `warning];
 
-[@bs.module "antd/lib/badge"] [@reacon.component]
+[@bs.module] [@reacon.component]
 external make:
   (
     ~count: int=?,
@@ -30,4 +30,4 @@ external make:
     ~children: React.element
   ) =>
   React.element =
-  "default";
+  "antd/lib/badge";

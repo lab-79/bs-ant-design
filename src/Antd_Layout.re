@@ -1,7 +1,7 @@
 /* last checked v3.10 */
 [%bs.raw {|require("antd/lib/layout/style")|}];
 
-[@bs.module "antd/lib/layout"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~hasSider: bool=?,
@@ -11,7 +11,7 @@ external make:
     ~childre: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/layout";
 
 /*
  className	container className	string	-

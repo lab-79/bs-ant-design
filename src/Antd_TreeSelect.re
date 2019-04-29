@@ -3,7 +3,7 @@
 [@bs.deriving jsConverter]
 type size = [ | `large | `default | `small];
 
-[@bs.module "antd/lib/tree-select"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~allowClear: bool=?,
@@ -41,7 +41,7 @@ external make:
     ~children: list(React.element)=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/tooltip";
 /* allowClear	Whether allow clear	boolean	false
    autoClearSearchValue	auto clear search input value when multiple select is selected/deselected	boolean	true
    defaultValue	To set the initial selected treeNode(s).	string|string[]	-

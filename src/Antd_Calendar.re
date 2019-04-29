@@ -21,7 +21,7 @@ module Locale = Antd_DatePicker.Locale;
 type mode = [ | `month | `year];
 type moment = MomentRe.Moment.t;
 
-[@bs.module "antd/lib/calendar"]
+[@bs.module] [@react.component]
 external make:
   (
     ~dateCellRender: (string, moment) => ReasonReact.reactElement=?,
@@ -43,4 +43,4 @@ external make:
     ~style: ReactDOMRe.Style.t=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/calendar";

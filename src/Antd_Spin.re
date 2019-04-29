@@ -3,7 +3,7 @@
 [@bs.deriving jsConverter]
 type size = [ | `default | `small | `large];
 
-[@bs.module "antd/lib/spin"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~size: string=?,
@@ -17,4 +17,4 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/spin";

@@ -1,6 +1,6 @@
 [%bs.raw {|require("antd/lib/breadcrumb/style")|}];
 
-[@bs.module "antd/lib/breadcrumb"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~separator: React.element=?,
@@ -10,7 +10,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/breadcrumb";
 
 module Item = {
   [@bs.module "antd/lib/breadcrumb"] [@react.component]

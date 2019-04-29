@@ -1,6 +1,6 @@
 [%bs.raw {|require("antd/lib/input-number/style")|}];
 
-[@bs.module "antd/lib/input-number"]
+[@bs.module]
 external make:
   (
     ~autoFocus: bool=?,
@@ -24,7 +24,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/input-number";
 
 /*
  autoFocus	get focus when component mounted	boolean	false

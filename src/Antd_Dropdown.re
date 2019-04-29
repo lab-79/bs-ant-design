@@ -25,7 +25,7 @@ type trigger = [
   | [@bs.as "contextMenu"] `contextMenu
 ];
 
-[@bs.module "antd/lib/dropdown"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~disabled: bool=?,
@@ -41,7 +41,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/dropdown";
 
 /*
  module Dropdown = {
