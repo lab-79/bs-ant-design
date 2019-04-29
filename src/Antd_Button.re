@@ -25,7 +25,7 @@ module LoadingProps = {
     | Delay(a) => a |> ofDelay;
 };
 
-[@bs.module "antd/es/button"] [@react.component]
+[@bs.module "antd/lib/button"] [@react.component]
 external make:
   (
     ~_type: string=?,
