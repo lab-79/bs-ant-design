@@ -30,4 +30,3 @@ let warn = props => warn(props);
 let loading = props => loading(props);
 let config = options => config(options);
 let destroy = () => destroy();
-let make = make;

@@ -41,4 +41,3 @@ let close = key => close(key);
 let destroy = () => destroy();
 
 let config = options => config(options);
-let make = make;
