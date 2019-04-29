@@ -87,7 +87,7 @@ module TreeNode = {
      title	Content showed on the treeNodes	string|ReactNode	'---'
      value	Will be treated as treeNodeFilterProp by default, should be unique in the tree	string	- */
 
-  [@bs.module] [@react.component]
+  [@bs.module "antd/lib/tree-select"] [@react.component]
   external make:
     (
       ~className: string=?,
@@ -101,7 +101,8 @@ module TreeNode = {
       ~children: list(React.element)=?
     ) =>
     React.element =
-    "antd/lib/tree-select";
+    "TreeNode";
+
   let make = make;
 };
 let make = make;
