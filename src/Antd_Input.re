@@ -88,3 +88,4 @@ module TextArea = {
     React.element =
     "TextArea";
 };
+let make = make;

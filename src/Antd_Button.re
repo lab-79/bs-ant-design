@@ -50,3 +50,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/button";
+let make = make;

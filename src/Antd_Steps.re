@@ -36,3 +36,4 @@ module Step = {
       children,
     );
 };
+let make = make;

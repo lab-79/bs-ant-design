@@ -24,3 +24,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/checkbox";
+let make = make;

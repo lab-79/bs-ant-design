@@ -26,3 +26,4 @@ module Item = {
     React.element =
     "Item";
 };
+let make = make;

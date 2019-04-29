@@ -81,3 +81,4 @@ module Meta = {
     React.element =
     "Meta";
 };
+let make = make;

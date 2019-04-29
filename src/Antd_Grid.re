@@ -114,3 +114,4 @@ module Col = {
 let makeGutterBreakpoints = Row.makeGutterBreakpoints;
 
 let makeColSize = Col.makeColSize;
+let make = make;

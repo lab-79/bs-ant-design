@@ -364,3 +364,4 @@ module Locale = {
       timePickerLocale: Antd_TimePicker.Locale.t,
     };
 };
+let make = make;

@@ -12,3 +12,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/icon";
+let make = make;

@@ -82,3 +82,5 @@ module TabPane = {
       children,
     );
 };
+
+let make = make;

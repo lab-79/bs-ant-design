@@ -51,3 +51,4 @@ module Panel = {
 };
 
 let colapse = Panel.make;
+let make = make;

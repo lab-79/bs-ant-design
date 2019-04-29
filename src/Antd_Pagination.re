@@ -76,3 +76,5 @@ let make =
       ),
     children,
   );
+
+let make = make;

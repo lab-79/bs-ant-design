@@ -100,3 +100,4 @@ module Sider = {
     React.element =
     "Sider";
 };
+let make = make;

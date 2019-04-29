@@ -31,3 +31,4 @@ external make:
    strokeColor	color of progress bar	string	-
    successPercent	segmented success percent	number	0
    */
+let make = make;

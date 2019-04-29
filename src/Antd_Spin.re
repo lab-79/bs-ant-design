@@ -18,3 +18,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/spin";
+let make = make;

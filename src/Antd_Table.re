@@ -98,3 +98,5 @@ let make = (~bordered=?, ~childrenColumnName=?, ~columns=?, ~dataSource=?, ~id=?
       ),
     children,
   );
+
+let make = make;

@@ -31,3 +31,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/avatar";
+let make = make;

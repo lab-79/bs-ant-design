@@ -88,3 +88,5 @@ let make =
  onHoverChange	callback when hover item	Function(value: number)	-
  onKeyDown	callback when keydown on component	Function(event)
  */
+
+let make = make;

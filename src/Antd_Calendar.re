@@ -44,3 +44,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/calendar";
+let make = make;

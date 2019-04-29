@@ -160,3 +160,5 @@ module Divider = {
   let make = (~id=?, ~className=?, ~style=?, children) =>
     ReasonReact.wrapJsForReason(~reactClass=divider, ~props=makeProps(~id?, ~className?, ~style?, ()), children);
 };
+
+let make = make;

@@ -59,3 +59,5 @@ module CheckableTag = {
       children,
     );
 };
+
+let make = make;

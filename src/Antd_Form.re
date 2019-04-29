@@ -46,3 +46,4 @@ module Item = {
     React.element =
     "default";
 };
+let make = make;

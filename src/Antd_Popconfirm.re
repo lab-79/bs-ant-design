@@ -77,3 +77,4 @@ external make:
  onConfirm	callback of confirmation	function(e)	-
  icon	customize icon of confirmation	ReactNode	<Icon type="exclamation-circle" />
   */
+let make = make;

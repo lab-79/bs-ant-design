@@ -34,3 +34,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/alert";
+let make = make;

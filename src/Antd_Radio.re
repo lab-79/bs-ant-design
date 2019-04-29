@@ -81,3 +81,5 @@ module Group = {
       children,
     );
 };
+
+let make = make;

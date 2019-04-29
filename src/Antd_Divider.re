@@ -13,3 +13,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/divider";
+let make = make;

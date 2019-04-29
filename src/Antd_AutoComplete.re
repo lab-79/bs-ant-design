@@ -49,3 +49,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/auto-complete";
+let make = make;

@@ -28,3 +28,4 @@ let make =
     ]);
   <i className=classString ?onClick ?style ?title />;
 };
+let make = make;

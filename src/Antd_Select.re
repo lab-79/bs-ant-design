@@ -102,3 +102,4 @@ module Option = {
     React.element =
     "Option";
 };
+let make = make;

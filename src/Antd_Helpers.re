@@ -7,3 +7,4 @@ type breakpoint = [
   | [@bs.as "xl"] `Xxl
   | [@bs.as "xxl"] `Xxl
 ];
+let make = make;

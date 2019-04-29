@@ -66,3 +66,5 @@ module Item = {
   let make = (~color=?, ~dot=?, ~className=?, ~style=?, children) =>
     ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(~color?, ~dot?, ~className?, ~style?, ()), children);
 };
+
+let make = make;

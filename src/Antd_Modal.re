@@ -152,3 +152,4 @@ let success = props => success(reactClass, props);
 let error = props => error(reactClass, props);
 let warning = props => warning(reactClass, props);
 let confirm = props => confirm(reactClass, props);
+let make = make;

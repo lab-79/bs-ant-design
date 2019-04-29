@@ -91,3 +91,4 @@ module Locale = {
 [@bs.module] [@react.component]
 external make: (~locale: Locale.t, ~children: React.element=?) => React.element =
   "antd/lib/locale-provider";
+let make = make;

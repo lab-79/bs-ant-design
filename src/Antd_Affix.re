@@ -20,3 +20,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/affix";
+let make = make;

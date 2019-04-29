@@ -585,3 +585,5 @@ let instagram = "instagram";
 let yuque = "yuque";
 
 
+
+let make = make;

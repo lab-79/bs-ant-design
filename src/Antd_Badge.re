@@ -31,3 +31,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/badge";
+let make = make;
