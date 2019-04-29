@@ -25,7 +25,7 @@ module Item = {
   [@bs.deriving jsConverter]
   type validateStatus = [ | `success | `warning | `error | `validating];
 
-  [@bs.module "antd/lib/form/FormItem"] [@react.component]
+  [@bs.module] [@react.component]
   external make:
     (
       ~prefixCls: string=?,
@@ -44,6 +44,7 @@ module Item = {
       ~children: React.element=?
     ) =>
     React.element =
-    "default";
+    "antd/lib/form/FormItem";
+  let make = make;
 };
 let make = make;
