@@ -13,7 +13,6 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "antd": "^3.11.6",
     "bs-platform": "^5.0.3",
     "cheerio": "^1.0.0-rc.2",
     "got": "^9.5.0",
@@ -24,6 +23,7 @@
     "antd": ">=3.10.0"
   },
   "dependencies": {
+    "antd": "^3.11.6",
     "bs-moment": "^0.4.1",
     "re-classnames": "^3.0.0"
   }
