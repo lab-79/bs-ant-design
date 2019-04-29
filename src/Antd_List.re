@@ -40,7 +40,6 @@ external make:
   "";
 
 let make = make;
-let default = make;
 
 /*
  column	column of grid	number	-
@@ -85,7 +84,6 @@ module Item = {
     "Item";
 
   let make = make;
-let default = make;
 };
 /*
  avatar	The avatar of list item	ReactNode	-
@@ -108,5 +106,4 @@ module Meta = {
     "Meta";
 
   let make = make;
-let default = make;
 };

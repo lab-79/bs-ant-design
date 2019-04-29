@@ -93,4 +93,3 @@ external make: (~locale: Locale.t, ~children: React.element=?) => React.element 
   "default";
 
 let make = make;
-let default = make;

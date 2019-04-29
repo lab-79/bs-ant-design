@@ -83,7 +83,6 @@ external make:
   "default";
 
 let make = make;
-let default = make;
 
 /*
  disabled	Disable this option	boolean	false
@@ -106,5 +105,4 @@ module Option = {
     "Option";
 
   let make = make;
-  let default = make;
 };

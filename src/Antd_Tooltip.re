@@ -19,7 +19,7 @@ type placementType = [
 [@bs.deriving jsConverter]
 type triggerType = [ | `hover | `focus | `click | `contextMenu];
 
-[@bs.module "antd/lib/tooltop"] [@react.component]
+[@bs.module "antd/lib/tooltip"] [@react.component]
 external make:
   (
     ~arrowPointAtCenter: bool=?,
@@ -67,4 +67,3 @@ external make:
  */
 
 let make = make;
-let default = make;

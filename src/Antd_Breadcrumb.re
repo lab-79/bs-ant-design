@@ -28,4 +28,3 @@ module Item = {
 };
 
 let make = make;
-let default = make;

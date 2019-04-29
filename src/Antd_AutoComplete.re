@@ -51,4 +51,3 @@ external make:
   "default";
 
 let make = make;
-let default = make;

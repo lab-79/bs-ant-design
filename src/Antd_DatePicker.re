@@ -96,7 +96,6 @@ module RangePicker = {
     React.element =
     "RangePicker";
   let make = make;
-let default = make;
 };
 
 module MonthPicker = {
@@ -136,7 +135,6 @@ module MonthPicker = {
     "MonthPicker";
 
   let make = make;
-let default = make;
 };
 
 module WeekPicker = {
@@ -174,7 +172,6 @@ module WeekPicker = {
     "WeekPicker";
 
   let make = make;
-let default = make;
 };
 
 /*
@@ -374,4 +371,3 @@ module Locale = {
 };
 
 let make = make;
-let default = make;
