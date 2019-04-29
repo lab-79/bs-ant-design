@@ -11,7 +11,7 @@ external make:
     ~style: ReactDOMRe.Style.t=?
   ) =>
   React.element =
-  "defualt";
+  "default";
 
 let make = make;
 let default = make;
