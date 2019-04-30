@@ -1,10 +1,7 @@
-[@bs.module "antd/lib/radio"]
-external reactClass: ReasonReact.reactClass = "default";
-
 [%bs.raw {|require("antd/lib/radio/style")|}];
 
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/radio"] [@react.component]
+external make:
   (
     ~autoFocus: bool=?,
     ~checked: bool=?,
@@ -14,39 +11,10 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: list(React.element)
   ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~autoFocus=?,
-      ~checked=?,
-      ~defaultChecked=?,
-      ~disabled=?,
-      ~value=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~autoFocus?,
-        ~checked?,
-        ~defaultChecked?,
-        ~disabled?,
-        ~value?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "default";
 
 module Group = {
   [@bs.deriving jsConverter]
