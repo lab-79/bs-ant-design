@@ -1,4 +1,5 @@
-[@bs.module "antd/lib/radio"] external reactClass: ReasonReact.reactClass = "default";
+[@bs.module "antd/lib/radio"]
+external reactClass: ReasonReact.reactClass = "default";
 
 [%bs.raw {|require("antd/lib/radio/style")|}];
 
@@ -19,15 +20,37 @@ external makeProps:
   "";
 
 let make =
-    (~autoFocus=?, ~checked=?, ~defaultChecked=?, ~disabled=?, ~value=?, ~id=?, ~className=?, ~style=?, children) =>
+    (
+      ~autoFocus=?,
+      ~checked=?,
+      ~defaultChecked=?,
+      ~disabled=?,
+      ~value=?,
+      ~id=?,
+      ~className=?,
+      ~style=?,
+      children,
+    ) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
-    ~props=makeProps(~autoFocus?, ~checked?, ~defaultChecked?, ~disabled?, ~value?, ~id?, ~className?, ~style?, ()),
+    ~props=
+      makeProps(
+        ~autoFocus?,
+        ~checked?,
+        ~defaultChecked?,
+        ~disabled?,
+        ~value?,
+        ~id?,
+        ~className?,
+        ~style?,
+        (),
+      ),
     children,
   );
 
 module Group = {
-  [@bs.module "antd/lib/radio"] external reactClass: ReasonReact.reactClass = "Group";
+  [@bs.module "antd/lib/radio"]
+  external reactClass: ReasonReact.reactClass = "Group";
   [@bs.deriving jsConverter]
   type size = [ | `default | `small | `large];
   [@bs.obj]
@@ -80,6 +103,31 @@ module Group = {
         ),
       children,
     );
+};
+
+module Button = {
+  [@bs.module "antd/lib/radio"] [@react.component]
+  external make:
+    (
+      ~prefixCls: string=?,
+      ~className: string=?,
+      ~defaultChecked: bool=?,
+      ~checked: bool=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~disabled: bool=?,
+      ~onChange: ReactEvent.Form.t => unit=?,
+      ~onClick: ReactEvent.Mouse.t => unit=?,
+      ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+      ~onKeyPress: ReactEvent.Keyboard.t => unit=?,
+      ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+      ~value: string=?,
+      ~tabIndex: int=?,
+      ~name: string=?,
+      ~children: React.element=?
+    ) =>
+    React.element =
+    "Button";
 };
 
 let make = make;
