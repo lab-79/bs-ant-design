@@ -77,7 +77,7 @@ external make:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
+    ~children: list(React.element)=?
   ) =>
   React.element =
   "antd/lib/select";
