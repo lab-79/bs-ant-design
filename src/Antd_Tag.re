@@ -1,5 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/tag";
-
 [%bs.raw {|require("antd/lib/tag/style")|}];
 
 /*
@@ -10,8 +8,8 @@
  visible	Whether the Tag is closed or not	boolean	true
    */
 
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/tag"] [@react.component]
+external make:
   (
     ~afterClose: unit => unit=?,
     ~closable: bool=?,
@@ -21,17 +19,10 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element
   ) =>
-  _ =
-  "";
-
-let make = (~afterClose=?, ~closable=?, ~color=?, ~onClose=?, ~visible=?, ~id=?, ~className=?, ~style=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=makeProps(~afterClose?, ~closable?, ~color?, ~onClose?, ~visible?, ~id?, ~className?, ~style?, ()),
-    children,
-  );
+  React.element =
+  "default";
 
 /*
  checked	Checked status of Tag	boolean	false
@@ -39,7 +30,8 @@ let make = (~afterClose=?, ~closable=?, ~color=?, ~onClose=?, ~visible=?, ~id=?,
   */
 
 module CheckableTag = {
-  [@bs.module "antd/lib/tag"] external reactClass: ReasonReact.reactClass = "CheckableTag";
+  [@bs.module "antd/lib/tag"]
+  external reactClass: ReasonReact.reactClass = "CheckableTag";
   [@bs.obj]
   external makeProps:
     (
