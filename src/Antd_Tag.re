@@ -30,26 +30,19 @@ external make:
   */
 
 module CheckableTag = {
-  [@bs.module "antd/lib/tag"]
-  external reactClass: ReasonReact.reactClass = "CheckableTag";
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/tag"] [@react.component]
+  external make:
     (
       ~checked: bool=?,
       ~onChange: bool => unit=?,
       ~className: string=?,
       ~tab: ReasonReact.reactElement=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element
     ) =>
-    _ =
-    "";
-  let make = (~checked=?, ~onChange=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=makeProps(~checked?, ~onChange?, ~className?, ~style?, ()),
-      children,
-    );
+    React.element =
+    "Checkabletag";
+  let make = make;
 };
 
 let make = make;
