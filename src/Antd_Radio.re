@@ -34,7 +34,7 @@ module Group = {
         ~id: string=?,
         ~className: string=?,
         ~style: ReactDOMRe.Style.t=?,
-        ~children: list(React.element)
+        ~children: React.element
       ) =>
       React.element =
       "Group";
@@ -54,7 +54,7 @@ module Group = {
         ~id: string=?,
         ~className: string=?,
         ~style: ReactDOMRe.Style.t=?,
-        ~children: list(React.element),
+        ~children: React.element,
       ) =>
     <Internal
       defaultValue

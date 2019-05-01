@@ -38,7 +38,7 @@ external make:
     ~onSearch: string => unit=?,
     ~onSelect: (string, ReasonReact.reactElement) => unit=?,
     ~onTreeExpand: list(string) => unit=?,
-    ~children: list(React.element)=?
+    ~children: React.element=?
   ) =>
   React.element =
   "antd/lib/tree-select";
@@ -98,7 +98,7 @@ module TreeNode = {
       ~key_: string,
       ~title: ReasonReact.reactElement=?,
       ~value: string,
-      ~children: list(React.element)=?
+      ~children: React.element=?
     ) =>
     React.element =
     "TreeNode";
