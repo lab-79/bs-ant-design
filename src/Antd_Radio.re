@@ -1,6 +1,6 @@
 [%bs.raw {|require("antd/lib/radio/style")|}];
 
-[@bs.module "antd/lib/radio"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~autoFocus: bool=?,
@@ -14,7 +14,7 @@ external make:
     ~children: list(React.element)
   ) =>
   React.element =
-  "default";
+  "antd/lib/radio";
 
 module Group = {
   [@bs.deriving jsConverter]
