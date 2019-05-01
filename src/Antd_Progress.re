@@ -1,27 +1,3 @@
-[%bs.raw {|require("antd/lib/progress/style")|}];
-
-[@bs.deriving jsConverter]
-type mode = [ | `line | `dashboard | `circle];
-
-[@bs.deriving jsConverter]
-type status = [ | `success | `exception_ | `active | `normal];
-
-[@bs.module] [@react.component]
-external make:
-  (
-    ~type_: mode=?,
-    ~percent: float=?,
-    ~showInfo: bool=?,
-    ~status: status=?,
-    ~className: string=?,
-    ~strokeLinecap: string=?,
-    ~strokeColor: string=?,
-    ~successPercent: float=?,
-    ~children: React.element=?
-  ) =>
-  React.element =
-  "antd/lib/progress";
-
 /* type	to set the type, options: line circle dashboard	string	line
    format	template function of the content	function(percent, successPercent)	percent => percent + '%'
    percent	to set the completion percentage	number	0
@@ -31,4 +7,60 @@ external make:
    strokeColor	color of progress bar	string	-
    successPercent	segmented success percent	number	0
    */
-let make = make;
+
+[%bs.raw {|require("antd/lib/progress/style")|}];
+
+[@bs.deriving jsConverter]
+type mode = [ | `line | `dashboard | `circle];
+
+[@bs.deriving jsConverter]
+type status = [ | `success | `exception_ | `active | `normal];
+
+[@bs.deriving jsConverter]
+type strokeLinecap = [ | `round | `square];
+
+module Internal = {
+  [@bs.module] [@react.component]
+  external make:
+    (
+      ~type_: option(string)=?,
+      ~format: (float, float) => string=?,
+      ~percent: float=?,
+      ~showInfo: bool=?,
+      ~status: option(string)=?,
+      ~className: string=?,
+      ~strokeLinecap: option(string)=?,
+      ~strokeColor: string=?,
+      ~successPercent: float=?
+    ) =>
+    React.element =
+    "antd/lib/progress";
+};
+
+[@react.component]
+let make =
+    (
+      ~type_: option(mode)=?,
+      ~format: (float, float) => string=?,
+      ~percent: float=?,
+      ~showInfo: bool=?,
+      ~status: option(status)=?,
+      ~className: string=?,
+      ~strokeLinecap: option(strokeLinecap)=?,
+      ~strokeColor: string=?,
+      ~successPercent: float=?,
+    ) =>
+  <Internal
+    type_={Js.Option.map((. b) => modeToJs(b), type_)}
+    format
+    percent
+    showInfo
+    status={Js.Option.map((. b) => statusToJs(b), status)}
+    className
+    strokeLinecap={Js.Option.map(
+      (. b) => strokeLinecapToJs(b),
+      strokeLinecap,
+    )}
+    strokeColor
+    successPercent
+  />;

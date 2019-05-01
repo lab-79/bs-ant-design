@@ -8,7 +8,7 @@
  visible	Whether the Tag is closed or not	boolean	true
    */
 
-[@bs.module "antd/lib/tag"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~afterClose: unit => unit=?,
@@ -22,7 +22,7 @@ external make:
     ~children: React.element
   ) =>
   React.element =
-  "default";
+  "antd/lib/tag";
 
 /*
  checked	Checked status of Tag	boolean	false
