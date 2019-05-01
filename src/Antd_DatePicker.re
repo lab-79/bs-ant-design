@@ -18,7 +18,7 @@ let boolOrPropsToProp = (type a, boolOrProps: boolOrProps(a)): a =>
 
 type t('a) = Js.t({. datePickerProps: int} as 'a);
 
-[@bs.module "antd/lib/date-picker"] [@react.component]
+[@bs.module] [@react.component]
 external make:
   (
     ~showTime: 'a=?, /* TimePickerProps | boolean; */
@@ -52,7 +52,8 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "default";
+  "antd/lib/date-picker";
+let make = make;
 
 module RangePicker = {
   [@bs.deriving jsConverter]
@@ -95,6 +96,7 @@ module RangePicker = {
     ) =>
     React.element =
     "RangePicker";
+  let make = make;
 };
 
 module MonthPicker = {
@@ -132,6 +134,7 @@ module MonthPicker = {
     ) =>
     React.element =
     "MonthPicker";
+  let make = make;
 };
 
 module WeekPicker = {
@@ -167,6 +170,7 @@ module WeekPicker = {
     ) =>
     React.element =
     "WeekPicker";
+  let make = make;
 };
 
 /*
@@ -364,4 +368,3 @@ module Locale = {
       timePickerLocale: Antd_TimePicker.Locale.t,
     };
 };
-let make = make;
