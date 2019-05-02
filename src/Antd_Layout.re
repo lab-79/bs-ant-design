@@ -93,7 +93,7 @@ module Sider = {
       ~prefixCls: string=?,
       ~reverseArrow: bool=?,
       ~onCollapse: (bool, abs_collapseType) => unit=?,
-      ~trigger: ReasonReact.reactElement=?,
+      ~trigger: React.element=?,
       ~width: int=?,
       ~children: React.element=?
     ) =>

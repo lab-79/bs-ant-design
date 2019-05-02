@@ -8,7 +8,7 @@ external makeProps:
     ~allowClear: bool=?,
     ~allowHalf: bool=?,
     ~autoFocus: bool=?,
-    ~character: ReasonReact.reactElement=?,
+    ~character: React.element=?,
     ~className: string=?,
     ~count: int=?,
     ~defaultValue: int=?,

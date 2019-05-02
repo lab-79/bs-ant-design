@@ -17,7 +17,7 @@ external make:
     ~filterTreeNode: bool=?,
     ~labelInValue: bool=?,
     ~maxTagCount: int=?,
-    ~maxTagPlaceholder: ReasonReact.reactElement=?,
+    ~maxTagPlaceholder: React.element=?,
     ~multiple: bool=?,
     ~placeholder: string=?,
     ~searchPlaceholder: string=?,
@@ -25,7 +25,7 @@ external make:
     ~treeIcon: bool=?,
     ~showSearch: bool=?,
     ~size: string=?,
-    ~suffixIcon: ReasonReact.reactElement=?,
+    ~suffixIcon: React.element=?,
     ~treeCheckable: bool=?,
     /* treeData */
     ~treeDefaultExpandAll: bool=?,
@@ -36,7 +36,7 @@ external make:
     ~value: string=?, /* string | string[] */
     ~onChange: (string, string) => unit=?,
     ~onSearch: string => unit=?,
-    ~onSelect: (string, ReasonReact.reactElement) => unit=?,
+    ~onSelect: (string, React.element) => unit=?,
     ~onTreeExpand: list(string) => unit=?,
     ~children: React.element=?
   ) =>
@@ -96,7 +96,7 @@ module TreeNode = {
       ~disabled: bool=?,
       ~isLeaf: bool=?,
       ~key_: string,
-      ~title: ReasonReact.reactElement=?,
+      ~title: React.element=?,
       ~value: string,
       ~children: React.element=?
     ) =>

@@ -7,14 +7,14 @@ type size = [ | `large | `default | `small];
 external make:
   (
     ~placeholder: string=?,
-    ~addonAfter: ReasonReact.reactElement=?,
-    ~addonBefore: ReasonReact.reactElement=?,
+    ~addonAfter: React.element=?,
+    ~addonBefore: React.element=?,
     ~defaultValue: string=?,
     ~disabled: bool=?,
     ~id: string=?,
-    ~prefix: ReasonReact.reactElement=?,
+    ~prefix: React.element=?,
     ~size: string=?,
-    ~suffix: ReasonReact.reactElement=?,
+    ~suffix: React.element=?,
     ~value: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~onFocus: ReactEvent.Form.t => unit=?,

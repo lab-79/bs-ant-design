@@ -15,8 +15,8 @@ type stringOrNode;
 [@bs.deriving abstract]
 type options = {
   .
-  "message": ReasonReact.reactElement,
-  "description": ReasonReact.reactElement,
+  "message": React.element,
+  "description": React.element,
 };
 type key = string;
 [@bs.module "antd/lib/notification"] external success: options => unit = "";

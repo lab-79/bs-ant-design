@@ -15,8 +15,8 @@ type modeType = [ | `left | `alternate | `right];
 [@bs.obj]
 external makeProps:
   (
-    ~pending: ReasonReact.reactElement=?,
-    ~pendingDot: ReasonReact.reactElement=?,
+    ~pending: React.element=?,
+    ~pendingDot: React.element=?,
     ~reverse: bool=?,
     ~mode: string=?,
     ~id: string=?,
@@ -27,7 +27,17 @@ external makeProps:
   _ =
   "";
 
-let make = (~pending=?, ~pendingDot=?, ~reverse=?, ~mode=?, ~id=?, ~className=?, ~style=?, children) =>
+let make =
+    (
+      ~pending=?,
+      ~pendingDot=?,
+      ~reverse=?,
+      ~mode=?,
+      ~id=?,
+      ~className=?,
+      ~style=?,
+      children,
+    ) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
     ~props=
@@ -50,21 +60,26 @@ let make = (~pending=?, ~pendingDot=?, ~reverse=?, ~mode=?, ~id=?, ~className=?,
    */
 
 module Item = {
-  [@bs.module "antd/lib/timeline"] external reactClass: ReasonReact.reactClass = "Item";
+  [@bs.module "antd/lib/timeline"]
+  external reactClass: ReasonReact.reactClass = "Item";
   [@bs.obj]
   external makeProps:
     (
       ~color: string=?,
-      ~dot: ReasonReact.reactElement=?,
+      ~dot: React.element=?,
       ~className: string=?,
-      ~tab: ReasonReact.reactElement=?,
+      ~tab: React.element=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
     ) =>
     _ =
     "";
   let make = (~color=?, ~dot=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(~color?, ~dot?, ~className?, ~style?, ()), children);
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props=makeProps(~color?, ~dot?, ~className?, ~style?, ()),
+      children,
+    );
 };
 
 let make = make;

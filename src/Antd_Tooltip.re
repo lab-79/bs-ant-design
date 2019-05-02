@@ -34,7 +34,7 @@ external make:
     ~trigger: string=?,
     ~visible: bool=?,
     ~onVisibleChange: bool => unit=?,
-    ~title: ReasonReact.reactElement=?,
+    ~title: React.element=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,

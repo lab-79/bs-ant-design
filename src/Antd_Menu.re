@@ -80,10 +80,13 @@ let make =
         ~theme=?Js.Option.map((. b) => themeToJs(b), theme),
         ~mode=?Js.Option.map((. b) => modeToJs(b), mode),
         ~selectable?,
-        ~selectedKeys=?Js.Option.map((. b) => Array.of_list(b), selectedKeys),
-        ~defaultSelectedKeys=?Js.Option.map((. b) => Array.of_list(b), defaultSelectedKeys),
+        ~selectedKeys=?
+          Js.Option.map((. b) => Array.of_list(b), selectedKeys),
+        ~defaultSelectedKeys=?
+          Js.Option.map((. b) => Array.of_list(b), defaultSelectedKeys),
         ~openKeys=?Js.Option.map((. b) => Array.of_list(b), openKeys),
-        ~defaultOpenKeys=?Js.Option.map((. b) => Array.of_list(b), defaultOpenKeys),
+        ~defaultOpenKeys=?
+          Js.Option.map((. b) => Array.of_list(b), defaultOpenKeys),
         ~onOpenChange?,
         ~onSelect?,
         ~onDeselect?,
@@ -106,24 +109,34 @@ module Item = {
   [@bs.module "antd/lib/menu"] external item: ReasonReact.reactClass = "Item";
   [@bs.obj]
   external makeProps:
-    (~key: string=?, ~disabled: bool=?, ~id: string=?, ~className: string=?, ~style: ReactDOMRe.Style.t=?, unit) => _ =
+    (
+      ~key: string=?,
+      ~disabled: bool=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      unit
+    ) =>
+    _ =
     "";
   let make = (~disabled=?, ~key_=?, ~id=?, ~className=?, ~style=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass=item,
-      ~props=makeProps(~key=?key_, ~disabled?, ~id?, ~className?, ~style?, ()),
+      ~props=
+        makeProps(~key=?key_, ~disabled?, ~id?, ~className?, ~style?, ()),
       children,
     );
 };
 
 module SubMenu = {
-  [@bs.module "antd/lib/menu"] external subMenu: ReasonReact.reactClass = "SubMenu";
+  [@bs.module "antd/lib/menu"]
+  external subMenu: ReasonReact.reactClass = "SubMenu";
   [@bs.obj]
   external makeProps:
     (
       ~disabled: bool=?,
       ~key: string=?,
-      ~title: ReasonReact.reactElement=?,
+      ~title: React.element=?,
       ~onTitleClick: ReactEvent.Mouse.t=?,
       ~id: string=?,
       ~className: string=?,
@@ -132,19 +145,47 @@ module SubMenu = {
     ) =>
     _ =
     "";
-  let make = (~disabled=?, ~key_=?, ~title=?, ~onTitleClick=?, ~id=?, ~className=?, ~style=?, children) =>
+  let make =
+      (
+        ~disabled=?,
+        ~key_=?,
+        ~title=?,
+        ~onTitleClick=?,
+        ~id=?,
+        ~className=?,
+        ~style=?,
+        children,
+      ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass=subMenu,
-      ~props=makeProps(~disabled?, ~key=?key_, ~title?, ~onTitleClick?, ~id?, ~className?, ~style?, ()),
+      ~props=
+        makeProps(
+          ~disabled?,
+          ~key=?key_,
+          ~title?,
+          ~onTitleClick?,
+          ~id?,
+          ~className?,
+          ~style?,
+          (),
+        ),
       children,
     );
 };
 
 module ItemGroup = {
-  [@bs.module "antd/lib/menu"] external itemGroup: ReasonReact.reactClass = "ItemGroup";
+  [@bs.module "antd/lib/menu"]
+  external itemGroup: ReasonReact.reactClass = "ItemGroup";
   [@bs.obj]
   external makeProps:
-    (~title: ReasonReact.reactElement=?, ~id: string=?, ~className: string=?, ~style: ReactDOMRe.Style.t=?, unit) => _ =
+    (
+      ~title: React.element=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      unit
+    ) =>
+    _ =
     "";
   let make = (~id=?, ~className=?, ~style=?, ~title=?, children) =>
     ReasonReact.wrapJsForReason(
@@ -155,10 +196,24 @@ module ItemGroup = {
 };
 
 module Divider = {
-  [@bs.module "antd/lib/menu"] external divider: ReasonReact.reactClass = "Divider";
-  [@bs.obj] external makeProps: (~id: string=?, ~className: string=?, ~style: ReactDOMRe.Style.t=?, unit) => _ = "";
+  [@bs.module "antd/lib/menu"]
+  external divider: ReasonReact.reactClass = "Divider";
+  [@bs.obj]
+  external makeProps:
+    (
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      unit
+    ) =>
+    _ =
+    "";
   let make = (~id=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(~reactClass=divider, ~props=makeProps(~id?, ~className?, ~style?, ()), children);
+    ReasonReact.wrapJsForReason(
+      ~reactClass=divider,
+      ~props=makeProps(~id?, ~className?, ~style?, ()),
+      children,
+    );
 };
 
 let make = make;

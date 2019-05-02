@@ -24,15 +24,15 @@ type moment = MomentRe.Moment.t;
 [@bs.module] [@react.component]
 external make:
   (
-    ~dateCellRender: (string, moment) => ReasonReact.reactElement=?,
-    ~dateFullCellRender: (string, moment) => ReasonReact.reactElement=?,
+    ~dateCellRender: (string, moment) => React.element=?,
+    ~dateFullCellRender: (string, moment) => React.element=?,
     ~defaultValue: moment=?,
     ~disabledDate: moment => bool=?,
     ~fullscreen: bool=?,
     ~locale: 'c=?,
     ~mode: string=?,
-    ~monthCellRender: moment => ReasonReact.reactElement=?,
-    ~monthFullCellRender: moment => ReasonReact.reactElement=?,
+    ~monthCellRender: moment => React.element=?,
+    ~monthFullCellRender: moment => React.element=?,
     ~validRange: array(moment)=?,
     ~value: moment=?,
     ~onPanelChange: (moment, string) => unit=?,

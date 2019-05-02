@@ -10,28 +10,62 @@
  type	Type of Alert styles, options: success, info, warning, error	string	info, in banner mode default is warning
  onClose	Callback when Alert is closed	(e: MouseEvent) => void	-
     */
+[%bs.raw {|require("antd/lib/alert/style")|}];
 
 [@bs.deriving jsConverter]
 type alertType = [ | `success | `info | `warning | `error];
 
-[%bs.raw {|require("antd/lib/alert/style")|}];
-[@bs.module] [@react.component]
-external make:
-  (
-    ~afterClose: unit => unit=?,
-    ~banner: bool=?,
-    ~closable: bool=?,
-    ~closeText: ReasonReact.reactElement=?,
-    ~description: ReasonReact.reactElement=?,
-    ~iconType: string=?,
-    ~message: ReasonReact.reactElement=?,
-    ~showIcon: bool=?,
-    ~_type: string=?,
-    ~onClose: ReactEvent.Mouse.t => unit=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?
-  ) =>
-  React.element =
-  "antd/lib/alert";
-let make = make;
+module Internal = {
+  [@bs.module] [@react.component]
+  external make:
+    (
+      ~afterClose: unit => unit=?,
+      ~banner: bool=?,
+      ~closable: bool=?,
+      ~closeText: React.element=?,
+      ~description: React.element=?,
+      ~iconType: string=?,
+      ~message: React.element=?,
+      ~showIcon: bool=?,
+      ~_type: option(string)=?,
+      ~onClose: ReactEvent.Mouse.t => unit=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?
+    ) =>
+    React.element =
+    "antd/lib/alert";
+};
+
+[@react.component]
+let make =
+    (
+      ~afterClose: unit => unit=?,
+      ~banner: bool=?,
+      ~closable: bool=?,
+      ~closeText: React.element=?,
+      ~description: React.element=?,
+      ~iconType: string=?,
+      ~message: React.element=?,
+      ~showIcon: bool=?,
+      ~_type: option(alertType)=?,
+      ~onClose: ReactEvent.Mouse.t => unit=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+    ) =>
+  <Internal
+    afterClose
+    banner
+    closable
+    closeText
+    description
+    iconType
+    message
+    showIcon
+    _type={Js.Option.map((. b) => alertTypeToJs(b), _type)}
+    onClose
+    id
+    className
+    style
+  />;

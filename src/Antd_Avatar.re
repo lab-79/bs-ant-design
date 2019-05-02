@@ -15,20 +15,48 @@ type avatarShape = [ | `circle | `square];
 [@bs.deriving jsConverter]
 type avatarSize = [ | `small | `default | `large];
 
-[@bs.module] [@react.component]
-external make:
-  (
-    ~icon: IconName.t=?,
-    ~shape: avatarShape=?,
-    ~size: avatarSize=?,
-    ~src: string=?,
-    ~alt: string=?,
-    ~onError: unit => bool=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
-  ) =>
-  React.element =
-  "antd/lib/avatar";
-let make = make;
+module Internal = {
+  [@bs.module] [@react.component]
+  external make:
+    (
+      ~icon: IconName.t=?,
+      ~shape: option(string)=?,
+      ~size: option(string)=?,
+      ~src: string=?,
+      ~alt: string=?,
+      ~onError: unit => bool=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?
+    ) =>
+    React.element =
+    "antd/lib/avatar";
+};
+
+[@react.component]
+let make =
+    (
+      ~icon: IconName.t=?,
+      ~shape: option(avatarShape)=?,
+      ~size: option(avatarSize)=?,
+      ~src: string=?,
+      ~alt: string=?,
+      ~onError: unit => bool=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?,
+    ) =>
+  <Internal
+    icon
+    shape={Js.Option.map((. b) => avatarShapeToJs(b), shape)}
+    size={Js.Option.map((. b) => avatarSizeToJs(b), size)}
+    src
+    alt
+    onError
+    id
+    className
+    style>
+    children
+  </Internal>;

@@ -45,7 +45,7 @@ external makeProps:
     ~closable: bool=?,
     ~confirmLoading: bool=?,
     ~destroyOnClose: bool=?,
-    ~footer: ReasonReact.reactElement=?,
+    ~footer: React.element=?,
     ~getContainer: Dom.element => Dom.htmlElement=?,
     ~mask: bool=?,
     ~maskClosable: bool=?,
@@ -54,8 +54,8 @@ external makeProps:
     ~okType: string=?,
     ~okButtonProps: buttonProps=?,
     ~cancelButtonProps: buttonProps=?,
-    ~style: ReasonReact.reactElement=?,
-    ~title: ReasonReact.reactElement=?,
+    ~style: React.element=?,
+    ~title: React.element=?,
     ~visible: bool=?,
     ~width: int=?,
     ~wrapClassName: string=?,
@@ -137,8 +137,8 @@ let make =
 [@bs.deriving]
 type props = {
   .
-  "title": ReasonReact.reactElement,
-  "content": ReasonReact.reactElement,
+  "title": React.element,
+  "content": React.element,
 };
 
 [@bs.send] external info: (reactClass, props) => unit = "";

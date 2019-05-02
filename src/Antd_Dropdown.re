@@ -29,7 +29,7 @@ type trigger = [
 external make:
   (
     ~disabled: bool=?,
-    ~overlay: ReasonReact.reactElement=?,
+    ~overlay: React.element=?,
     ~overlayClassName: string=?,
     ~placement: string=?,
     ~trigger: array(string)=?,
@@ -116,7 +116,7 @@ module Button = {
   external make:
     (
       ~disabled: bool=?,
-      ~overlay: ReasonReact.reactElement=?,
+      ~overlay: React.element=?,
       ~placement: string=?,
       ~size: string=?,
       ~trigger: array(string)=?,

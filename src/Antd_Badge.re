@@ -17,6 +17,7 @@ module Internal = {
   [@bs.module] [@react.component]
   external make:
     (
+      ~color: string=?,
       ~count: int=?,
       ~dot: bool=?,
       ~offset: (int, int)=?,
@@ -28,7 +29,7 @@ module Internal = {
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      ~children: React.element
+      ~children: React.element=?
     ) =>
     React.element =
     "antd/lib/badge";
@@ -37,6 +38,7 @@ module Internal = {
 [@react.component]
 let make =
     (
+      ~color: string=?,
       ~count: int=?,
       ~dot: bool=?,
       ~offset: (int, int)=?,
@@ -48,9 +50,10 @@ let make =
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      ~children: React.element,
+      ~children: React.element=?,
     ) =>
   <Internal
+    color
     count
     dot
     offset

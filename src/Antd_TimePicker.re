@@ -1,6 +1,7 @@
 [%bs.raw {|require("antd/lib/time-picker/style")|}];
 
-[@bs.module "antd/lib/time-picker"] external reactClass: ReasonReact.reactClass = "default";
+[@bs.module "antd/lib/time-picker"]
+external reactClass: ReasonReact.reactClass = "default";
 
 type moment = MomentRe.Moment.t;
 
@@ -122,7 +123,7 @@ let make =
  [@bs.obj]
  external makeProps:
    (
-     ~addon: ReasonReact.reactElement=?,
+     ~addon: React.element=?,
      ~allowEmpty: bool=?,
      ~autoFocus: bool=?,
      ~className: string=?,

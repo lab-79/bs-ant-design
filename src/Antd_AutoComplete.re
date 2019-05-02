@@ -21,32 +21,105 @@
  open	Controlled open state of dropdown	boolean	-
  onDropdownVisibleChange	Call when dropdown open
  */
+
+type optionProps = {. "children": string};
+
+type optionType = {
+  .
+  "props": optionProps,
+  "key": string,
+};
+
+type filterOption(_) =
+  | Bool(bool): filterOption(bool)
+  | Function((string, optionType) => unit)
+    : filterOption((string, optionType) => unit);
+
+let boolOrFn = (type a, boolOrFn: filterOption(a)): a =>
+  switch (boolOrFn) {
+  | Bool(v) => v
+  | Function(v) => v
+  };
+
 [%bs.raw {|require("antd/lib/auto-complete/style")|}];
-[@bs.module] [@react.component]
-external make:
-  (
-    ~allowClear: bool=?,
-    ~autoFocus: bool=?,
-    ~backfill: bool=?,
-    ~dataSource: array(string)=?,
-    ~defaultActiveFirstOption: bool=?,
-    ~defaultValue: string=?,
-    ~disabled: bool=?,
-    ~filterOption: bool=?,
-    ~optionLabelProp: string=?,
-    ~placeholder: string=?,
-    ~value: string=?,
-    ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: ReactEvent.Form.t => unit=?,
-    ~onFocus: ReactEvent.Form.t => unit=?,
-    ~onSearch: ReactEvent.Form.t => unit=?,
-    ~onSelect: ReactEvent.Form.t => unit=?,
-    ~defaultOpen: bool=?,
-    ~open_: bool=?,
-    ~onDropdownVisibleChange: string => unit=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?
-  ) =>
-  React.element =
-  "antd/lib/auto-complete";
-let make = make;
+
+module Internal = {
+  [@bs.module] [@react.component]
+  external make:
+    (
+      ~allowClear: bool=?,
+      ~autoFocus: bool=?,
+      ~backfill: bool=?,
+      ~dataSource: array(string)=?, //TODO: accept DataSourceItemType
+      ~defaultActiveFirstOption: bool=?,
+      ~defaultValue: string=?,
+      ~disabled: bool=?,
+      ~filterOption: 'a=?,
+      ~optionLabelProp: string=?,
+      ~placeholder: string=?,
+      ~value: string=?,
+      ~onBlur: ReactEvent.Focus.t => unit=?,
+      ~onChange: ReactEvent.Form.t => unit=?,
+      ~onFocus: ReactEvent.Form.t => unit=?,
+      ~onSearch: ReactEvent.Form.t => unit=?,
+      ~onSelect: ReactEvent.Form.t => unit=?,
+      ~defaultOpen: bool=?,
+      ~open_: bool=?,
+      ~onDropdownVisibleChange: string => unit=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?
+    ) =>
+    React.element =
+    "antd/lib/auto-complete";
+};
+[@react.component]
+let make =
+    (
+      ~allowClear: bool=?,
+      ~autoFocus: bool=?,
+      ~backfill: bool=?,
+      ~dataSource: array(string)=?, //TODO: accept DataSourceItemType
+      ~defaultActiveFirstOption: bool=?,
+      ~defaultValue: string=?,
+      ~disabled: bool=?,
+      ~filterOption: option('a)=?,
+      ~optionLabelProp: string=?,
+      ~placeholder: string=?,
+      ~value: string=?,
+      ~onBlur: ReactEvent.Focus.t => unit=?,
+      ~onChange: ReactEvent.Form.t => unit=?,
+      ~onFocus: ReactEvent.Form.t => unit=?,
+      ~onSearch: ReactEvent.Form.t => unit=?,
+      ~onSelect: ReactEvent.Form.t => unit=?,
+      ~defaultOpen: bool=?,
+      ~open_: bool=?,
+      ~onDropdownVisibleChange: string => unit=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?,
+    ) =>
+  <Internal
+    allowClear
+    autoFocus
+    backfill
+    dataSource
+    defaultActiveFirstOption
+    defaultValue
+    disabled
+    filterOption={Js.Option.map((. b) => b |> boolOrFn, filterOption)}
+    optionLabelProp
+    placeholder
+    value
+    onBlur
+    onChange
+    onFocus
+    onSearch
+    onSelect
+    defaultOpen
+    open_
+    onDropdownVisibleChange
+    className
+    style>
+    children
+  </Internal>;

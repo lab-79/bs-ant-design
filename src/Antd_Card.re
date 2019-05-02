@@ -8,18 +8,18 @@ type tab = {
 [@bs.module] [@react.component]
 external make:
   (
-    ~actions: array(ReasonReact.reactElement)=?,
+    ~actions: array(React.element)=?,
     ~activeTabKey: string=?,
     ~headStyle: ReactDOMRe.Style.t=?,
     ~bodyStyle: ReactDOMRe.Style.t=?,
     ~bordered: bool=?,
-    ~cover: ReasonReact.reactElement=?,
+    ~cover: React.element=?,
     ~defaultActiveTabKey: string=?,
-    ~extra: ReasonReact.reactElement=?,
+    ~extra: React.element=?,
     ~hoverable: bool=?,
     ~loading: bool=?,
     ~tabList: array(tab)=?,
-    ~title: ReasonReact.reactElement=?,
+    ~title: React.element=?,
     ~_type: string=?,
     ~onTabChange: string => unit=?,
     ~id: string=?,
@@ -71,11 +71,11 @@ module Meta = {
   [@bs.module "antd/lib/card"] [@react.component]
   external make:
     (
-      ~avatar: ReasonReact.reactElement=?,
+      ~avatar: React.element=?,
       ~className: string=?,
-      ~description: ReasonReact.reactElement=?,
+      ~description: React.element=?,
       ~style: ReactDOMRe.style=?,
-      ~title: ReasonReact.reactElement=?,
+      ~title: React.element=?,
       ~children: React.element=?
     ) =>
     React.element =

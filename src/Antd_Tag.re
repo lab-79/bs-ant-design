@@ -36,7 +36,7 @@ module CheckableTag = {
       ~checked: bool=?,
       ~onChange: bool => unit=?,
       ~className: string=?,
-      ~tab: ReasonReact.reactElement=?,
+      ~tab: React.element=?,
       ~style: ReactDOMRe.Style.t=?,
       ~children: React.element
     ) =>

@@ -48,10 +48,26 @@ external makeProps:
   _ =
   "";
 
-let make = (~defaultActiveKey=?, ~onChange=?, ~id=?, ~className=?, ~style=?, children) =>
+let make =
+    (
+      ~defaultActiveKey=?,
+      ~onChange=?,
+      ~id=?,
+      ~className=?,
+      ~style=?,
+      children,
+    ) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
-    ~props=makeProps(~defaultActiveKey?, ~onChange?, ~id?, ~className?, ~style?, ()),
+    ~props=
+      makeProps(
+        ~defaultActiveKey?,
+        ~onChange?,
+        ~id?,
+        ~className?,
+        ~style?,
+        (),
+      ),
     children,
   );
 
@@ -62,20 +78,22 @@ let make = (~defaultActiveKey=?, ~onChange=?, ~id=?, ~className=?, ~style=?, chi
  */
 
 module TabPane = {
-  [@bs.module "antd/lib/tabs"] external reactClass: ReasonReact.reactClass = "TabPane";
+  [@bs.module "antd/lib/tabs"]
+  external reactClass: ReasonReact.reactClass = "TabPane";
   [@bs.obj]
   external makeProps:
     (
       ~forceRender: bool=?,
       ~key: string=?,
       ~className: string=?,
-      ~tab: ReasonReact.reactElement=?,
+      ~tab: React.element=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
     ) =>
     _ =
     "";
-  let make = (~forceRender=?, ~key=?, ~tab=?, ~className=?, ~style=?, children) =>
+  let make =
+      (~forceRender=?, ~key=?, ~tab=?, ~className=?, ~style=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=makeProps(~forceRender?, ~key?, ~tab?, ~className?, ~style?, ()),

@@ -19,15 +19,15 @@ type grid = {
 [@bs.module] [@react.component]
 external make:
   (
-    ~dataSource: array(ReasonReact.reactElement)=?,
-    ~renderItem: ReasonReact.reactElement => ReasonReact.reactElement=?,
+    ~dataSource: array(React.element)=?,
+    ~renderItem: React.element => React.element=?,
     ~bordered: bool=?,
-    ~footer: ReasonReact.reactElement=?,
+    ~footer: React.element=?,
     ~grid: grid=?,
-    ~header: ReasonReact.reactElement=?,
+    ~header: React.element=?,
     ~itemLayout: string=?,
-    ~loading: ReasonReact.reactElement=?,
-    ~loadMore: ReasonReact.reactElement=?,
+    ~loading: React.element=?,
+    ~loadMore: React.element=?,
     ~locale: bool=?,
     ~pagination: pagination=?,
     ~split: bool=?,
@@ -74,8 +74,8 @@ module Item = {
   [@bs.module "antd/lib/list"] [@react.component]
   external make:
     (
-      ~actions: array(ReasonReact.reactElement)=?,
-      ~extra: ReasonReact.reactElement=?,
+      ~actions: array(React.element)=?,
+      ~extra: React.element=?,
       ~children: React.element=?
     ) =>
     React.element =
@@ -91,9 +91,9 @@ module Meta = {
   [@bs.module "antd/lib/list"] [@react.component]
   external make:
     (
-      ~avatar: ReasonReact.reactElement=?,
-      ~description: ReasonReact.reactElement=?,
-      ~title: ReasonReact.reactElement=?,
+      ~avatar: React.element=?,
+      ~description: React.element=?,
+      ~title: React.element=?,
       ~className: string=?,
       ~style: ReactDOMRe.style=?,
       unit
