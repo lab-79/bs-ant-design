@@ -32,9 +32,9 @@ module Form = Antd_Form;
 
 module Grid = Antd_Grid;
 
-module Icon = Antd_IconUnsafe;
+module Icon = Antd_Icon;
 
-module IconUnsafe = Antd_Icon;
+module IconUnsafe = Antd_IconUnsafe;
 
 module IconName = Antd_IconName;
 
