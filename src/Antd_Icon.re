@@ -9,7 +9,6 @@ let make =
       ~onClick=?,
       ~spin=?,
       ~style=?,
-      _children,
     ) => {
   let spin =
     switch (spin) {
