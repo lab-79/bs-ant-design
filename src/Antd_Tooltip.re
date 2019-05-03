@@ -1,48 +1,3 @@
-[%bs.raw {|require("antd/lib/tooltip/style")|}];
-
-[@bs.deriving jsConverter]
-type placementType = [
-  | `top
-  | `left
-  | `right
-  | `bottom
-  | `topLeft
-  | `topRight
-  | `bottomLeft
-  | `bottomRight
-  | `leftTop
-  | `leftBottom
-  | `rightTop
-  | `rightBottom
-];
-
-[@bs.deriving jsConverter]
-type triggerType = [ | `hover | `focus | `click | `contextMenu];
-
-[@bs.module] [@react.component]
-external make:
-  (
-    ~arrowPointAtCenter: bool=?,
-    ~autoAdjustOverflow: bool=?,
-    ~defaultVisible: bool=?,
-    ~getPopupContainer: Dom.element => Dom.htmlElement=?,
-    ~mouseEnterDelay: float=?,
-    ~mouseLeaveDelay: float=?,
-    ~overlayClassName: string=?,
-    ~overlayStyle: ReactDOMRe.Style.t=?,
-    ~placement: string=?,
-    ~trigger: string=?,
-    ~visible: bool=?,
-    ~onVisibleChange: bool => unit=?,
-    ~title: React.element=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
-  ) =>
-  React.element =
-  "antd/lib/tooltip";
-
 /*
  COMMON API
  -----------------------
@@ -65,4 +20,91 @@ external make:
 /*
  title	Title of the card	string|ReactNode	-
  */
-let make = make;
+
+[%bs.raw {|require("antd/lib/tooltip/style")|}];
+
+[@bs.deriving jsConverter]
+type placementType = [
+  | `top
+  | `left
+  | `right
+  | `bottom
+  | `topLeft
+  | `topRight
+  | `bottomLeft
+  | `bottomRight
+  | `leftTop
+  | `leftBottom
+  | `rightTop
+  | `rightBottom
+];
+
+[@bs.deriving jsConverter]
+type triggerType = [ | `hover | `focus | `click | `contextMenu];
+
+module Internal = {
+  [@bs.module] [@react.component]
+  external make:
+    (
+      ~arrowPointAtCenter: bool=?,
+      ~autoAdjustOverflow: bool=?,
+      ~defaultVisible: bool=?,
+      ~getPopupContainer: Dom.element => Dom.htmlElement=?,
+      ~mouseEnterDelay: float=?,
+      ~mouseLeaveDelay: float=?,
+      ~overlayClassName: string=?,
+      ~overlayStyle: ReactDOMRe.Style.t=?,
+      ~placement: option(string)=?,
+      ~trigger: option(string)=?,
+      ~visible: bool=?,
+      ~onVisibleChange: bool => unit=?,
+      ~title: React.element=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element
+    ) =>
+    React.element =
+    "antd/lib/tooltip";
+};
+
+[@react.component]
+let make =
+    (
+      ~arrowPointAtCenter: bool=?,
+      ~autoAdjustOverflow: bool=?,
+      ~defaultVisible: bool=?,
+      ~getPopupContainer: Dom.element => Dom.htmlElement=?,
+      ~mouseEnterDelay: float=?,
+      ~mouseLeaveDelay: float=?,
+      ~overlayClassName: string=?,
+      ~overlayStyle: ReactDOMRe.Style.t=?,
+      ~placement: option(placementType)=?,
+      ~trigger: option(triggerType)=?,
+      ~visible: bool=?,
+      ~onVisibleChange: bool => unit=?,
+      ~title: React.element=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element,
+    ) =>
+  <Internal
+    arrowPointAtCenter
+    autoAdjustOverflow
+    defaultVisible
+    getPopupContainer
+    mouseEnterDelay
+    mouseLeaveDelay
+    overlayClassName
+    overlayStyle
+    placement={Js.Option.map((. b) => placementTypeToJs(b), placement)}
+    trigger={Js.Option.map((. b) => triggerTypeToJs(b), trigger)}
+    visible
+    onVisibleChange
+    title
+    id
+    className
+    style>
+    children
+  </Internal>;
