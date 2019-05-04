@@ -3513,6 +3513,10 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
+rationale@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/rationale/-/rationale-0.1.10.tgz#a14567d3eea7facaba0ed35d68ef2127fdd861d7"
+
 raw-body@2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.3.3.tgz#1b324ece6b5706e153855bc1148c65bb7f6ea0c3"

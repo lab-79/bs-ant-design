@@ -1,18 +1,10 @@
-[@bs.module] external menu: ReasonReact.reactClass = "antd/lib/menu";
-
 [%bs.raw {|require("antd/lib/menu/style")|}];
 
 [@bs.deriving jsConverter]
-type theme = [ | [@bs.as "light"] `Light | [@bs.as "dark"] `Dark];
+type theme = [ | `light | `dark];
 
 [@bs.deriving jsConverter]
-type mode = [
-  | [@bs.as "horizontal"] `Horizontal
-  | [@bs.as "vertical"] `Vertical
-  | [@bs.as "vertical-left"] `VerticalLeft
-  | [@bs.as "vertical-right"] `VerticalRight
-  | [@bs.as "inline"] `Inline
-];
+type mode = [ | `horizontal | `vertical | `inline];
 
 type clickParams = {
   .
@@ -22,11 +14,11 @@ type clickParams = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMenu:
   (
     ~id: string=?,
     ~theme: string=?,
-    ~mode: string=?,
+    ~_mode: option(string)=?,
     ~selectable: bool=?,
     ~selectedKeys: array(string)=?,
     ~defaultSelectedKeys: array(string)=?,
@@ -44,176 +36,137 @@ external makeProps:
     ~multiple: bool=?,
     ~inlineIndent: int=?,
     ~inlineCollapsed: bool=?,
+    ~children: React.element=?,
     unit
   ) =>
   _ =
   "";
 
+[@bs.module "antd/lib/menu"]
+external reactComponent: React.component('a) = "default";
+
+[@react.component]
 let make =
     (
-      ~theme=?,
-      ~mode=?,
-      ~selectable=?,
-      ~selectedKeys=?,
-      ~defaultSelectedKeys=?,
-      ~openKeys=?,
-      ~defaultOpenKeys=?,
-      ~onOpenChange=?,
-      ~onSelect=?,
-      ~onDeselect=?,
-      ~onClick=?,
-      ~openTransitionName=?,
-      ~openAnimation=?,
-      ~className=?,
-      ~prefixCls=?,
-      ~multiple=?,
-      ~inlineIndent=?,
-      ~inlineCollapsed=?,
-      ~id=?,
-      ~style=?,
-      children,
+      ~id: option(string)=?,
+      ~theme: option(theme)=?,
+      ~_mode: option(mode)=?,
+      ~selectable: option(bool)=?,
+      ~selectedKeys: option(array(string))=?,
+      ~defaultSelectedKeys: option(array(string))=?,
+      ~openKeys: option(array(string))=?,
+      ~defaultOpenKeys: option(array(string))=?,
+      ~onOpenChange: option(array(string) => unit)=?,
+      ~onClick: option(clickParams)=?,
+      ~onSelect: option(clickParams => unit)=?,
+      ~onDeselect: option(clickParams => unit)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~openTransitionName: option(string)=?,
+      ~openAnimation: option(string)=?,
+      ~className: option(string)=?,
+      ~prefixCls: option(string)=?,
+      ~multiple: option(bool)=?,
+      ~inlineIndent: option(int)=?,
+      ~inlineCollapsed: option(bool)=?,
+      ~children: option(React.element)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=menu,
-    ~props=
-      makeProps(
-        ~theme=?Js.Option.map((. b) => themeToJs(b), theme),
-        ~mode=?Js.Option.map((. b) => modeToJs(b), mode),
-        ~selectable?,
-        ~selectedKeys=?
-          Js.Option.map((. b) => Array.of_list(b), selectedKeys),
-        ~defaultSelectedKeys=?
-          Js.Option.map((. b) => Array.of_list(b), defaultSelectedKeys),
-        ~openKeys=?Js.Option.map((. b) => Array.of_list(b), openKeys),
-        ~defaultOpenKeys=?
-          Js.Option.map((. b) => Array.of_list(b), defaultOpenKeys),
-        ~onOpenChange?,
-        ~onSelect?,
-        ~onDeselect?,
-        ~onClick?,
-        ~openTransitionName?,
-        ~openAnimation?,
-        ~prefixCls?,
-        ~multiple?,
-        ~inlineIndent?,
-        ~inlineCollapsed?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMenu(
+      ~id?,
+      ~theme=?Js.Option.map((. b) => themeToJs(b), theme),
+      ~_mode=
+        Js.Option.map(
+          (. b) => {
+            Js.log(modeToJs(b));
+            modeToJs(b);
+          },
+          _mode,
+        ),
+      ~selectable?,
+      ~selectedKeys?,
+      ~defaultSelectedKeys?,
+      ~openKeys?,
+      ~defaultOpenKeys?,
+      ~onOpenChange?,
+      ~onClick?,
+      ~onSelect?,
+      ~onDeselect?,
+      ~style?,
+      ~openTransitionName?,
+      ~openAnimation?,
+      ~className?,
+      ~prefixCls?,
+      ~multiple?,
+      ~inlineIndent?,
+      ~inlineCollapsed?,
+      ~children?,
+      (),
+    ),
   );
 
 module Item = {
-  [@bs.module "antd/lib/menu"] external item: ReasonReact.reactClass = "Item";
+  [@bs.module "antd/lib/menu"] [@bs.scope "default"]
+  external reactComponent: React.component('a) = "Item";
+
   [@bs.obj]
-  external makeProps:
+  external makePropsItem:
     (
-      ~key: string=?,
       ~disabled: bool=?,
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?,
       unit
     ) =>
     _ =
     "";
-  let make = (~disabled=?, ~key_=?, ~id=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=item,
-      ~props=
-        makeProps(~key=?key_, ~disabled?, ~id?, ~className?, ~style?, ()),
-      children,
+
+  [@react.component]
+  let make =
+      (
+        ~disabled: option(bool)=?,
+        ~id: option(string)=?,
+        ~className: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~children: option(React.element)=?,
+        (),
+      ) =>
+    React.createElement(
+      reactComponent,
+      makePropsItem(~disabled?, ~id?, ~className?, ~style?, ~children?, ()),
     );
 };
 
 module SubMenu = {
-  [@bs.module "antd/lib/menu"]
-  external subMenu: ReasonReact.reactClass = "SubMenu";
+  [@bs.module "antd/lib/menu"] [@bs.scope "default"]
+  external reactComponent: React.component('a) = "SubMenu";
+
   [@bs.obj]
-  external makeProps:
+  external makePropsItem:
     (
       ~disabled: bool=?,
-      ~key: string=?,
-      ~title: React.element=?,
-      ~onTitleClick: ReactEvent.Mouse.t=?,
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?,
       unit
     ) =>
     _ =
     "";
+
+  [@react.component]
   let make =
       (
-        ~disabled=?,
-        ~key_=?,
-        ~title=?,
-        ~onTitleClick=?,
-        ~id=?,
-        ~className=?,
-        ~style=?,
-        children,
+        ~disabled: option(bool)=?,
+        ~id: option(string)=?,
+        ~className: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~children: option(React.element)=?,
+        (),
       ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=subMenu,
-      ~props=
-        makeProps(
-          ~disabled?,
-          ~key=?key_,
-          ~title?,
-          ~onTitleClick?,
-          ~id?,
-          ~className?,
-          ~style?,
-          (),
-        ),
-      children,
+    React.createElement(
+      reactComponent,
+      makePropsItem(~disabled?, ~id?, ~className?, ~style?, ~children?, ()),
     );
 };
-
-module ItemGroup = {
-  [@bs.module "antd/lib/menu"]
-  external itemGroup: ReasonReact.reactClass = "ItemGroup";
-  [@bs.obj]
-  external makeProps:
-    (
-      ~title: React.element=?,
-      ~id: string=?,
-      ~className: string=?,
-      ~style: ReactDOMRe.Style.t=?,
-      unit
-    ) =>
-    _ =
-    "";
-  let make = (~id=?, ~className=?, ~style=?, ~title=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=itemGroup,
-      ~props=makeProps(~title?, ~id?, ~className?, ~style?, ()),
-      children,
-    );
-};
-
-module Divider = {
-  [@bs.module "antd/lib/menu"]
-  external divider: ReasonReact.reactClass = "Divider";
-  [@bs.obj]
-  external makeProps:
-    (
-      ~id: string=?,
-      ~className: string=?,
-      ~style: ReactDOMRe.Style.t=?,
-      unit
-    ) =>
-    _ =
-    "";
-  let make = (~id=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=divider,
-      ~props=makeProps(~id?, ~className?, ~style?, ()),
-      children,
-    );
-};
-
-let make = make;

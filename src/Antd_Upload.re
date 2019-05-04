@@ -2,18 +2,17 @@
 
 [@bs.deriving jsConverter]
 type listType = [ | `text | `picture | [@bs.as "picture-card"] `pictureCard];
-
-[@bs.module] [@react.component]
-external make:
+[@bs.obj]
+external makePropsUpload:
   (
     ~height: int=?,
     ~accept: string=?,
-    ~action: string,
+    ~action: string=?,
     ~directory: bool=?,
     ~beforeUpload: string => unit=?,
     ~customRequest: string => unit=?,
     ~disabled: bool=?,
-    ~listType: string=?,
+    ~listType: option(string)=?,
     ~_type: string=?,
     ~multiple: bool=?,
     ~name: string=?,
@@ -26,23 +25,78 @@ external make:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
+    ~children: React.element=?,
+    unit
   ) =>
-  React.element =
-  "antd/lib/upload";
+  _ =
+  "";
+
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/upload";
+
+[@react.component]
+let make =
+    (
+      ~height: option(int)=?,
+      ~accept: option(string)=?,
+      ~action: option(string)=?,
+      ~directory: option(bool)=?,
+      ~beforeUpload: option(string => unit)=?,
+      ~customRequest: option(string => unit)=?,
+      ~disabled: option(bool)=?,
+      ~listType: option(listType)=?,
+      ~_type: option(string)=?,
+      ~multiple: option(bool)=?,
+      ~name: option(string)=?,
+      ~showUploadList: option(bool)=?,
+      ~supportServerRender: option(bool)=?,
+      ~withCredentials: option(bool)=?,
+      ~onChange: option(Js.t({..}) => unit)=?,
+      ~onPreview: option(Js.t({..}) => unit)=?,
+      ~onRemove: option(Js.t({..}) => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsUpload(
+      ~height?,
+      ~accept?,
+      ~action?,
+      ~directory?,
+      ~beforeUpload?,
+      ~customRequest?,
+      ~disabled?,
+      ~listType=Belt.Option.map(listType, listTypeToJs),
+      ~_type?,
+      ~multiple?,
+      ~name?,
+      ~showUploadList?,
+      ~supportServerRender?,
+      ~withCredentials?,
+      ~onChange?,
+      ~onPreview?,
+      ~onRemove?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );
 
 module Dragger = {
-  [@bs.module "antd/lib/upload"] [@react.component]
-  external make:
+  external makePropsDragger:
     (
       ~height: int=?,
       ~accept: string=?,
-      ~action: string,
+      ~action: string=?,
       ~directory: bool=?,
       ~beforeUpload: string => unit=?,
       ~customRequest: string => unit=?,
       ~disabled: bool=?,
-      ~listType: string=?,
+      ~listType: option(string)=?,
       ~_type: string=?,
       ~multiple: bool=?,
       ~name: string=?,
@@ -55,10 +109,67 @@ module Dragger = {
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      ~children: React.element=?
+      ~children: React.element=?,
+      unit
     ) =>
-    React.element =
-    "Dragger";
+    _ =
+    "";
+
+  [@bs.module "antd/lib/upload"]
+  external reactComponent: React.component('a) = "Dragger";
+
+  [@react.component]
+  let make =
+      (
+        ~height: option(int)=?,
+        ~accept: option(string)=?,
+        ~action: option(string)=?,
+        ~directory: option(bool)=?,
+        ~beforeUpload: option(string => unit)=?,
+        ~customRequest: option(string => unit)=?,
+        ~disabled: option(bool)=?,
+        ~listType: option(listType)=?,
+        ~_type: option(string)=?,
+        ~multiple: option(bool)=?,
+        ~name: option(string)=?,
+        ~showUploadList: option(bool)=?,
+        ~supportServerRender: option(bool)=?,
+        ~withCredentials: option(bool)=?,
+        ~onChange: option(Js.t({..}) => unit)=?,
+        ~onPreview: option(Js.t({..}) => unit)=?,
+        ~onRemove: option(Js.t({..}) => unit)=?,
+        ~id: option(string)=?,
+        ~className: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~children: option(React.element)=?,
+      ) =>
+    React.createElement(
+      reactComponent,
+      makePropsDragger(
+        ~height?,
+        ~accept?,
+        ~action?,
+        ~directory?,
+        ~beforeUpload?,
+        ~customRequest?,
+        ~disabled?,
+        ~listType=Belt.Option.map(listType, listTypeToJs),
+        ~_type?,
+        ~multiple?,
+        ~name?,
+        ~showUploadList?,
+        ~supportServerRender?,
+        ~withCredentials?,
+        ~onChange?,
+        ~onPreview?,
+        ~onRemove?,
+        ~id?,
+        ~className?,
+        ~style?,
+        ~children?,
+        (),
+      ),
+    );
 };
 
 /*

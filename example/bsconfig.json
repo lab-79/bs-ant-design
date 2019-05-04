@@ -15,6 +15,12 @@
   ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": ["reason-react", "bs-ant-design-alt", "bs-css"],
+  "bs-dependencies": [
+    "reason-react",
+    "bs-ant-design-alt",
+    "bs-css",
+    "bs-moment",
+    "rationale"
+  ],
   "refmt": 3
 }

@@ -13,6 +13,10 @@ let dataSource = [|
   "just testing",
 |];
 
+let filterOption = (inputValue, option: AutoComplete.optionType) =>
+  String.uppercase(option##props##children)
+  |> (inputValue |> String.uppercase |> Js.String.indexOf) !== (-1);
+
 [@react.component]
 let make = () =>
   <Section name="Auto complete">
@@ -20,10 +24,18 @@ let make = () =>
       className=Theme.stdWidth
       dataSource
       placeholder="input here"
+      filterOption={AutoComplete.Bool(false)}
     />
-    <Alert
+    <AutoComplete
       className=Theme.stdWidth
-      _type=`error
-      message={"Can't change value" |> str}
+      dataSource
+      placeholder="input here"
+      filterOption={AutoComplete.Bool(true)}
+    />
+    <AutoComplete
+      className=Theme.stdWidth
+      dataSource
+      placeholder="input here"
+      filterOption={AutoComplete.Function(filterOption)}
     />
   </Section>;

@@ -1,8 +1,5 @@
 [%bs.raw {|require("antd/lib/time-picker/style")|}];
 
-[@bs.module "antd/lib/time-picker"]
-external reactClass: ReasonReact.reactClass = "default";
-
 type moment = MomentRe.Moment.t;
 
 [@bs.deriving jsConverter]
@@ -10,10 +7,10 @@ type pickerSize = [ | `small | `default | `large];
 
 type t('a) = Js.t({. timePickerProps: int} as 'a);
 
-[@bs.obj]
-external makeProps:
+[@bs.module "antd/lib/time-picker"] [@reac.component]
+external makeTimePickerProps:
   (
-    ~size: string=?,
+    ~size: option(string)=?,
     ~value: moment=?,
     ~defaultValue: moment=?,
     ~_open: bool=?,
@@ -41,78 +38,80 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
     unit
   ) =>
-  t(_) =
+  _ =
   "";
 
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/time-picker";
+
+[@react.component]
 let make =
     (
-      ~size=?,
-      ~value=?,
-      ~defaultValue=?,
-      ~_open=?,
-      ~format=?,
-      ~onChange=?,
-      ~onOpenChange=?,
-      ~disabled=?,
-      ~placeholder=?,
-      ~prefixCls=?,
-      ~hideDisabledOptions=?,
-      ~disabledHours=?,
-      ~disabledMinutes=?,
-      ~disabledSeconds=?,
-      ~getPopupContainer=?,
-      ~addon=?,
-      ~use12Hours=?,
-      ~focusOnOpen=?,
-      ~hourStep=?,
-      ~minuteStep=?,
-      ~secondStep=?,
-      ~allowEmpty=?,
-      ~clearText=?,
-      ~defaultOpenValue=?,
-      ~popupClassName=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~size: option(pickerSize)=?,
+      ~value: option(moment)=?,
+      ~defaultValue: option(moment)=?,
+      ~_open: option(bool)=?,
+      ~format: option(string)=?,
+      ~onChange: option((moment, string) => unit)=?,
+      ~onOpenChange: option(bool => unit)=?,
+      ~disabled: option(bool)=?,
+      ~placeholder: option(string)=?,
+      ~prefixCls: option(string)=?,
+      ~hideDisabledOptions: option(bool)=?,
+      ~disabledHours: option(unit => array(int))=?,
+      ~disabledMinutes: option(int => array(int))=?,
+      ~disabledSeconds: option((int, int) => array(int))=?,
+      ~getPopupContainer: option(Dom.element => Dom.htmlElement)=?,
+      ~addon: option('a)=?,
+      ~use12Hours: option(bool)=?,
+      ~focusOnOpen: option(bool)=?,
+      ~hourStep: option(int)=?,
+      ~minuteStep: option(int)=?,
+      ~secondStep: option(int)=?,
+      ~allowEmpty: option(bool)=?,
+      ~clearText: option(bool)=?,
+      ~defaultOpenValue: option(moment)=?,
+      ~popupClassName: option(string)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~size=?Js.Option.map((. b) => pickerSizeToJs(b), size),
-        ~value?,
-        ~defaultValue?,
-        ~_open?,
-        ~format?,
-        ~onChange?,
-        ~onOpenChange?,
-        ~disabled?,
-        ~placeholder?,
-        ~prefixCls?,
-        ~hideDisabledOptions?,
-        ~disabledHours?,
-        ~disabledMinutes?,
-        ~disabledSeconds?,
-        ~getPopupContainer?,
-        ~addon?,
-        ~use12Hours?,
-        ~focusOnOpen?,
-        ~hourStep?,
-        ~minuteStep?,
-        ~secondStep?,
-        ~allowEmpty?,
-        ~clearText?,
-        ~defaultOpenValue?,
-        ~popupClassName?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makeTimePickerProps(
+      ~size=Belt.Option.map(size, pickerSizeToJs),
+      ~value?,
+      ~defaultValue?,
+      ~_open?,
+      ~format?,
+      ~onChange?,
+      ~onOpenChange?,
+      ~disabled?,
+      ~placeholder?,
+      ~prefixCls?,
+      ~hideDisabledOptions?,
+      ~disabledHours?,
+      ~disabledMinutes?,
+      ~disabledSeconds?,
+      ~getPopupContainer?,
+      ~addon?,
+      ~use12Hours?,
+      ~focusOnOpen?,
+      ~hourStep?,
+      ~minuteStep?,
+      ~secondStep?,
+      ~allowEmpty?,
+      ~clearText?,
+      ~defaultOpenValue?,
+      ~popupClassName?,
+      ~id?,
+      ~className?,
+      ~style?,
+      (),
+    ),
   );
 
 /*
@@ -256,5 +255,3 @@ module Locale = {
   [@bs.deriving abstract]
   type t = pri {placeholder: string};
 };
-
-let make = make;

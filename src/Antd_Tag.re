@@ -44,5 +44,3 @@ module CheckableTag = {
     "Checkabletag";
   let make = make;
 };
-
-let make = make;

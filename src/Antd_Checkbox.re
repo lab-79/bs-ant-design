@@ -7,7 +7,6 @@
  onChange	The callback function that is triggered when the state changes.	Function(e:Event)
  */
 [%bs.raw {|require("antd/lib/checkbox/style")|}];
-type clickParams = {. "domEvent": ReactEvent.Mouse.t};
 [@bs.module] [@react.component]
 external make:
   (
@@ -16,7 +15,7 @@ external make:
     ~defaultChecked: bool=?,
     ~disabled: bool=?,
     ~indeterminate: bool=?,
-    ~onChange: clickParams=?,
+    ~onChange: ReactEvent.Mouse.t => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -25,3 +24,18 @@ external make:
   React.element =
   "antd/lib/checkbox";
 let make = make;
+
+module Group = {
+  [@bs.module "antd/lib/checkbox"] [@react.component]
+  external make:
+    (
+      ~defaultValue: array(string)=?,
+      ~disabled: bool=?,
+      ~name: string=?,
+      ~options: array(string)=?,
+      ~value: array(string)=?,
+      ~onChange: array(string) => unit=?
+    ) =>
+    React.element =
+    "Group";
+};

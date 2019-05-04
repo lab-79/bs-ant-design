@@ -80,8 +80,8 @@ module Content = {
 module Sider = {
   [@bs.deriving {jsConverter: newType}]
   type collapseType = [ | `clickTrigger | `responsive];
-  [@bs.module "antd/lib/layout"] [@react.component]
-  external make:
+  [@bs.obj]
+  external makePropsSider:
     (
       ~breakpoint: string=?,
       ~className: string=?,
@@ -95,9 +95,50 @@ module Sider = {
       ~onCollapse: (bool, abs_collapseType) => unit=?,
       ~trigger: React.element=?,
       ~width: int=?,
-      ~children: React.element=?
+      ~children: React.element=?,
+      unit
     ) =>
-    React.element =
-    "Sider";
+    _ =
+    "";
+
+  [@bs.module "antd/lib/layout"]
+  external reactComponent: React.component('a) = "Sider";
+
+  [@react.component]
+  let make =
+      (
+        ~breakpoint: option(string)=?,
+        ~className: option(string)=?,
+        ~collapsed: option(bool)=?,
+        ~collapsedWidth: option(int)=?,
+        ~collapsible: option(bool)=?,
+        ~defaultCollapsed: option(bool)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~prefixCls: option(string)=?,
+        ~reverseArrow: option(bool)=?,
+        ~onCollapse: option((bool, abs_collapseType) => unit)=?,
+        ~trigger: option(React.element)=?,
+        ~width: option(int)=?,
+        ~children: option(React.element)=?,
+      ) =>
+    React.createElement(
+      reactComponent,
+      makePropsSider(
+        ~breakpoint?,
+        ~className?,
+        ~collapsed?,
+        ~collapsedWidth?,
+        ~collapsible?,
+        ~defaultCollapsed?,
+        ~style?,
+        ~prefixCls?,
+        ~reverseArrow?,
+        ~onCollapse?,
+        ~trigger?,
+        ~width?,
+        ~children?,
+        (),
+      ),
+    );
 };
 let make = make;

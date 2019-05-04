@@ -13,4 +13,19 @@ let make = () =>
     <AutoComplete />
     <Avatar />
     <Badge />
+    <Breadcrumb />
+    <Button />
+    <Calendar />
+    <Card />
+    <Checkbox />
+    <Collapse />
+    <DatePicker />
+    <Dropdown />
+    <Form />
+    <Input />
+    <Modal />
+    <Pagination />
+    <Radio />
+    <Rate />
+    <Table />
   </React.Fragment>;

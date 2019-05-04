@@ -1,7 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/tabs";
-
-[%bs.raw {|require("antd/lib/tabs/style")|}];
-
 /*
  activeKey	Current TabPane's key	string	-
  animated	Whether to change tabs with animation. Only works while tabPosition="top"\|"bottom"	boolean | {inkBar:boolean, tabPane:boolean}	true, false when type="card"
@@ -35,41 +31,20 @@
    </Tabs>
  */
 
-[@bs.obj]
-external makeProps:
+[%bs.raw {|require("antd/lib/tabs/style")|}];
+
+[@bs.module] [@react.component]
+external make:
   (
     ~defaultActiveKey: string=?,
     ~onChange: string => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element=?
   ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~defaultActiveKey=?,
-      ~onChange=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~defaultActiveKey?,
-        ~onChange?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "antd/lib/tabs";
 
 /*
  forceRender	Forced render of content in tabs, not lazy render after clicking on tabs	boolean	false
@@ -80,7 +55,7 @@ let make =
 module TabPane = {
   [@bs.module "antd/lib/tabs"]
   external reactClass: ReasonReact.reactClass = "TabPane";
-  [@bs.obj]
+  [@bs.module "antd/lib/tabs"] [@react.component]
   external makeProps:
     (
       ~forceRender: bool=?,
@@ -88,17 +63,8 @@ module TabPane = {
       ~className: string=?,
       ~tab: React.element=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-  let make =
-      (~forceRender=?, ~key=?, ~tab=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=makeProps(~forceRender?, ~key?, ~tab?, ~className?, ~style?, ()),
-      children,
-    );
+    React.element =
+    "TabPane";
 };
-
-let make = make;

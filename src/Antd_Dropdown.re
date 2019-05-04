@@ -1,3 +1,14 @@
+/*
+ disabled	whether the dropdown menu is disabled	boolean	-
+ getPopupContainer	to set the container of the dropdown menu. The default is to create a div element in body, you can reset it to the scrolling area and make a relative reposition. example	Function(triggerNode)	() => document.body
+ overlay	the dropdown menu	Menu	-
+ overlayClassName	Class name of the dropdown root element	string	-
+ overlayStyle	Style of the dropdown root element	object	-
+ placement	placement of pop menu: bottomLeft bottomCenter bottomRight topLeft topCenter topRight	String	bottomLeft
+ trigger	the trigger mode which executes the drop-down action, hover doesn't work on mobile device	Array<click|hover|contextMenu>	['hover']
+ visible	whether the dropdown menu is visible	boolean	-
+ onVisibleChange	a callback function takes an argument: visible, is executed when the visible state is changed	Function(visible)
+ */
 [%bs.raw {|require("antd/lib/dropdown/style")|}];
 
 module Menu = Antd_Menu;
@@ -25,79 +36,68 @@ type trigger = [
   | [@bs.as "contextMenu"] `contextMenu
 ];
 
-[@bs.module] [@react.component]
-external make:
+[@bs.obj]
+external makePropsDropdown:
   (
     ~disabled: bool=?,
+    ~getPopupContainer: Dom.element => Dom.element=?,
     ~overlay: React.element=?,
     ~overlayClassName: string=?,
-    ~placement: string=?,
+    ~overlayStyle: ReactDOMRe.Style.t=?,
+    ~placement: option(string)=?,
     ~trigger: array(string)=?,
     ~visible: bool=?,
     ~onVisibleChange: ReactEvent.Mouse.t => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
+    ~children: React.element=?,
+    unit
   ) =>
-  React.element =
-  "antd/lib/dropdown";
+  _ =
+  "";
 
-/*
- module Dropdown = {
-   [@bs.module] external dropdown : ReasonReact.reactClass = "antd/lib/dropdown";
-   let make =
-       (
-         ~align=?,
-         ~disabled=?,
-         ~type_=?,
-         ~className=?,
-         ~size=?,
-         ~style=?,
-         ~overlay=?,
-         ~onVisibleChange=?,
-         ~id=?,
-         ~visible=?,
-         ~placement=?,
-         ~trigger=?,
-         ~onClick=?
-       ) =>
-     ReasonReact.wrapJsForReason(
-       ~reactClass=dropdown,
-       ~props=
-         Js.Undefined.(
-           {
-             "align": from_opt(align),
-             "disabled": unwrapBool(disabled),
-             "type": from_opt(type_),
-             "className": from_opt(className),
-             "size": from_opt(size),
-             "style": from_opt(style),
-             "overlay": from_opt(overlay),
-             "onVisibleChange": from_opt(onVisibleChange),
-             "id": from_opt(id),
-             "visible": unwrapBool(visible),
-             "placement": from_opt(placement),
-             "trigger": from_opt(trigger),
-             "onClick": from_opt(onClick)
-           }
-         )
-     );
- };
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/dropdown";
 
- */
-
-/*
- disabled	whether the dropdown menu is disabled	boolean	-
- getPopupContainer	to set the container of the dropdown menu. The default is to create a div element in body, you can reset it to the scrolling area and make a relative reposition. example	Function(triggerNode)	() => document.body
- overlay	the dropdown menu	Menu	-
- overlayClassName	Class name of the dropdown root element	string	-
- overlayStyle	Style of the dropdown root element	object	-
- placement	placement of pop menu: bottomLeft bottomCenter bottomRight topLeft topCenter topRight	String	bottomLeft
- trigger	the trigger mode which executes the drop-down action, hover doesn't work on mobile device	Array<click|hover|contextMenu>	['hover']
- visible	whether the dropdown menu is visible	boolean	-
- onVisibleChange	a callback function takes an argument: visible, is executed when the visible state is changed	Function(visible)
- */
+[@react.component]
+let make =
+    (
+      ~disabled: option(bool)=?,
+      ~getPopupContainer: option(Dom.element => Dom.element)=?,
+      ~overlay: option(React.element)=?,
+      ~overlayClassName: option(string)=?,
+      ~overlayStyle: option(ReactDOMRe.Style.t)=?,
+      ~placement: option(placement)=?,
+      ~trigger: option(array(string))=?,
+      ~visible: option(bool)=?,
+      ~onVisibleChange: option(ReactEvent.Mouse.t => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsDropdown(
+      ~disabled?,
+      ~getPopupContainer?,
+      ~overlay?,
+      ~overlayClassName?,
+      ~overlayStyle?,
+      ~placement={
+        Js.Option.map((. b) => placementToJs(b), placement);
+      },
+      ~trigger?,
+      ~visible?,
+      ~onVisibleChange?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );
 
 /*
  disabled	whether the dropdown menu is disabled	boolean	-

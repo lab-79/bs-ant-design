@@ -1,76 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/rate";
-
-[%bs.raw {|require("antd/lib/rate/style")|}];
-
-[@bs.obj]
-external makeProps:
-  (
-    ~allowClear: bool=?,
-    ~allowHalf: bool=?,
-    ~autoFocus: bool=?,
-    ~character: React.element=?,
-    ~className: string=?,
-    ~count: int=?,
-    ~defaultValue: int=?,
-    ~disabled: bool=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~value: string=?,
-    ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: float => unit=?,
-    ~onFocus: ReactEvent.Focus.t => unit=?,
-    ~onHoverChange: float => unit=?,
-    ~onKeyDown: ReactEvent.Focus.t => unit=?,
-    ~id: string=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~allowClear=?,
-      ~allowHalf=?,
-      ~autoFocus=?,
-      ~character=?,
-      ~className=?,
-      ~count=?,
-      ~defaultValue=?,
-      ~disabled=?,
-      ~style=?,
-      ~value=?,
-      ~onBlur=?,
-      ~onChange=?,
-      ~onFocus=?,
-      ~onHoverChange=?,
-      ~onKeyDown=?,
-      ~id=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~allowClear?,
-        ~allowHalf?,
-        ~autoFocus?,
-        ~character?,
-        ~className?,
-        ~count?,
-        ~defaultValue?,
-        ~disabled?,
-        ~style?,
-        ~value?,
-        ~onBlur?,
-        ~onChange?,
-        ~onFocus?,
-        ~onHoverChange?,
-        ~onKeyDown?,
-        ~id?,
-        (),
-      ),
-    children,
-  );
-
 /*
  allowClear	whether to allow clear when click again	boolean	true
  allowHalf	whether to allow semi selection	boolean	false
@@ -89,4 +16,72 @@ let make =
  onKeyDown	callback when keydown on component	Function(event)
  */
 
-let make = make;
+[%bs.raw {|require("antd/lib/rate/style")|}];
+[@bs.obj]
+external makePropsRate:
+  (
+    ~allowClear: bool=?,
+    ~allowHalf: bool=?,
+    ~autoFocus: bool=?,
+    ~character: React.element=?,
+    ~className: string=?,
+    ~count: int=?,
+    ~defaultValue: float=?,
+    ~disabled: bool=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~value: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onChange: float => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onHoverChange: float => unit=?,
+    ~onKeyDown: ReactEvent.Focus.t => unit=?,
+    ~id: string=?,
+    unit
+  ) =>
+  _ =
+  "";
+
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/rate";
+
+[@react.component]
+let make =
+    (
+      ~allowClear: option(bool)=?,
+      ~allowHalf: option(bool)=?,
+      ~autoFocus: option(bool)=?,
+      ~character: option(React.element)=?,
+      ~className: option(string)=?,
+      ~count: option(int)=?,
+      ~defaultValue: option(float)=?,
+      ~disabled: option(bool)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~value: option(string)=?,
+      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+      ~onChange: option(float => unit)=?,
+      ~onFocus: option(ReactEvent.Focus.t => unit)=?,
+      ~onHoverChange: option(float => unit)=?,
+      ~onKeyDown: option(ReactEvent.Focus.t => unit)=?,
+      ~id: option(string)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsRate(
+      ~allowClear?,
+      ~allowHalf?,
+      ~autoFocus?,
+      ~character?,
+      ~className?,
+      ~count?,
+      ~defaultValue?,
+      ~disabled?,
+      ~style?,
+      ~value?,
+      ~onBlur?,
+      ~onChange?,
+      ~onFocus?,
+      ~onHoverChange?,
+      ~onKeyDown?,
+      ~id?,
+      (),
+    ),
+  );

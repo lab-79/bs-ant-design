@@ -3,10 +3,10 @@
 [@bs.deriving jsConverter]
 type size = [ | `default | `small | `large];
 
-[@bs.module] [@react.component]
-external make:
+[@bs.obj]
+external makePropsSpin:
   (
-    ~size: string=?,
+    ~size: option(string)=?,
     ~spinning: bool=?,
     ~tip: string=?,
     ~delay: int=?,
@@ -14,8 +14,39 @@ external make:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
+    ~children: React.element=?,
+    unit
   ) =>
-  React.element =
-  "antd/lib/spin";
-let make = make;
+  _ =
+  "";
+
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/spin";
+
+[@react.component]
+let make =
+    (
+      ~size: option(size)=?,
+      ~spinning: option(bool)=?,
+      ~tip: option(string)=?,
+      ~delay: option(int)=?,
+      ~wrapperClassName: option(string)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsSpin(
+      ~size=Belt.Option.map(size, sizeToJs),
+      ~spinning?,
+      ~tip?,
+      ~delay?,
+      ~wrapperClassName?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );

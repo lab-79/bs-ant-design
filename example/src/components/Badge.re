@@ -14,9 +14,6 @@ let dataSource = [|
 module Styles = {
   open Css;
 
-  let wrapper = style([display(`flex)]);
-  let withStyle =
-    style([color(`hex("f56a00")), background(`hex("fde3cf"))]);
   let box =
     style([
       width(`px(30)),

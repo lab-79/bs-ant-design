@@ -1,15 +1,29 @@
+/*
+ autoFocus	get focus when component mounted	boolean	false
+ defaultValue	initial value	number
+ disabled	disable the input	boolean	false
+ formatter	Specifies the format of the value presented	function(value: number | string): string	-
+ max	max value	number	Infinity
+ min	min value	number	-Infinity
+ parser	Specifies the value extracted from formatter	function( string): number	-
+ precision	precision of input value	number	-
+ size	width of input box	string	-
+ step	The number to which the current value is increased or decreased. It can be an integer or decimal.	number|string	1
+ value	current value	number
+ onChange	The callback triggered when the value is changed.	function(value: number | string)
+ */
 [%bs.raw {|require("antd/lib/input-number/style")|}];
 
 [@bs.module]
 external make:
   (
     ~autoFocus: bool=?,
-    ~defaultValue: float=?,
+    ~defaultValue: int=?,
     ~disabled: bool=?,
     ~formatter: int => string=?,
-    ~max: float=?,
-    ~min: float=?,
-    ~parser: string => float=?,
+    ~max: int=?,
+    ~min: int=?,
+    ~parser: string => int=?,
     ~precision: int=?,
     ~size: string=?,
     ~step: int=?,
@@ -25,19 +39,4 @@ external make:
   ) =>
   React.element =
   "antd/lib/input-number";
-
-/*
- autoFocus	get focus when component mounted	boolean	false
- defaultValue	initial value	number
- disabled	disable the input	boolean	false
- formatter	Specifies the format of the value presented	function(value: number | string): string	-
- max	max value	number	Infinity
- min	min value	number	-Infinity
- parser	Specifies the value extracted from formatter	function( string): number	-
- precision	precision of input value	number	-
- size	width of input box	string	-
- step	The number to which the current value is increased or decreased. It can be an integer or decimal.	number|string	1
- value	current value	number
- onChange	The callback triggered when the value is changed.	function(value: number | string)
- */
 let make = make;

@@ -1,13 +1,3 @@
-[%bs.raw {|require("antd/lib/select/style")|}];
-
-[@bs.deriving jsConverter]
-type mode = [ | `default | `multiple | `tags];
-
-[@bs.deriving accessors]
-type value =
-  | String(string)
-  | List(list(string));
-
 /*
  allowClear	Show clear button.	boolean	false
  autoFocus	Get focus by default	boolean	false
@@ -47,6 +37,15 @@ type value =
  open	Controlled open state of dropdown	boolean	-
  onDropdownVisibleChange	Call when dropdown open	function(open)	-
   */
+[%bs.raw {|require("antd/lib/select/style")|}];
+
+[@bs.deriving jsConverter]
+type mode = [ | `default | `multiple | `tags];
+
+[@bs.deriving accessors]
+type value =
+  | String(string)
+  | List(list(string));
 
 [@bs.module] [@react.component]
 external make:

@@ -1,8 +1,18 @@
 [%bs.raw {|require("antd/lib/breadcrumb/style")|}];
 
+type route = {
+  .
+  "path": string,
+  "breadcrumbName": string,
+};
+
 [@bs.module] [@react.component]
 external make:
   (
+    ~routes: array(route)=?,
+    ~itemRender: (route, Js.t({..}), array(route), array(string)) =>
+                 React.element
+                   =?,
     ~separator: React.element=?,
     ~id: string=?,
     ~className: string=?,
@@ -17,6 +27,7 @@ module Item = {
   external make:
     (
       ~separator: string=?,
+      ~onClick: ReactEvent.Mouse.t => unit=?,
       ~href: string=?,
       ~id: string=?,
       ~className: string=?,

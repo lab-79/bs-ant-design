@@ -19,48 +19,51 @@ type status = [ | `success | `exception_ | `active | `normal];
 [@bs.deriving jsConverter]
 type strokeLinecap = [ | `round | `square];
 
-module Internal = {
-  [@bs.module] [@react.component]
-  external make:
-    (
-      ~type_: option(string)=?,
-      ~format: (float, float) => string=?,
-      ~percent: float=?,
-      ~showInfo: bool=?,
-      ~status: option(string)=?,
-      ~className: string=?,
-      ~strokeLinecap: option(string)=?,
-      ~strokeColor: string=?,
-      ~successPercent: float=?
-    ) =>
-    React.element =
-    "antd/lib/progress";
-};
+[@bs.obj]
+external makePropsProgress:
+  (
+    ~_type: option(string)=?,
+    ~format: (float, float) => string=?,
+    ~percent: float=?,
+    ~showInfo: bool=?,
+    ~status: option(string)=?,
+    ~className: string=?,
+    ~strokeLinecap: option(string)=?,
+    ~strokeColor: string=?,
+    ~successPercent: float=?,
+    unit
+  ) =>
+  _ =
+  "";
+
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/progress";
 
 [@react.component]
 let make =
     (
-      ~type_: option(mode)=?,
-      ~format: (float, float) => string=?,
-      ~percent: float=?,
-      ~showInfo: bool=?,
+      ~_type: option(mode)=?,
+      ~format: option((float, float) => string)=?,
+      ~percent: option(float)=?,
+      ~showInfo: option(bool)=?,
       ~status: option(status)=?,
-      ~className: string=?,
+      ~className: option(string)=?,
       ~strokeLinecap: option(strokeLinecap)=?,
-      ~strokeColor: string=?,
-      ~successPercent: float=?,
+      ~strokeColor: option(string)=?,
+      ~successPercent: option(float)=?,
     ) =>
-  <Internal
-    type_={Js.Option.map((. b) => modeToJs(b), type_)}
-    format
-    percent
-    showInfo
-    status={Js.Option.map((. b) => statusToJs(b), status)}
-    className
-    strokeLinecap={Js.Option.map(
-      (. b) => strokeLinecapToJs(b),
-      strokeLinecap,
-    )}
-    strokeColor
-    successPercent
-  />;
+  React.createElement(
+    reactComponent,
+    makePropsProgress(
+      ~_type=Belt.Option.map(_type, modeToJs),
+      ~format?,
+      ~percent?,
+      ~showInfo?,
+      ~status=Belt.Option.map(status, statusToJs),
+      ~className?,
+      ~strokeLinecap=Belt.Option.map(strokeLinecap, strokeLinecapToJs),
+      ~strokeColor?,
+      ~successPercent?,
+      (),
+    ),
+  );

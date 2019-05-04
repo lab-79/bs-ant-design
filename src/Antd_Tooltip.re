@@ -42,69 +42,75 @@ type placementType = [
 [@bs.deriving jsConverter]
 type triggerType = [ | `hover | `focus | `click | `contextMenu];
 
-module Internal = {
-  [@bs.module] [@react.component]
-  external make:
-    (
-      ~arrowPointAtCenter: bool=?,
-      ~autoAdjustOverflow: bool=?,
-      ~defaultVisible: bool=?,
-      ~getPopupContainer: Dom.element => Dom.htmlElement=?,
-      ~mouseEnterDelay: float=?,
-      ~mouseLeaveDelay: float=?,
-      ~overlayClassName: string=?,
-      ~overlayStyle: ReactDOMRe.Style.t=?,
-      ~placement: option(string)=?,
-      ~trigger: option(string)=?,
-      ~visible: bool=?,
-      ~onVisibleChange: bool => unit=?,
-      ~title: React.element=?,
-      ~id: string=?,
-      ~className: string=?,
-      ~style: ReactDOMRe.Style.t=?,
-      ~children: React.element
-    ) =>
-    React.element =
-    "antd/lib/tooltip";
-};
+[@bs.obj]
+external makePropsToolTip:
+  (
+    ~arrowPointAtCenter: bool=?,
+    ~autoAdjustOverflow: bool=?,
+    ~defaultVisible: bool=?,
+    ~getPopupContainer: Dom.element => Dom.htmlElement=?,
+    ~mouseEnterDelay: float=?,
+    ~mouseLeaveDelay: float=?,
+    ~overlayClassName: string=?,
+    ~overlayStyle: ReactDOMRe.Style.t=?,
+    ~placement: option(string)=?,
+    ~trigger: option(string)=?,
+    ~visible: bool=?,
+    ~onVisibleChange: bool => unit=?,
+    ~title: React.element=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
+    unit
+  ) =>
+  _ =
+  "";
+
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/tooltip";
 
 [@react.component]
 let make =
     (
-      ~arrowPointAtCenter: bool=?,
-      ~autoAdjustOverflow: bool=?,
-      ~defaultVisible: bool=?,
-      ~getPopupContainer: Dom.element => Dom.htmlElement=?,
-      ~mouseEnterDelay: float=?,
-      ~mouseLeaveDelay: float=?,
-      ~overlayClassName: string=?,
-      ~overlayStyle: ReactDOMRe.Style.t=?,
+      ~arrowPointAtCenter: option(bool)=?,
+      ~autoAdjustOverflow: option(bool)=?,
+      ~defaultVisible: option(bool)=?,
+      ~getPopupContainer: option(Dom.element => Dom.htmlElement)=?,
+      ~mouseEnterDelay: option(float)=?,
+      ~mouseLeaveDelay: option(float)=?,
+      ~overlayClassName: option(string)=?,
+      ~overlayStyle: option(ReactDOMRe.Style.t)=?,
       ~placement: option(placementType)=?,
       ~trigger: option(triggerType)=?,
-      ~visible: bool=?,
-      ~onVisibleChange: bool => unit=?,
-      ~title: React.element=?,
-      ~id: string=?,
-      ~className: string=?,
-      ~style: ReactDOMRe.Style.t=?,
-      ~children: React.element,
+      ~visible: option(bool)=?,
+      ~onVisibleChange: option(bool => unit)=?,
+      ~title: option(React.element)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
-  <Internal
-    arrowPointAtCenter
-    autoAdjustOverflow
-    defaultVisible
-    getPopupContainer
-    mouseEnterDelay
-    mouseLeaveDelay
-    overlayClassName
-    overlayStyle
-    placement={Js.Option.map((. b) => placementTypeToJs(b), placement)}
-    trigger={Js.Option.map((. b) => triggerTypeToJs(b), trigger)}
-    visible
-    onVisibleChange
-    title
-    id
-    className
-    style>
-    children
-  </Internal>;
+  React.createElement(
+    reactComponent,
+    makePropsToolTip(
+      ~arrowPointAtCenter?,
+      ~autoAdjustOverflow?,
+      ~defaultVisible?,
+      ~getPopupContainer?,
+      ~mouseEnterDelay?,
+      ~mouseLeaveDelay?,
+      ~overlayClassName?,
+      ~overlayStyle?,
+      ~placement=Belt.Option.map(placement, placementTypeToJs),
+      ~trigger=Belt.Option.map(trigger, triggerTypeToJs),
+      ~visible?,
+      ~onVisibleChange?,
+      ~title?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );

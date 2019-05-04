@@ -1,20 +1,3 @@
-[@bs.module] [@react.component]
-external make:
-  (
-    ~accordion: bool=?,
-    ~activeKey: array(string)=?,
-    ~bordered: bool=?,
-    ~defaultActiveKey: array(string)=?,
-    ~onChange: string => unit=?,
-    ~destroyInactivePanel: bool=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
-  ) =>
-  React.element =
-  "antd/lib/collapse";
-
 /*
  accordion	If true, Collapse renders as Accordion	boolean	false
  activeKey	Key of the active panel	string[]|string	No default value. In accordion mode, it's the key of the first panel.
@@ -31,6 +14,35 @@ external make:
  key	Unique key identifying the panel from among its siblings	string	-
  showArrow	If false, panel will not show arrow icon	boolean	true
   */
+[%bs.raw {|require("antd/lib/collapse/style")|}];
+
+type panelProps = {
+  .
+  "isActive": bool,
+  "header": string,
+  "panelKey": string,
+  "accordion": bool,
+  "showArrow": bool,
+  "forceRender": bool,
+};
+
+[@bs.module] [@react.component]
+external make:
+  (
+    ~accordion: bool=?,
+    ~activeKey: array(string)=?,
+    ~bordered: bool=?,
+    ~defaultActiveKey: array(string)=?,
+    ~onChange: string => unit=?,
+    ~destroyInactivePanel: bool=?,
+    ~expandIcon: panelProps => React.element=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "antd/lib/collapse";
 
 module Panel = {
   [@bs.module "antd/lib/collapse"] [@react.component]

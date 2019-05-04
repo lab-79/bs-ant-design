@@ -1,35 +1,3 @@
-[%bs.raw {|require("antd/lib/card/style")|}];
-type tab = {
-  .
-  "key": string,
-  "tab": string,
-};
-
-[@bs.module] [@react.component]
-external make:
-  (
-    ~actions: array(React.element)=?,
-    ~activeTabKey: string=?,
-    ~headStyle: ReactDOMRe.Style.t=?,
-    ~bodyStyle: ReactDOMRe.Style.t=?,
-    ~bordered: bool=?,
-    ~cover: React.element=?,
-    ~defaultActiveTabKey: string=?,
-    ~extra: React.element=?,
-    ~hoverable: bool=?,
-    ~loading: bool=?,
-    ~tabList: array(tab)=?,
-    ~title: React.element=?,
-    ~_type: string=?,
-    ~onTabChange: string => unit=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
-  ) =>
-  React.element =
-  "antd/lib/card";
-
 /*
  actions	The action list, shows at the bottom of the Card.	Array	-
  activeTabKey	Current TabPane's key	string	-
@@ -46,6 +14,95 @@ external make:
  type	Card style type, can be set to inner or not set	string	-
  onTabChange	Callback when tab is switched	(key) => void	-
  */
+[%bs.raw {|require("antd/lib/card/style")|}];
+type tab = {
+  .
+  "key": string,
+  "tab": string,
+};
+
+[@bs.deriving jsConverter]
+type size = [ | `default | `small];
+
+[@bs.obj]
+external makePropsCard:
+  (
+    ~actions: array(React.element)=?,
+    ~activeTabKey: string=?,
+    ~headStyle: ReactDOMRe.Style.t=?,
+    ~bodyStyle: ReactDOMRe.Style.t=?,
+    ~bordered: bool=?,
+    ~cover: React.element=?,
+    ~defaultActiveTabKey: string=?,
+    ~extra: React.element=?,
+    ~hoverable: bool=?,
+    ~loading: bool=?,
+    ~tabList: array(tab)=?,
+    ~title: React.element=?,
+    ~_type: string=?,
+    ~onTabChange: string => unit=?,
+    ~size: option(string)=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
+    unit
+  ) =>
+  _ =
+  "";
+
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/card";
+
+[@react.component]
+let make =
+    (
+      ~actions: option(array(React.element))=?,
+      ~activeTabKey: option(string)=?,
+      ~headStyle: option(ReactDOMRe.Style.t)=?,
+      ~bodyStyle: option(ReactDOMRe.Style.t)=?,
+      ~bordered: option(bool)=?,
+      ~cover: option(React.element)=?,
+      ~defaultActiveTabKey: option(string)=?,
+      ~extra: option(React.element)=?,
+      ~hoverable: option(bool)=?,
+      ~loading: option(bool)=?,
+      ~tabList: option(array(tab))=?,
+      ~title: option(React.element)=?,
+      ~_type: option(string)=?,
+      ~onTabChange: option(string => unit)=?,
+      ~size: option(size)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsCard(
+      ~actions?,
+      ~activeTabKey?,
+      ~headStyle?,
+      ~bodyStyle?,
+      ~bordered?,
+      ~cover?,
+      ~defaultActiveTabKey?,
+      ~extra?,
+      ~hoverable?,
+      ~loading?,
+      ~tabList?,
+      ~title?,
+      ~_type?,
+      ~onTabChange?,
+      ~size={
+        Js.Option.map((. b) => sizeToJs(b), size);
+      },
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );
 
 module Grid = {
   [@bs.module "antd/lib/card"] [@react.component]
@@ -81,4 +138,3 @@ module Meta = {
     React.element =
     "Meta";
 };
-let make = make;

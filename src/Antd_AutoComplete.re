@@ -32,8 +32,8 @@ type optionType = {
 
 type filterOption(_) =
   | Bool(bool): filterOption(bool)
-  | Function((string, optionType) => unit)
-    : filterOption((string, optionType) => unit);
+  | Function((string, optionType) => bool)
+    : filterOption((string, optionType) => bool);
 
 let boolOrFn = (type a, boolOrFn: filterOption(a)): a =>
   switch (boolOrFn) {
@@ -43,83 +43,62 @@ let boolOrFn = (type a, boolOrFn: filterOption(a)): a =>
 
 [%bs.raw {|require("antd/lib/auto-complete/style")|}];
 
-module Internal = {
-  [@bs.module] [@react.component]
-  external make:
-    (
-      ~allowClear: bool=?,
-      ~autoFocus: bool=?,
-      ~backfill: bool=?,
-      ~dataSource: array(string)=?, //TODO: accept DataSourceItemType
-      ~defaultActiveFirstOption: bool=?,
-      ~defaultValue: string=?,
-      ~disabled: bool=?,
-      ~filterOption: 'a=?,
-      ~optionLabelProp: string=?,
-      ~placeholder: string=?,
-      ~value: string=?,
-      ~onBlur: ReactEvent.Focus.t => unit=?,
-      ~onChange: ReactEvent.Form.t => unit=?,
-      ~onFocus: ReactEvent.Form.t => unit=?,
-      ~onSearch: ReactEvent.Form.t => unit=?,
-      ~onSelect: ReactEvent.Form.t => unit=?,
-      ~defaultOpen: bool=?,
-      ~open_: bool=?,
-      ~onDropdownVisibleChange: string => unit=?,
-      ~className: string=?,
-      ~style: ReactDOMRe.Style.t=?,
-      ~children: React.element=?
-    ) =>
-    React.element =
-    "antd/lib/auto-complete";
-};
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/auto-complete";
+
 [@react.component]
 let make =
     (
-      ~allowClear: bool=?,
-      ~autoFocus: bool=?,
-      ~backfill: bool=?,
-      ~dataSource: array(string)=?, //TODO: accept DataSourceItemType
-      ~defaultActiveFirstOption: bool=?,
-      ~defaultValue: string=?,
-      ~disabled: bool=?,
+      ~allowClear: option(bool)=?,
+      ~autoFocus: option(bool)=?,
+      ~backfill: option(bool)=?,
+      ~dataSource: option(array(string))=?,
+      ~defaultActiveFirstOption: option(bool)=?,
+      ~defaultValue: option(string)=?,
+      ~disabled: option(bool)=?,
       ~filterOption: option('a)=?,
-      ~optionLabelProp: string=?,
-      ~placeholder: string=?,
-      ~value: string=?,
-      ~onBlur: ReactEvent.Focus.t => unit=?,
-      ~onChange: ReactEvent.Form.t => unit=?,
-      ~onFocus: ReactEvent.Form.t => unit=?,
-      ~onSearch: ReactEvent.Form.t => unit=?,
-      ~onSelect: ReactEvent.Form.t => unit=?,
-      ~defaultOpen: bool=?,
-      ~open_: bool=?,
-      ~onDropdownVisibleChange: string => unit=?,
-      ~className: string=?,
-      ~style: ReactDOMRe.Style.t=?,
-      ~children: React.element=?,
+      ~optionLabelProp: option(string)=?,
+      ~placeholder: option(string)=?,
+      ~value: option(string)=?,
+      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+      ~onChange: option(ReactEvent.Form.t => unit)=?,
+      ~onFocus: option(ReactEvent.Form.t => unit)=?,
+      ~onSearch: option(ReactEvent.Form.t => unit)=?,
+      ~onSelect: option(ReactEvent.Form.t => unit)=?,
+      ~defaultOpen: option(bool)=?,
+      ~open_: option(bool)=?,
+      ~onDropdownVisibleChange: option(string => unit)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
-  <Internal
-    allowClear
-    autoFocus
-    backfill
-    dataSource
-    defaultActiveFirstOption
-    defaultValue
-    disabled
-    filterOption={Js.Option.map((. b) => b |> boolOrFn, filterOption)}
-    optionLabelProp
-    placeholder
-    value
-    onBlur
-    onChange
-    onFocus
-    onSearch
-    onSelect
-    defaultOpen
-    open_
-    onDropdownVisibleChange
-    className
-    style>
-    children
-  </Internal>;
+  React.createElement(
+    reactComponent,
+    makeProps(
+      ~allowClear?,
+      ~autoFocus?,
+      ~backfill?,
+      ~dataSource?,
+      ~defaultActiveFirstOption?,
+      ~defaultValue?,
+      ~disabled?,
+      ~filterOption={
+        Js.Option.map((. b) => boolOrFn(b), filterOption);
+      },
+      ~optionLabelProp?,
+      ~placeholder?,
+      ~value?,
+      ~onBlur?,
+      ~onChange?,
+      ~onFocus?,
+      ~onSearch?,
+      ~onSelect?,
+      ~defaultOpen?,
+      ~open_?,
+      ~onDropdownVisibleChange?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );

@@ -12,8 +12,8 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~name, ~children) =>
-  <div className=Styles.section>
+let make = (~name, ~className="", ~children) =>
+  <div className={Css.merge([Styles.section, className])}>
     <span className=Styles.name> {name |> React.string} </span>
     children
   </div>;

@@ -1,6 +1,9 @@
 [%bs.raw {|require("antd/lib/date-picker/style")|}];
 
 [@bs.deriving jsConverter]
+type rangePickerMode = [ | `time | `date | `month | `year | `decade];
+
+[@bs.deriving jsConverter]
 type pickerSize = [ | `small | `default | `large];
 
 type moment = MomentRe.Moment.t;
@@ -18,46 +21,126 @@ let boolOrPropsToProp = (type a, boolOrProps: boolOrProps(a)): a =>
 
 type t('a) = Js.t({. datePickerProps: int} as 'a);
 
-[@bs.module] [@react.component]
-external make:
-  (
-    ~showTime: 'a=?, /* TimePickerProps | boolean; */
-    ~showToday: bool=?,
-    ~_open: bool=?,
-    ~disabledTime: moment => 'b=?, /* todo: (current: moment.Moment) => { disabledHours?: () => number[],disabledMinutes?: () => number[], disabledSeconds?: () => number[],}; */
-    ~onOpenChange: bool => unit=?,
-    ~onOk: moment => unit=?,
-    ~placeholder: string=?,
-    /*export interface SinglePickerProps*/
-    ~value: moment=?,
-    ~defaultValue: moment=?,
-    ~defaultPickerValue: moment=?,
-    ~onChange: (moment, string) => unit=?,
-    /*export interface PickerProps*/
-    ~prefixCls: string=?,
-    ~inputPrefixCls: string=?,
-    ~format: string=?,
-    ~disabled: bool=?,
-    ~allowClear: bool=?,
-    ~popupStyle: ReactDOMRe.Style.t=?,
-    ~locale: 'c=?,
-    ~size: string=?,
-    ~renderExtraFooter: unit => React.element=?,
-    ~getCalendarContainer: Dom.element => Dom.htmlElement=?,
-    ~disabledDate: moment => bool=?,
-    ~dateRender: (moment, moment) => React.element=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
-  ) =>
-  React.element =
-  "antd/lib/date-picker";
-let make = make;
+module Internal = {
+  [@bs.obj]
+  external makeProps:
+    (
+      ~_open: bool=?,
+      ~allowClear: bool=?,
+      ~autoFocus: bool=?,
+      ~className: string=?,
+      ~dateRender: (moment, moment) => React.element=?,
+      ~defaultPickerValue: moment=?,
+      ~defaultValue: moment=?,
+      ~disabled: bool=?,
+      ~disabledDate: moment => bool=?,
+      ~disabledTime: moment => 'b=?, /* todo: (current: moment.Moment) => { disabledHours?: () => number[],disabledMinutes?: () => number[], disabledSeconds?: () => number[],}; */
+      ~dropdownClassName: string=?,
+      ~format: string=?,
+      ~getCalendarContainer: Dom.element => Dom.htmlElement=?,
+      ~id: string=?,
+      ~inputPrefixCls: string=?,
+      ~locale: 'c=?,
+      ~mode: option(string)=?,
+      ~onChange: (moment, string) => unit=?,
+      ~onOk: moment => unit=?,
+      ~onOpenChange: bool => unit=?,
+      ~placeholder: string=?,
+      ~popupStyle: ReactDOMRe.Style.t=?,
+      ~prefixCls: string=?,
+      ~renderExtraFooter: unit => React.element=?,
+      ~showTime: 'a=?, /* TimePickerProps | boolean; */
+      ~showToday: bool=?,
+      ~size: option(string)=?,
+      ~suffixIcon: React.element=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~onPanelChange: (moment, string) => unit=?,
+      ~value: moment=?,
+      unit
+    ) =>
+    _ =
+    "";
+  [@bs.module]
+  external reactComponent: React.component('a) = "antd/lib/date-picker";
+};
+[@react.component]
+let make =
+    (
+      ~_open: option(bool)=?,
+      ~allowClear: option(bool)=?,
+      ~autoFocus: option(bool)=?,
+      ~className: option(string)=?,
+      ~dateRender: option((moment, moment) => React.element)=?,
+      ~defaultPickerValue: option(moment)=?,
+      ~defaultValue: option(moment)=?,
+      ~disabled: option(bool)=?,
+      ~disabledDate: option(moment => bool)=?,
+      ~disabledTime: option(moment => 'b)=?, /* todo: (current: moment.Moment) => { disabledHours?: () => number[],disabledMinutes?: () => number[], disabledSeconds?: () => number[],}; */
+      ~dropdownClassName: option(string)=?,
+      ~format: option(string)=?,
+      ~getCalendarContainer: option(Dom.element => Dom.htmlElement)=?,
+      ~id: option(string)=?,
+      ~inputPrefixCls: option(string)=?,
+      ~locale: option('c)=?,
+      ~mode: option(rangePickerMode)=?,
+      ~onChange: option((moment, string) => unit)=?,
+      ~onOk: option(moment => unit)=?,
+      ~onOpenChange: option(bool => unit)=?,
+      ~placeholder: option(string)=?,
+      ~popupStyle: option(ReactDOMRe.Style.t)=?,
+      ~prefixCls: option(string)=?,
+      ~renderExtraFooter: option(unit => React.element)=?,
+      ~showTime: option('a)=?, /* TimePickerProps | boolean; */
+      ~showToday: option(bool)=?,
+      ~size: option(pickerSize)=?,
+      ~suffixIcon: option(React.element)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~onPanelChange: option((moment, string) => unit)=?,
+      ~value: option(moment)=?,
+    ) =>
+  React.createElement(
+    Internal.reactComponent,
+    Internal.makeProps(
+      ~_open?,
+      ~allowClear?,
+      ~autoFocus?,
+      ~className?,
+      ~dateRender?,
+      ~defaultPickerValue?,
+      ~defaultValue?,
+      ~disabled?,
+      ~disabledDate?,
+      ~disabledTime?,
+      ~dropdownClassName?,
+      ~format?,
+      ~getCalendarContainer?,
+      ~id?,
+      ~inputPrefixCls?,
+      ~locale?,
+      ~mode={
+        Js.Option.map((. b) => rangePickerModeToJs(b), mode);
+      },
+      ~onChange?,
+      ~onOk?,
+      ~onOpenChange?,
+      ~placeholder?,
+      ~popupStyle?,
+      ~prefixCls?,
+      ~renderExtraFooter?,
+      ~showTime?,
+      ~showToday?,
+      ~size={
+        Js.Option.map((. b) => pickerSizeToJs(b), size);
+      },
+      ~suffixIcon?,
+      ~style?,
+      ~onPanelChange?,
+      ~value?,
+      (),
+    ),
+  );
 
 module RangePicker = {
-  [@bs.deriving jsConverter]
-  type rangePickerMode = [ | `time | `date | `month | `year | `decade];
   type t('a) = Js.t({. rangePickerProps: int} as 'a);
 
   [@bs.module "antd/lib/date-picker"] [@react.component]

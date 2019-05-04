@@ -1,7 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/modal";
-[@bs.deriving abstract]
-type reactClass = ReasonReact.reactClass;
-
 [%bs.raw {|require("antd/lib/modal/style")|}];
 
 /*
@@ -34,9 +30,8 @@ type reactClass = ReasonReact.reactClass;
 
 [@bs.deriving abstract]
 type buttonProps = {. "disabled": bool};
-
 [@bs.obj]
-external makeProps:
+external makePropsModal:
   (
     ~afterClose: unit => unit=?,
     ~bodyStyle: ReactDOMRe.Style.t=?,
@@ -69,69 +64,69 @@ external makeProps:
   _ =
   "";
 
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/modal";
+
+[@react.component]
 let make =
     (
-      ~afterClose=?,
-      ~bodyStyle=?,
-      ~cancelText=?,
-      ~centered=?,
-      ~closable=?,
-      ~confirmLoading=?,
-      ~destroyOnClose=?,
-      ~footer=?,
-      ~getContainer=?,
-      ~mask=?,
-      ~maskClosable=?,
-      ~maskStyle=?,
-      ~okText=?,
-      ~okType=?,
-      ~okButtonProps=?,
-      ~cancelButtonProps=?,
-      ~style=?,
-      ~title=?,
-      ~visible=?,
-      ~width=?,
-      ~wrapClassName=?,
-      ~zIndex=?,
-      ~onCancel=?,
-      ~onOk=?,
-      ~id=?,
-      ~className=?,
-      children,
+      ~afterClose: option(unit => unit)=?,
+      ~bodyStyle: option(ReactDOMRe.Style.t)=?,
+      ~cancelText: option(string)=?,
+      ~centered: option(bool)=?,
+      ~closable: option(bool)=?,
+      ~confirmLoading: option(bool)=?,
+      ~destroyOnClose: option(bool)=?,
+      ~footer: option(React.element)=?,
+      ~getContainer: option(Dom.element => Dom.htmlElement)=?,
+      ~mask: option(bool)=?,
+      ~maskClosable: option(bool)=?,
+      ~maskStyle: option(ReactDOMRe.Style.t)=?,
+      ~okText: option(string)=?,
+      ~okType: option(string)=?,
+      ~okButtonProps: option(buttonProps)=?,
+      ~cancelButtonProps: option(buttonProps)=?,
+      ~style: option(React.element)=?,
+      ~title: option(React.element)=?,
+      ~visible: option(bool)=?,
+      ~width: option(int)=?,
+      ~wrapClassName: option(string)=?,
+      ~zIndex: option(int)=?,
+      ~onCancel: option(ReactEvent.Mouse.t => unit)=?,
+      ~onOk: option(ReactEvent.Mouse.t => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~afterClose?,
-        ~bodyStyle?,
-        ~cancelText?,
-        ~centered?,
-        ~closable?,
-        ~confirmLoading?,
-        ~destroyOnClose?,
-        ~footer?,
-        ~getContainer?,
-        ~mask?,
-        ~maskClosable?,
-        ~maskStyle?,
-        ~okText?,
-        ~okType?,
-        ~okButtonProps?,
-        ~cancelButtonProps?,
-        ~style?,
-        ~title?,
-        ~visible?,
-        ~width?,
-        ~wrapClassName?,
-        ~zIndex?,
-        ~onCancel?,
-        ~onOk?,
-        ~id?,
-        ~className?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsModal(
+      ~afterClose?,
+      ~bodyStyle?,
+      ~cancelText?,
+      ~centered?,
+      ~closable?,
+      ~confirmLoading?,
+      ~destroyOnClose?,
+      ~footer?,
+      ~getContainer?,
+      ~mask?,
+      ~maskClosable?,
+      ~maskStyle?,
+      ~okText?,
+      ~okType?,
+      ~okButtonProps?,
+      ~cancelButtonProps?,
+      ~style?,
+      ~title?,
+      ~visible?,
+      ~width?,
+      ~wrapClassName?,
+      ~zIndex?,
+      ~onCancel?,
+      ~onOk?,
+      ~id?,
+      ~className?,
+      (),
+    ),
   );
 
 [@bs.deriving]
@@ -141,15 +136,15 @@ type props = {
   "content": React.element,
 };
 
-[@bs.send] external info: (reactClass, props) => unit = "";
-[@bs.send] external success: (reactClass, props) => unit = "";
-[@bs.send] external error: (reactClass, props) => unit = "";
-[@bs.send] external warning: (reactClass, props) => unit = "";
-[@bs.send] external confirm: (reactClass, props) => unit = "";
+[@bs.send] external info: (React.component('a), props) => unit = "";
+[@bs.send] external success: (React.component('a), props) => unit = "";
+[@bs.send] external error: (React.component('a), props) => unit = "";
+[@bs.send] external warning: (React.component('a), props) => unit = "";
+[@bs.send] external confirm: (React.component('a), props) => unit = "";
 
-let info = props => info(reactClass, props);
-let success = props => success(reactClass, props);
-let error = props => error(reactClass, props);
-let warning = props => warning(reactClass, props);
-let confirm = props => confirm(reactClass, props);
+let info = props => info(reactComponent, props);
+let success = props => success(reactComponent, props);
+let error = props => error(reactComponent, props);
+let warning = props => warning(reactComponent, props);
+let confirm = props => confirm(reactComponent, props);
 let make = make;

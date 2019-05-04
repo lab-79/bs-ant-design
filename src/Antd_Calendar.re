@@ -21,16 +21,16 @@ module Locale = Antd_DatePicker.Locale;
 type mode = [ | `month | `year];
 type moment = MomentRe.Moment.t;
 
-[@bs.module] [@react.component]
-external make:
+[@bs.obj]
+external makePropsCalendar:
   (
-    ~dateCellRender: (string, moment) => React.element=?,
-    ~dateFullCellRender: (string, moment) => React.element=?,
+    ~dateCellRender: moment => React.element=?,
+    ~dateFullCellRender: moment => React.element=?,
     ~defaultValue: moment=?,
     ~disabledDate: moment => bool=?,
     ~fullscreen: bool=?,
     ~locale: 'c=?,
-    ~mode: string=?,
+    ~mode: option(string)=?,
     ~monthCellRender: moment => React.element=?,
     ~monthFullCellRender: moment => React.element=?,
     ~validRange: array(moment)=?,
@@ -40,8 +40,58 @@ external make:
     ~onChange: moment => unit=?,
     ~id: string=?,
     ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?
+    ~style: ReactDOMRe.Style.t=?,
+    unit
   ) =>
-  React.element =
-  "antd/lib/calendar";
-let make = make;
+  _ =
+  "";
+
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/calendar";
+
+[@react.component]
+let make =
+    (
+      ~dateCellRender: option(moment => React.element)=?,
+      ~dateFullCellRender: option(moment => React.element)=?,
+      ~defaultValue: option(moment)=?,
+      ~disabledDate: option(moment => bool)=?,
+      ~fullscreen: option(bool)=?,
+      ~locale: option('c)=?,
+      ~mode: option(mode)=?,
+      ~monthCellRender: option(moment => React.element)=?,
+      ~monthFullCellRender: option(moment => React.element)=?,
+      ~validRange: option(array(moment))=?,
+      ~value: option(moment)=?,
+      ~onPanelChange: option((moment, string) => unit)=?,
+      ~onSelect: option(moment => unit)=?,
+      ~onChange: option(moment => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsCalendar(
+      ~dateCellRender?,
+      ~dateFullCellRender?,
+      ~defaultValue?,
+      ~disabledDate?,
+      ~fullscreen?,
+      ~locale?,
+      ~mode={
+        Js.Option.map((. b) => modeToJs(b), mode);
+      },
+      ~monthCellRender?,
+      ~monthFullCellRender?,
+      ~validRange?,
+      ~value?,
+      ~onPanelChange?,
+      ~onSelect?,
+      ~onChange?,
+      ~id?,
+      ~className?,
+      ~style?,
+      (),
+    ),
+  );
