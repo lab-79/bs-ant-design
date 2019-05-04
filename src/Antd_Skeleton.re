@@ -52,3 +52,5 @@ external make:
   ) =>
   React.element =
   "antd/lib/skeleton";
+
+let make = make;
