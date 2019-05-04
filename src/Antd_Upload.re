@@ -87,6 +87,7 @@ let make =
   );
 
 module Dragger = {
+  [@bs.obj]
   external makePropsDragger:
     (
       ~height: int=?,
