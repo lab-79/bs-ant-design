@@ -1,6 +1,6 @@
 {
   "name": "bs-ant-design-alt",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Bucklescript bindings for Ant Design",
   "repository": {
     "type": "git",
@@ -13,18 +13,18 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "5.0.3",
+    "bs-platform": "5.0.4",
     "cheerio": "^1.0.0-rc.2",
-    "got": "^9.5.0",
+    "got": "^9.6.0",
     "lodash": "^4.17.11",
     "reason-react": "^0.7.0"
   },
   "peerDependencies": {
-    "antd": ">=3.10.0"
+    "antd": ">=3.16.6"
   },
   "dependencies": {
     "antd": "^3.11.6",
-    "bs-moment": "^0.4.1",
-    "re-classnames": "^3.0.0"
+    "bs-moment": "^0.4.4",
+    "re-classnames": "^4.0.0"
   }
 }
