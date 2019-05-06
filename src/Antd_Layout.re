@@ -1,10 +1,17 @@
 /* last checked v3.10 */
-
-open Antd_Helpers;
-
-[@bs.module] external layout: ReasonReact.reactClass = "antd/lib/layout";
-
 [%bs.raw {|require("antd/lib/layout/style")|}];
+
+[@bs.module] [@react.component]
+external make:
+  (
+    ~hasSider: bool=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "antd/lib/layout";
 
 /*
  className	container className	string	-
@@ -12,45 +19,46 @@ open Antd_Helpers;
  style	to customize the styles	object
  */
 
-[@bs.obj]
-external makeProps: (~hasSider: bool=?, ~id: string=?, ~className: string=?, ~style: ReactDOMRe.Style.t=?, unit) => _ =
-  "";
-
-let make = (~hasSider=?, ~id=?, ~className=?, ~style=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=layout,
-    ~props=makeProps(~hasSider?, ~id?, ~className?, ~style?, ()),
-    children,
-  );
-
 module Header = {
-  [@bs.module "antd/lib/layout"] external header: ReasonReact.reactClass = "Header";
-  let make = (~hasSider=?, ~id=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=header,
-      ~props=makeProps(~hasSider?, ~id?, ~className?, ~style?, ()),
-      children,
-    );
+  [@bs.module "antd/lib/layout"] [@react.component]
+  external make:
+    (
+      ~hasSider: bool=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?
+    ) =>
+    React.element =
+    "Header";
 };
 
 module Footer = {
-  [@bs.module "antd/lib/layout"] external footer: ReasonReact.reactClass = "Footer";
-  let make = (~hasSider=?, ~id=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=footer,
-      ~props=makeProps(~hasSider?, ~id?, ~className?, ~style?, ()),
-      children,
-    );
+  [@bs.module "antd/lib/layout"] [@react.component]
+  external make:
+    (
+      ~hasSider: bool=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?
+    ) =>
+    React.element =
+    "Footer";
 };
 
 module Content = {
-  [@bs.module "antd/lib/layout"] external content: ReasonReact.reactClass = "Content";
-  let make = (~hasSider=?, ~id=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=content,
-      ~props=makeProps(~hasSider?, ~id?, ~className?, ~style?, ()),
-      children,
-    );
+  [@bs.module "antd/lib/layout"] [@react.component]
+  external make:
+    (
+      ~hasSider: bool=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?
+    ) =>
+    React.element =
+    "Content";
 };
 
 /*
@@ -70,11 +78,10 @@ module Content = {
  */
 
 module Sider = {
-  [@bs.module "antd/lib/layout"] external sider: ReasonReact.reactClass = "Sider";
   [@bs.deriving {jsConverter: newType}]
   type collapseType = [ | `clickTrigger | `responsive];
   [@bs.obj]
-  external makeProps:
+  external makePropsSider:
     (
       ~breakpoint: string=?,
       ~className: string=?,
@@ -86,54 +93,52 @@ module Sider = {
       ~prefixCls: string=?,
       ~reverseArrow: bool=?,
       ~onCollapse: (bool, abs_collapseType) => unit=?,
-      ~trigger: ReasonReact.reactElement=?,
+      ~trigger: React.element=?,
       ~width: int=?,
+      ~children: React.element=?,
       unit
     ) =>
     _ =
     "";
+
+  [@bs.module "antd/lib/layout"]
+  external reactComponent: React.component('a) = "Sider";
+
+  [@react.component]
   let make =
       (
-        ~breakpoint=?,
-        ~className=?,
-        ~collapsed=?,
-        ~collapsedWidth=?,
-        ~collapsible=?,
-        ~defaultCollapsed=?,
-        ~style=?,
-        ~prefixCls=?,
-        ~reverseArrow=?,
-        ~onCollapse=?,
-        ~trigger=?,
-        ~width=?,
-        children,
+        ~breakpoint: option(string)=?,
+        ~className: option(string)=?,
+        ~collapsed: option(bool)=?,
+        ~collapsedWidth: option(int)=?,
+        ~collapsible: option(bool)=?,
+        ~defaultCollapsed: option(bool)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~prefixCls: option(string)=?,
+        ~reverseArrow: option(bool)=?,
+        ~onCollapse: option((bool, abs_collapseType) => unit)=?,
+        ~trigger: option(React.element)=?,
+        ~width: option(int)=?,
+        ~children: option(React.element)=?,
       ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=sider,
-      ~props=
-        makeProps(
-          ~breakpoint=?Js.Option.map((. b) => breakpointToJs(b), breakpoint),
-          ~className?,
-          ~collapsed?,
-          ~collapsedWidth?,
-          ~collapsible?,
-          ~defaultCollapsed?,
-          ~style?,
-          ~prefixCls?,
-          ~reverseArrow?,
-          ~onCollapse=?
-            Js.Option.map(
-              (. fn) => {
-                /* TODO: Is there any perf cost of defining the function here */
-                let reF = (fn, a, b) => fn(a, collapseTypeFromJs(b));
-                reF(fn);
-              },
-              onCollapse,
-            ),
-          ~trigger?,
-          ~width?,
-          (),
-        ),
-      children,
+    React.createElement(
+      reactComponent,
+      makePropsSider(
+        ~breakpoint?,
+        ~className?,
+        ~collapsed?,
+        ~collapsedWidth?,
+        ~collapsible?,
+        ~defaultCollapsed?,
+        ~style?,
+        ~prefixCls?,
+        ~reverseArrow?,
+        ~onCollapse?,
+        ~trigger?,
+        ~width?,
+        ~children?,
+        (),
+      ),
     );
 };
+let make = make;

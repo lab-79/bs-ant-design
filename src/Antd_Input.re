@@ -1,10 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/input";
-
-[%bs.raw {|require("antd/lib/input/style")|}];
-
-[@bs.deriving jsConverter]
-type size = [ | `large | `default | `small];
-
 /*
 
  addonAfter	The label text displayed after (on the right side of) the input field.	string|ReactNode
@@ -21,74 +14,102 @@ type size = [ | `large | `default | `small];
  onPressEnter	The callback function that is triggered when Enter key is pressed.	function(e)
 
  */
+[%bs.raw {|require("antd/lib/input/style")|}];
+
+[@bs.deriving jsConverter]
+type size = [ | `large | `default | `small];
 
 [@bs.obj]
-external makeProps:
+external makePropsInput:
   (
     ~placeholder: string=?,
-    ~addonAfter: ReasonReact.reactElement=?,
-    ~addonBefore: ReasonReact.reactElement=?,
+    ~addonAfter: React.element=?,
+    ~addonBefore: React.element=?,
     ~defaultValue: string=?,
     ~disabled: bool=?,
     ~id: string=?,
-    ~prefix: ReasonReact.reactElement=?,
-    ~size: string=?,
-    ~suffix: ReasonReact.reactElement=?,
-    ~_type: string=?,
+    ~prefix: React.element=?,
+    ~size: option(string)=?,
+    ~suffix: React.element=?,
     ~value: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
-    ~onPressEnter: ReactEvent.Keyboard.t=?,
+    ~onFocus: ReactEvent.Form.t => unit=?,
+    ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
+    ~onBlur: ReactEvent.Form.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~_type: string=?,
+    ~readOnly: bool=?,
     ~autoComplete: string=?,
+    ~allowClear: bool=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
     unit
   ) =>
   _ =
   "";
 
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/input";
+
+[@react.component]
 let make =
     (
-      ~placeholder=?,
-      ~addonAfter=?,
-      ~addonBefore=?,
-      ~defaultValue=?,
-      ~disabled=?,
-      ~id=?,
-      ~prefix=?,
-      ~size=?,
-      ~suffix=?,
-      ~_type=?,
-      ~value=?,
-      ~onChange=?,
-      ~onPressEnter=?,
-      ~autoComplete=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~placeholder: option(string)=?,
+      ~addonAfter: option(React.element)=?,
+      ~addonBefore: option(React.element)=?,
+      ~defaultValue: option(string)=?,
+      ~disabled: option(bool)=?,
+      ~id: option(string)=?,
+      ~prefix: option(React.element)=?,
+      ~size: option(size)=?,
+      ~suffix: option(React.element)=?,
+      ~value: option(string)=?,
+      ~onChange: option(ReactEvent.Form.t => unit)=?,
+      ~onFocus: option(ReactEvent.Form.t => unit)=?,
+      ~onPressEnter: option(ReactEvent.Keyboard.t => unit)=?,
+      ~onBlur: option(ReactEvent.Form.t => unit)=?,
+      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~_type: option(string)=?,
+      ~readOnly: option(bool)=?,
+      ~autoComplete: option(string)=?,
+      ~allowClear: option(bool)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~placeholder?,
-        ~addonAfter?,
-        ~addonBefore?,
-        ~defaultValue?,
-        ~disabled?,
-        ~id?,
-        ~prefix?,
-        ~size=?Js.Option.map((. b) => sizeToJs(b), size),
-        ~suffix?,
-        ~_type?,
-        ~value?,
-        ~onChange?,
-        ~onPressEnter?,
-        ~autoComplete?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsInput(
+      ~placeholder?,
+      ~addonAfter?,
+      ~addonBefore?,
+      ~defaultValue?,
+      ~disabled?,
+      ~id?,
+      ~prefix?,
+      ~size=Belt.Option.map(size, sizeToJs),
+      ~suffix?,
+      ~value?,
+      ~onChange?,
+      ~onFocus?,
+      ~onPressEnter?,
+      ~onBlur?,
+      ~onClick?,
+      ~onDoubleClick?,
+      ~onKeyDown?,
+      ~_type?,
+      ~readOnly?,
+      ~autoComplete?,
+      ~allowClear?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
   );
 
 /*
@@ -111,56 +132,332 @@ let make =
  */
 
 module TextArea = {
-  [@bs.module "antd/lib/input"] external reactClass: ReasonReact.reactClass = "TextArea";
-
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/input"] [@react.component]
+  external make:
     (
       ~placeholder: string=?,
       ~autosize: bool=?,
       ~defaultValue: string=?,
       ~value: string=?,
-      ~onPressEnter: ReactEvent.Keyboard.t=?,
+      ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
       ~onChange: ReactEvent.Form.t => unit=?,
-      ~onBlur: ReactEvent.Keyboard.t=?,
+      ~onBlur: ReactEvent.Form.t => unit=?,
+      ~autoComplete: bool=?,
+      ~autoFocus: bool=?,
+      ~cols: int=?,
+      ~disabled: bool=?,
+      ~form: string=?,
+      ~maxLength: int=?,
+      ~minLength: int=?,
+      ~name: string=?,
+      ~readonly: bool=?,
+      ~required: bool=?,
+      ~spellcheck: bool=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
       ~id: string=?,
+      ~children: React.element=?
+    ) =>
+    React.element =
+    "TextArea";
+};
+
+module Search = {
+  [@bs.obj]
+  external makePropsInput:
+    (
+      ~onSearch: (string, ReactEvent.Form.t) => unit=?,
+      ~enterButton: bool=?,
+      ~placeholder: string=?,
+      ~addonAfter: React.element=?,
+      ~addonBefore: React.element=?,
+      ~defaultValue: string=?,
+      ~disabled: bool=?,
+      ~id: string=?,
+      ~prefix: React.element=?,
+      ~size: option(string)=?,
+      ~suffix: React.element=?,
+      ~value: string=?,
+      ~onChange: ReactEvent.Form.t => unit=?,
+      ~onFocus: ReactEvent.Form.t => unit=?,
+      ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
+      ~onBlur: ReactEvent.Form.t => unit=?,
+      ~onClick: ReactEvent.Mouse.t => unit=?,
+      ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
+      ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+      ~_type: string=?,
+      ~readOnly: bool=?,
+      ~autoComplete: string=?,
+      ~allowClear: bool=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?,
       unit
     ) =>
     _ =
     "";
 
+  [@bs.module "antd/lib/input"]
+  external reactComponent: React.component('a) = "Search";
+
+  [@react.component]
   let make =
       (
-        ~placeholder=?,
-        ~autosize=?,
-        ~defaultValue=?,
-        ~value=?,
-        ~onPressEnter=?,
-        ~onChange=?,
-        ~onBlur=?,
-        ~className=?,
-        ~style=?,
-        ~id=?,
-        children,
+        ~onSearch: option((string, ReactEvent.Form.t) => unit)=?,
+        ~enterButton: option(bool)=?,
+        ~placeholder: option(string)=?,
+        ~addonAfter: option(React.element)=?,
+        ~addonBefore: option(React.element)=?,
+        ~defaultValue: option(string)=?,
+        ~disabled: option(bool)=?,
+        ~id: option(string)=?,
+        ~prefix: option(React.element)=?,
+        ~size: option(size)=?,
+        ~suffix: option(React.element)=?,
+        ~value: option(string)=?,
+        ~onChange: option(ReactEvent.Form.t => unit)=?,
+        ~onFocus: option(ReactEvent.Form.t => unit)=?,
+        ~onPressEnter: option(ReactEvent.Keyboard.t => unit)=?,
+        ~onBlur: option(ReactEvent.Form.t => unit)=?,
+        ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+        ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
+        ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+        ~_type: option(string)=?,
+        ~readOnly: option(bool)=?,
+        ~autoComplete: option(string)=?,
+        ~allowClear: option(bool)=?,
+        ~className: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~children: option(React.element)=?,
       ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=
-        makeProps(
-          ~placeholder?,
-          ~autosize?,
-          ~defaultValue?,
-          ~value?,
-          ~onPressEnter?,
-          ~onChange?,
-          ~onBlur?,
-          ~className?,
-          ~style?,
-          ~id?,
-          (),
-        ),
-      children,
+    React.createElement(
+      reactComponent,
+      makePropsInput(
+        ~onSearch?,
+        ~enterButton?,
+        ~placeholder?,
+        ~addonAfter?,
+        ~addonBefore?,
+        ~defaultValue?,
+        ~disabled?,
+        ~id?,
+        ~prefix?,
+        ~size=Belt.Option.map(size, sizeToJs),
+        ~suffix?,
+        ~value?,
+        ~onChange?,
+        ~onFocus?,
+        ~onPressEnter?,
+        ~onBlur?,
+        ~onClick?,
+        ~onDoubleClick?,
+        ~onKeyDown?,
+        ~_type?,
+        ~readOnly?,
+        ~autoComplete?,
+        ~allowClear?,
+        ~className?,
+        ~style?,
+        ~children?,
+        (),
+      ),
+    );
+};
+
+module Group = {
+  [@bs.obj]
+  external makePropsInput:
+    (
+      ~compat: bool=?,
+      ~placeholder: string=?,
+      ~addonAfter: React.element=?,
+      ~addonBefore: React.element=?,
+      ~defaultValue: string=?,
+      ~disabled: bool=?,
+      ~id: string=?,
+      ~prefix: React.element=?,
+      ~size: option(string)=?,
+      ~suffix: React.element=?,
+      ~value: string=?,
+      ~onChange: ReactEvent.Form.t => unit=?,
+      ~onFocus: ReactEvent.Form.t => unit=?,
+      ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
+      ~onBlur: ReactEvent.Form.t => unit=?,
+      ~onClick: ReactEvent.Mouse.t => unit=?,
+      ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
+      ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+      ~_type: string=?,
+      ~readOnly: bool=?,
+      ~autoComplete: string=?,
+      ~allowClear: bool=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?,
+      unit
+    ) =>
+    _ =
+    "";
+
+  [@bs.module "antd/lib/input"]
+  external reactComponent: React.component('a) = "Group";
+
+  [@react.component]
+  let make =
+      (
+        ~compat: option(bool)=?,
+        ~placeholder: option(string)=?,
+        ~addonAfter: option(React.element)=?,
+        ~addonBefore: option(React.element)=?,
+        ~defaultValue: option(string)=?,
+        ~disabled: option(bool)=?,
+        ~id: option(string)=?,
+        ~prefix: option(React.element)=?,
+        ~size: option(size)=?,
+        ~suffix: option(React.element)=?,
+        ~value: option(string)=?,
+        ~onChange: option(ReactEvent.Form.t => unit)=?,
+        ~onFocus: option(ReactEvent.Form.t => unit)=?,
+        ~onPressEnter: option(ReactEvent.Keyboard.t => unit)=?,
+        ~onBlur: option(ReactEvent.Form.t => unit)=?,
+        ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+        ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
+        ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+        ~_type: option(string)=?,
+        ~readOnly: option(bool)=?,
+        ~autoComplete: option(string)=?,
+        ~allowClear: option(bool)=?,
+        ~className: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~children: option(React.element)=?,
+      ) =>
+    React.createElement(
+      reactComponent,
+      makePropsInput(
+        ~compat?,
+        ~placeholder?,
+        ~addonAfter?,
+        ~addonBefore?,
+        ~defaultValue?,
+        ~disabled?,
+        ~id?,
+        ~prefix?,
+        ~size=Belt.Option.map(size, sizeToJs),
+        ~suffix?,
+        ~value?,
+        ~onChange?,
+        ~onFocus?,
+        ~onPressEnter?,
+        ~onBlur?,
+        ~onClick?,
+        ~onDoubleClick?,
+        ~onKeyDown?,
+        ~_type?,
+        ~readOnly?,
+        ~autoComplete?,
+        ~allowClear?,
+        ~className?,
+        ~style?,
+        ~children?,
+        (),
+      ),
+    );
+};
+
+module Password = {
+  [@bs.obj]
+  external makePropsInput:
+    (
+      ~visibilityToggle: bool=?,
+      ~placeholder: string=?,
+      ~addonAfter: React.element=?,
+      ~addonBefore: React.element=?,
+      ~defaultValue: string=?,
+      ~disabled: bool=?,
+      ~id: string=?,
+      ~prefix: React.element=?,
+      ~size: option(string)=?,
+      ~suffix: React.element=?,
+      ~value: string=?,
+      ~onChange: ReactEvent.Form.t => unit=?,
+      ~onFocus: ReactEvent.Form.t => unit=?,
+      ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
+      ~onBlur: ReactEvent.Form.t => unit=?,
+      ~onClick: ReactEvent.Mouse.t => unit=?,
+      ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
+      ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+      ~_type: string=?,
+      ~readOnly: bool=?,
+      ~autoComplete: string=?,
+      ~allowClear: bool=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?,
+      unit
+    ) =>
+    _ =
+    "";
+
+  [@bs.module "antd/lib/input"]
+  external reactComponent: React.component('a) = "Password";
+
+  [@react.component]
+  let make =
+      (
+        ~visibilityToggle: option(bool)=?,
+        ~placeholder: option(string)=?,
+        ~addonAfter: option(React.element)=?,
+        ~addonBefore: option(React.element)=?,
+        ~defaultValue: option(string)=?,
+        ~disabled: option(bool)=?,
+        ~id: option(string)=?,
+        ~prefix: option(React.element)=?,
+        ~size: option(size)=?,
+        ~suffix: option(React.element)=?,
+        ~value: option(string)=?,
+        ~onChange: option(ReactEvent.Form.t => unit)=?,
+        ~onFocus: option(ReactEvent.Form.t => unit)=?,
+        ~onPressEnter: option(ReactEvent.Keyboard.t => unit)=?,
+        ~onBlur: option(ReactEvent.Form.t => unit)=?,
+        ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+        ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
+        ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+        ~_type: option(string)=?,
+        ~readOnly: option(bool)=?,
+        ~autoComplete: option(string)=?,
+        ~allowClear: option(bool)=?,
+        ~className: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~children: option(React.element)=?,
+      ) =>
+    React.createElement(
+      reactComponent,
+      makePropsInput(
+        ~visibilityToggle?,
+        ~placeholder?,
+        ~addonAfter?,
+        ~addonBefore?,
+        ~defaultValue?,
+        ~disabled?,
+        ~id?,
+        ~prefix?,
+        ~size=Belt.Option.map(size, sizeToJs),
+        ~suffix?,
+        ~value?,
+        ~onChange?,
+        ~onFocus?,
+        ~onPressEnter?,
+        ~onBlur?,
+        ~onClick?,
+        ~onDoubleClick?,
+        ~onKeyDown?,
+        ~_type?,
+        ~readOnly?,
+        ~autoComplete?,
+        ~allowClear?,
+        ~className?,
+        ~style?,
+        ~children?,
+        (),
+      ),
     );
 };

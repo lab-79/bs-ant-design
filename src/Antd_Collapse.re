@@ -1,5 +1,3 @@
-[@bs.module] external collapse: ReasonReact.reactClass = "antd/lib/collapse";
-
 /*
  accordion	If true, Collapse renders as Accordion	boolean	false
  activeKey	Key of the active panel	string[]|string	No default value. In accordion mode, it's the key of the first panel.
@@ -9,54 +7,6 @@
  destroyInactivePanel	Destroy Inactive Panel
  */
 
-[@bs.obj]
-external makeProps:
-  (
-    ~accordion: bool=?,
-    ~activeKey: array(string)=?,
-    ~bordered: bool=?,
-    ~defaultActiveKey: array(string)=?,
-    ~onChange: string => unit=?,
-    ~destroyInactivePanel: bool=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~accordion=?,
-      ~activeKey=?,
-      ~bordered=?,
-      ~defaultActiveKey=?,
-      ~onChange=?,
-      ~destroyInactivePanel=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=collapse,
-    ~props=
-      makeProps(
-        ~accordion?,
-        ~activeKey=?Js.Option.map((. b) => Array.of_list(b), activeKey),
-        ~bordered?,
-        ~defaultActiveKey=?Js.Option.map((. b) => Array.of_list(b), defaultActiveKey),
-        ~onChange?,
-        ~destroyInactivePanel?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
-
 /*
  disabled	If true, panel cannot be opened or closed	boolean	false
  forceRender	Forced render of content on panel, instead of lazy rending after clicking on header	boolean	false
@@ -64,11 +14,39 @@ let make =
  key	Unique key identifying the panel from among its siblings	string	-
  showArrow	If false, panel will not show arrow icon	boolean	true
   */
+[%bs.raw {|require("antd/lib/collapse/style")|}];
+
+type panelProps = {
+  .
+  "isActive": bool,
+  "header": string,
+  "panelKey": string,
+  "accordion": bool,
+  "showArrow": bool,
+  "forceRender": bool,
+};
+
+[@bs.module] [@react.component]
+external make:
+  (
+    ~accordion: bool=?,
+    ~activeKey: array(string)=?,
+    ~bordered: bool=?,
+    ~defaultActiveKey: array(string)=?,
+    ~onChange: string => unit=?,
+    ~destroyInactivePanel: bool=?,
+    ~expandIcon: panelProps => React.element=?,
+    ~id: string=?,
+    ~className: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?
+  ) =>
+  React.element =
+  "antd/lib/collapse";
 
 module Panel = {
-  [@bs.module "antd/lib/collapse"] external panel: ReasonReact.reactClass = "Panel";
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/collapse"] [@react.component]
+  external make:
     (
       ~disabled: bool=?,
       ~forceRender: bool=?,
@@ -78,14 +56,11 @@ module Panel = {
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-  let make = (~disabled=?, ~forceRender=?, ~header=?, ~key_=?, ~showArrow=?, ~id=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass=panel,
-      ~props=makeProps(~disabled?, ~forceRender?, ~header?, ~key=?key_, ~showArrow?, ~id?, ~className?, ~style?, ()),
-      children,
-    );
+    React.element =
+    "Panel";
 };
+
+let colapse = Panel.make;
+let make = make;

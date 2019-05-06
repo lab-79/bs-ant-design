@@ -1,7 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/affix";
-
-[%bs.raw {|require("antd/lib/affix/style")|}];
-
 /*
  offsetBottom	Pixels to offset from bottom when calculating position of scroll	number	-
  offsetTop	Pixels to offset from top when calculating position of scroll	number	0
@@ -9,8 +5,9 @@
  onChange	Callback for when affix state is changed	Function(affixed)	-
  */
 
-[@bs.obj]
-external makeProps:
+[%bs.raw {|require("antd/lib/affix/style")|}];
+[@bs.module] [@react.component]
+external make:
   (
     ~offsetBottom: int=?,
     ~offsetTop: int=?,
@@ -19,14 +16,8 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element
   ) =>
-  _ =
-  "";
-
-let make = (~offsetBottom=?, ~offsetTop=?, ~target=?, ~onChange=?, ~id=?, ~className=?, ~style=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=makeProps(~offsetBottom?, ~offsetTop?, ~target?, ~onChange?, ~id?, ~className?, ~style?, ()),
-    children,
-  );
+  React.element =
+  "antd/lib/affix";
+let make = make;

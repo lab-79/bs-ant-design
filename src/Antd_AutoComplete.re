@@ -1,7 +1,3 @@
-[@bs.module] external autoComplete: ReasonReact.reactClass = "antd/lib/auto-complete";
-
-[%bs.raw {|require("antd/lib/auto-complete/style")|}];
-
 /*
  allowClear	Show clear button, effective in multiple mode only.	boolean	false
  autoFocus	get focus when component mounted	boolean	false
@@ -26,84 +22,83 @@
  onDropdownVisibleChange	Call when dropdown open
  */
 
-[@bs.obj]
-external makeProps:
-  (
-    ~allowClear: bool=?,
-    ~autoFocus: bool=?,
-    ~backfill: bool=?,
-    ~dataSource: array(string)=?,
-    ~defaultActiveFirstOption: bool=?,
-    ~defaultValue: string=?,
-    ~disabled: bool=?,
-    ~filterOption: bool=?,
-    ~optionLabelProp: string=?,
-    ~placeholder: string=?,
-    ~value: string=?,
-    ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: ReactEvent.Form.t => unit=?,
-    ~onFocus: ReactEvent.Form.t => unit=?,
-    ~onSearch: ReactEvent.Form.t => unit=?,
-    ~onSelect: ReactEvent.Form.t => unit=?,
-    ~defaultOpen: bool=?,
-    ~open_: bool=?,
-    ~onDropdownVisibleChange: string => unit=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
-  ) =>
-  _ =
-  "";
+type optionProps = {. "children": string};
 
+type optionType = {
+  .
+  "props": optionProps,
+  "key": string,
+};
+
+type filterOption(_) =
+  | Bool(bool): filterOption(bool)
+  | Function((string, optionType) => bool)
+    : filterOption((string, optionType) => bool);
+
+let boolOrFn = (type a, boolOrFn: filterOption(a)): a =>
+  switch (boolOrFn) {
+  | Bool(v) => v
+  | Function(v) => v
+  };
+
+[%bs.raw {|require("antd/lib/auto-complete/style")|}];
+
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/auto-complete";
+
+[@react.component]
 let make =
     (
-      ~allowClear=?,
-      ~autoFocus=?,
-      ~backfill=?,
-      ~dataSource=?,
-      ~defaultActiveFirstOption=?,
-      ~defaultValue=?,
-      ~disabled=?,
-      ~filterOption=?,
-      ~optionLabelProp=?,
-      ~placeholder=?,
-      ~value=?,
-      ~onBlur=?,
-      ~onChange=?,
-      ~onFocus=?,
-      ~onSearch=?,
-      ~onSelect=?,
-      ~defaultOpen=?,
-      ~open_=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~allowClear: option(bool)=?,
+      ~autoFocus: option(bool)=?,
+      ~backfill: option(bool)=?,
+      ~dataSource: option(array(string))=?,
+      ~defaultActiveFirstOption: option(bool)=?,
+      ~defaultValue: option(string)=?,
+      ~disabled: option(bool)=?,
+      ~filterOption: option('a)=?,
+      ~optionLabelProp: option(string)=?,
+      ~placeholder: option(string)=?,
+      ~value: option(string)=?,
+      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+      ~onChange: option(ReactEvent.Form.t => unit)=?,
+      ~onFocus: option(ReactEvent.Form.t => unit)=?,
+      ~onSearch: option(ReactEvent.Form.t => unit)=?,
+      ~onSelect: option(ReactEvent.Form.t => unit)=?,
+      ~defaultOpen: option(bool)=?,
+      ~open_: option(bool)=?,
+      ~onDropdownVisibleChange: option(string => unit)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=autoComplete,
-    ~props=
-      makeProps(
-        ~allowClear?,
-        ~autoFocus?,
-        ~backfill?,
-        ~dataSource=?Js.Option.map((. b) => Array.of_list(b), dataSource),
-        ~defaultActiveFirstOption?,
-        ~defaultValue?,
-        ~disabled?,
-        ~filterOption?,
-        ~optionLabelProp?,
-        ~placeholder?,
-        ~value?,
-        ~onBlur?,
-        ~onChange?,
-        ~onFocus?,
-        ~onSearch?,
-        ~onSelect?,
-        ~defaultOpen?,
-        ~open_?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makeProps(
+      ~allowClear?,
+      ~autoFocus?,
+      ~backfill?,
+      ~dataSource?,
+      ~defaultActiveFirstOption?,
+      ~defaultValue?,
+      ~disabled?,
+      ~filterOption={
+        Js.Option.map((. b) => boolOrFn(b), filterOption);
+      },
+      ~optionLabelProp?,
+      ~placeholder?,
+      ~value?,
+      ~onBlur?,
+      ~onChange?,
+      ~onFocus?,
+      ~onSearch?,
+      ~onSelect?,
+      ~defaultOpen?,
+      ~open_?,
+      ~onDropdownVisibleChange?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
   );

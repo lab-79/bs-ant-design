@@ -1,13 +1,3 @@
-[%bs.raw {|require("antd/lib/card/style")|}];
-
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/card";
-
-type tab = {
-  .
-  "key": string,
-  "tab": string,
-};
-
 /*
  actions	The action list, shows at the bottom of the Card.	Array	-
  activeTabKey	Current TabPane's key	string	-
@@ -24,84 +14,106 @@ type tab = {
  type	Card style type, can be set to inner or not set	string	-
  onTabChange	Callback when tab is switched	(key) => void	-
  */
+[%bs.raw {|require("antd/lib/card/style")|}];
+type tab = {
+  .
+  "key": string,
+  "tab": string,
+};
+
+[@bs.deriving jsConverter]
+type size = [ | `default | `small];
 
 [@bs.obj]
-external makeProps:
+external makePropsCard:
   (
-    ~actions: array(ReasonReact.reactElement)=?,
+    ~actions: array(React.element)=?,
     ~activeTabKey: string=?,
     ~headStyle: ReactDOMRe.Style.t=?,
     ~bodyStyle: ReactDOMRe.Style.t=?,
     ~bordered: bool=?,
-    ~cover: ReasonReact.reactElement=?,
+    ~cover: React.element=?,
     ~defaultActiveTabKey: string=?,
-    ~extra: ReasonReact.reactElement=?,
+    ~extra: React.element=?,
     ~hoverable: bool=?,
     ~loading: bool=?,
     ~tabList: array(tab)=?,
-    ~title: ReasonReact.reactElement=?,
+    ~title: React.element=?,
     ~_type: string=?,
     ~onTabChange: string => unit=?,
+    ~size: option(string)=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
     unit
   ) =>
   _ =
   "";
 
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/card";
+
+[@react.component]
 let make =
     (
-      ~actions=?,
-      ~activeTabKey=?,
-      ~headStyle=?,
-      ~bodyStyle=?,
-      ~bordered=?,
-      ~cover=?,
-      ~defaultActiveTabKey=?,
-      ~extra=?,
-      ~hoverable=?,
-      ~loading=?,
-      ~tabList=?,
-      ~title=?,
-      ~_type=?,
-      ~onTabChange=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~actions: option(array(React.element))=?,
+      ~activeTabKey: option(string)=?,
+      ~headStyle: option(ReactDOMRe.Style.t)=?,
+      ~bodyStyle: option(ReactDOMRe.Style.t)=?,
+      ~bordered: option(bool)=?,
+      ~cover: option(React.element)=?,
+      ~defaultActiveTabKey: option(string)=?,
+      ~extra: option(React.element)=?,
+      ~hoverable: option(bool)=?,
+      ~loading: option(bool)=?,
+      ~tabList: option(array(tab))=?,
+      ~title: option(React.element)=?,
+      ~_type: option(string)=?,
+      ~onTabChange: option(string => unit)=?,
+      ~size: option(size)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~actions=?Js.Option.map((. b) => Array.of_list(b), actions),
-        ~activeTabKey?,
-        ~headStyle?,
-        ~bodyStyle?,
-        ~bordered?,
-        ~cover?,
-        ~defaultActiveTabKey?,
-        ~extra?,
-        ~hoverable?,
-        ~loading?,
-        ~tabList=?Js.Option.map((. b) => Array.of_list(b), tabList),
-        ~title?,
-        ~_type?,
-        ~onTabChange?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsCard(
+      ~actions?,
+      ~activeTabKey?,
+      ~headStyle?,
+      ~bodyStyle?,
+      ~bordered?,
+      ~cover?,
+      ~defaultActiveTabKey?,
+      ~extra?,
+      ~hoverable?,
+      ~loading?,
+      ~tabList?,
+      ~title?,
+      ~_type?,
+      ~onTabChange?,
+      ~size={
+        Js.Option.map((. b) => sizeToJs(b), size);
+      },
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
   );
 
 module Grid = {
-  [@bs.module "antd/lib/card"] external reactClass: ReasonReact.reactClass = "Grid";
-  [@bs.obj] external makeProps: (~className: string=?, ~style: ReactDOMRe.Style.t=?, unit) => _ = "";
-  let make = (~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(~className?, ~style?, ()), children);
+  [@bs.module "antd/lib/card"] [@react.component]
+  external make:
+    (
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?
+    ) =>
+    React.element =
+    "Grid";
 };
 
 /*
@@ -113,23 +125,16 @@ module Grid = {
  */
 
 module Meta = {
-  [@bs.module "antd/lib/card"] external reactClass: ReasonReact.reactClass = "Meta";
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/card"] [@react.component]
+  external make:
     (
-      ~avatar: ReasonReact.reactElement=?,
+      ~avatar: React.element=?,
       ~className: string=?,
-      ~description: ReasonReact.reactElement=?,
+      ~description: React.element=?,
       ~style: ReactDOMRe.style=?,
-      ~title: ReasonReact.reactElement=?,
-      unit
+      ~title: React.element=?,
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-  let make = (~avatar=?, ~className=?, ~description=?, ~style=?, ~title=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=makeProps(~avatar?, ~className?, ~description?, ~style?, ~title?, ()),
-      children,
-    );
+    React.element =
+    "Meta";
 };

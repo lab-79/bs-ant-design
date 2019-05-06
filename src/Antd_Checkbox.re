@@ -1,7 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/checkbox";
-
-[%bs.raw {|require("antd/lib/checkbox/style")|}];
-
 /*
  autoFocus	get focus when component mounted	boolean	false
  checked	Specifies whether the checkbox is selected.	boolean	false
@@ -10,53 +6,36 @@
  indeterminate	indeterminate checked state of checkbox	boolean	false
  onChange	The callback function that is triggered when the state changes.	Function(e:Event)
  */
-
-type clickParams = {. "domEvent": ReactEvent.Mouse.t};
-
-[@bs.obj]
-external makeProps:
+[%bs.raw {|require("antd/lib/checkbox/style")|}];
+[@bs.module] [@react.component]
+external make:
   (
     ~autoFocus: bool=?,
     ~checked: bool=?,
     ~defaultChecked: bool=?,
     ~disabled: bool=?,
     ~indeterminate: bool=?,
-    ~onChange: clickParams=?,
+    ~onChange: ReactEvent.Mouse.t => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: React.element=?
   ) =>
-  _ =
-  "";
+  React.element =
+  "antd/lib/checkbox";
+let make = make;
 
-let make =
+module Group = {
+  [@bs.module "antd/lib/checkbox"] [@react.component]
+  external make:
     (
-      ~autoFocus=?,
-      ~checked=?,
-      ~defaultChecked=?,
-      ~disabled=?,
-      ~indeterminate=?,
-      ~onChange=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~defaultValue: array(string)=?,
+      ~disabled: bool=?,
+      ~name: string=?,
+      ~options: array(string)=?,
+      ~value: array(string)=?,
+      ~onChange: array(string) => unit=?
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~autoFocus?,
-        ~checked?,
-        ~defaultChecked?,
-        ~disabled?,
-        ~indeterminate?,
-        ~onChange?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
-  );
+    React.element =
+    "Group";
+};

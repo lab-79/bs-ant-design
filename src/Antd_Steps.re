@@ -6,33 +6,39 @@
 type status = [ | `wait | `process | `finish | `error];
 
 [@bs.obj]
-external makeProps:
-  (~status: string=?, ~current: int=?, ~style: ReactDOMRe.Style.t=?, unit) => _ =
+external makePropsSteps:
+  (
+    ~status: option(string)=?,
+    ~current: int=?,
+    ~style: ReactDOMRe.Style.t=?,
+    unit
+  ) =>
+  _ =
   "";
 
-let make = (~status=?, ~current=?, ~style=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~status=?Js.Option.map((. b) => statusToJs(b), status),
-        ~current?,
-        ~style?,
-        (),
-      ),
-    children,
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/steps";
+
+[@react.component]
+let make =
+    (
+      ~status: option(status)=?,
+      ~current: option(int)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsSteps(
+      ~status=Belt.Option.map(status, statusToJs),
+      ~current?,
+      ~style?,
+      (),
+    ),
   );
 
 module Step = {
-  [@bs.module "antd/lib/steps"]
-  external reactClass: ReasonReact.reactClass = "Step";
-
-  [@bs.obj]
-  external makeProps: (~title: string, ~description: string=?, unit) => _ = "";
-  let make = (~title, ~description=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props=makeProps(~title, ~description?, ()),
-      children,
-    );
+  [@bs.module "antd/lib/steps"] [@react.component]
+  external make:
+    (~title: string=?, ~description: string=?, ~children: React.element=?) =>
+    React.element =
+    "Step";
 };

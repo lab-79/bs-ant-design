@@ -12,82 +12,31 @@
  value	current value	number
  onChange	The callback triggered when the value is changed.	function(value: number | string)
  */
-
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/input-number";
-
 [%bs.raw {|require("antd/lib/input-number/style")|}];
 
-[@bs.obj]
-external makeProps:
+[@bs.module]
+external make:
   (
     ~autoFocus: bool=?,
-    ~defaultValue: float=?,
+    ~defaultValue: int=?,
     ~disabled: bool=?,
-    ~formatter: (int, string) => string=?,
-    ~max: float=?,
-    ~min: float=?,
+    ~formatter: int => string=?,
+    ~max: int=?,
+    ~min: int=?,
     ~parser: string => int=?,
     ~precision: int=?,
     ~size: string=?,
-    ~step: string=?,
-    ~value: string=?,
-    ~onChange: ReactEvent.Keyboard.t=?,
-    ~onPressEnter: ReactEvent.Keyboard.t=?,
-    ~onBlur: ReactEvent.Keyboard.t=?,
+    ~step: int=?,
+    ~value: int=?,
+    ~onChange: int => unit=?,
+    ~onPressEnter: ReactEvent.Keyboard.t => unit=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~id: string=?,
     ~placeholder: string=?,
-    unit
+    ~children: React.element=?
   ) =>
-  _ =
-  "";
-
-let make =
-    (
-      ~autoFocus=?,
-      ~defaultValue=?,
-      ~disabled=?,
-      ~formatter=?,
-      ~max=?,
-      ~min=?,
-      ~parser=?,
-      ~precision=?,
-      ~size=?,
-      ~step=?,
-      ~value=?,
-      ~onChange=?,
-      ~onPressEnter=?,
-      ~onBlur=?,
-      ~className=?,
-      ~style=?,
-      ~id=?,
-      ~placeholder=?,
-      children,
-    ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~autoFocus?,
-        ~defaultValue?,
-        ~disabled?,
-        ~formatter?,
-        ~max?,
-        ~min?,
-        ~parser?,
-        ~precision?,
-        ~size?,
-        ~step?,
-        ~value?,
-        ~onChange?,
-        ~onPressEnter?,
-        ~onBlur?,
-        ~className?,
-        ~style?,
-        ~id?,
-        ~placeholder?,
-        (),
-      ),
-    children,
-  );
+  React.element =
+  "antd/lib/input-number";
+let make = make;

@@ -32,15 +32,17 @@ module Form = Antd_Form;
 
 module Grid = Antd_Grid;
 
-module Icon = Antd_IconUnsafe;
+module Icon = Antd_Icon;
 
-module IconUnsafe = Antd_Icon;
+module IconUnsafe = Antd_IconUnsafe;
 
 module IconName = Antd_IconName;
 
 module Input = Antd_Input;
 
 module InputNumber = Antd_InputNumber;
+
+module InputFloat = Antd_InputFloat;
 
 module Layout = Antd_Layout;
 
@@ -96,68 +98,10 @@ module Upload = Antd_Upload;
 
 module Pagination = Antd_Pagination;
 
-/*
- module Message = {
-   type content = ReasonReact.reactElement;
-   type duration = int;
-   type options;
-   type callback = (. unit) => unit;
-   [@bs.module "antd/lib/message"] external success: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external error: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external info: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external warning: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external warn: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external loading: (content, duration, callback) => unit = "";
-   [@bs.module "antd/lib/message"] external config: options => unit = "";
-   [@bs.module "antd/lib/message"] external destroy: unit => unit = "";
- };
- */
+module Progress = Antd_Progress;
 
-module Message = {
-  [%bs.raw {|require("antd/lib/message/style")|}];
+module TreeSelect = Antd_TreeSelect;
 
-  type content = ReasonReact.reactElement;
-  type duration = int;
-  type options;
-  type callback = (. unit) => unit;
-  [@bs.module "antd/lib/message"] external success: (content, duration) => unit = "";
-  [@bs.module "antd/lib/message"] external error: (content, duration) => unit = "";
-  [@bs.module "antd/lib/message"] external info: (content, duration) => unit = "";
-  [@bs.module "antd/lib/message"] external warning: (content, duration) => unit = "";
-  [@bs.module "antd/lib/message"] external warn: (content, duration) => unit = "";
-  [@bs.module "antd/lib/message"] external loading: (content, duration) => unit = "";
-  [@bs.module "antd/lib/message"] external config: options => unit = "";
-  [@bs.module "antd/lib/message"] external destroy: unit => unit = "";
-};
+module Message = Antd_Message;
 
-/*
- notification.success(config)
- notification.error(config)
- notification.info(config)
- notification.warning(config)
- notification.warn(config)
- notification.open(config)
- notification.close(key: String)
- notification.destroy()
- */
-
-module Notification = {
-  [%bs.raw {|require("antd/lib/notification/style")|}];
-
-  type stringOrNode;
-  [@bs.deriving abstract]
-  type options = {
-    .
-    "message": ReasonReact.reactElement,
-    "description": ReasonReact.reactElement,
-  };
-  type key = string;
-  [@bs.module "antd/lib/notification"] external success: options => unit = "";
-  [@bs.module "antd/lib/notification"] external error: options => unit = "";
-  [@bs.module "antd/lib/notification"] external info: options => unit = "";
-  [@bs.module "antd/lib/notification"] external warning: options => unit = "";
-  [@bs.module "antd/lib/notification"] external warn: options => unit = "";
-  [@bs.module "antd/lib/notification"] external close: key => unit = "";
-  [@bs.module "antd/lib/notification"] external destroy: unit => unit = "";
-  [@bs.module "antd/lib/notification"] external config: options => unit = "";
-};
+module Notification = Antd_Notification;

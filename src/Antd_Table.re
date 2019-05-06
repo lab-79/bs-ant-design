@@ -1,10 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/table";
-
-[%bs.raw {|require("antd/lib/table/style")|}];
-
-[@bs.deriving jsConverter]
-type sizeType = [ | `default | `middle | `small];
-
 /*
  bordered	Whether to show all table borders	boolean	false
  childrenColumnName	The column contains children to display	string[]	children
@@ -59,16 +52,25 @@ type sizeType = [ | `default | `middle | `small];
  }
  */
 
+[%bs.raw {|require("antd/lib/table/style")|}];
+
+[@bs.deriving jsConverter]
+type sizeType = [ | `default | `middle | `small];
+
+[@bs.deriving abstract] // TODO: finish
+type record = {. "name": string};
+
 [@bs.deriving abstract]
 type columnParams = {
   .
-  "title": ReasonReact.reactElement,
+  "title": React.element,
   "dataIndex": string,
   "key": string,
+  "render": (string, record) => React.element,
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsTable:
   (
     ~bordered: bool=?,
     ~childrenColumnName: array(string)=?,
@@ -82,19 +84,29 @@ external makeProps:
   _ =
   "";
 
-let make = (~bordered=?, ~childrenColumnName=?, ~columns=?, ~dataSource=?, ~id=?, ~className=?, ~style=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~bordered?,
-        ~childrenColumnName=?Js.Option.map((. b) => Array.of_list(b), childrenColumnName),
-        ~columns=?Js.Option.map((. b) => Array.of_list(b), columns),
-        ~dataSource=?Js.Option.map((. b) => Array.of_list(b), dataSource),
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/table";
+
+[@react.component]
+let make =
+    (
+      ~bordered: option(bool)=?,
+      ~childrenColumnName: option(array(string))=?,
+      ~columns: option(array(columnParams))=?,
+      ~dataSource: option('a)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsTable(
+      ~bordered?,
+      ~childrenColumnName?,
+      ~columns?,
+      ~dataSource?,
+      ~id?,
+      ~className?,
+      ~style?,
+      (),
+    ),
   );

@@ -1,69 +1,161 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/upload";
-
 [%bs.raw {|require("antd/lib/upload/style")|}];
 
 [@bs.deriving jsConverter]
 type listType = [ | `text | `picture | [@bs.as "picture-card"] `pictureCard];
-
 [@bs.obj]
-external makeProps:
+external makePropsUpload:
   (
+    ~height: int=?,
     ~accept: string=?,
-    ~action: string,
+    ~action: string=?,
     ~directory: bool=?,
     ~beforeUpload: string => unit=?,
     ~customRequest: string => unit=?,
     ~disabled: bool=?,
-    ~listType: string=?,
+    ~listType: option(string)=?,
+    ~_type: string=?,
     ~multiple: bool=?,
     ~name: string=?,
     ~showUploadList: bool=?,
     ~supportServerRender: bool=?,
     ~withCredentials: bool=?,
-    ~onChange: bool=?,
-    ~onPreview: bool=?,
-    ~onRemove: bool=?,
+    ~onChange: Js.t({..}) => unit=?,
+    ~onPreview: Js.t({..}) => unit=?,
+    ~onRemove: Js.t({..}) => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
     unit
   ) =>
   _ =
   "";
 
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/upload";
+
+[@react.component]
 let make =
     (
-      ~accept=?,
-      ~action,
-      ~directory=?,
-      ~beforeUpload=?,
-      ~customRequest=?,
-      ~disabled=?,
-      ~listType=?,
-      ~multiple=?,
-      ~name=?,
-      ~showUploadList=?,
-      ~supportServerRender=?,
-      ~withCredentials=?,
-      ~onChange=?,
-      ~onPreview=?,
-      ~onRemove=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~height: option(int)=?,
+      ~accept: option(string)=?,
+      ~action: option(string)=?,
+      ~directory: option(bool)=?,
+      ~beforeUpload: option(string => unit)=?,
+      ~customRequest: option(string => unit)=?,
+      ~disabled: option(bool)=?,
+      ~listType: option(listType)=?,
+      ~_type: option(string)=?,
+      ~multiple: option(bool)=?,
+      ~name: option(string)=?,
+      ~showUploadList: option(bool)=?,
+      ~supportServerRender: option(bool)=?,
+      ~withCredentials: option(bool)=?,
+      ~onChange: option(Js.t({..}) => unit)=?,
+      ~onPreview: option(Js.t({..}) => unit)=?,
+      ~onRemove: option(Js.t({..}) => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
+  React.createElement(
+    reactComponent,
+    makePropsUpload(
+      ~height?,
+      ~accept?,
+      ~action?,
+      ~directory?,
+      ~beforeUpload?,
+      ~customRequest?,
+      ~disabled?,
+      ~listType=Belt.Option.map(listType, listTypeToJs),
+      ~_type?,
+      ~multiple?,
+      ~name?,
+      ~showUploadList?,
+      ~supportServerRender?,
+      ~withCredentials?,
+      ~onChange?,
+      ~onPreview?,
+      ~onRemove?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );
+
+module Dragger = {
+  [@bs.obj]
+  external makePropsDragger:
+    (
+      ~height: int=?,
+      ~accept: string=?,
+      ~action: string=?,
+      ~directory: bool=?,
+      ~beforeUpload: string => unit=?,
+      ~customRequest: string => unit=?,
+      ~disabled: bool=?,
+      ~listType: option(string)=?,
+      ~_type: string=?,
+      ~multiple: bool=?,
+      ~name: string=?,
+      ~showUploadList: bool=?,
+      ~supportServerRender: bool=?,
+      ~withCredentials: bool=?,
+      ~onChange: Js.t({..}) => unit=?,
+      ~onPreview: Js.t({..}) => unit=?,
+      ~onRemove: Js.t({..}) => unit=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~children: React.element=?,
+      unit
+    ) =>
+    _ =
+    "";
+
+  [@bs.module "antd/lib/upload"]
+  external reactComponent: React.component('a) = "Dragger";
+
+  [@react.component]
+  let make =
+      (
+        ~height: option(int)=?,
+        ~accept: option(string)=?,
+        ~action: option(string)=?,
+        ~directory: option(bool)=?,
+        ~beforeUpload: option(string => unit)=?,
+        ~customRequest: option(string => unit)=?,
+        ~disabled: option(bool)=?,
+        ~listType: option(listType)=?,
+        ~_type: option(string)=?,
+        ~multiple: option(bool)=?,
+        ~name: option(string)=?,
+        ~showUploadList: option(bool)=?,
+        ~supportServerRender: option(bool)=?,
+        ~withCredentials: option(bool)=?,
+        ~onChange: option(Js.t({..}) => unit)=?,
+        ~onPreview: option(Js.t({..}) => unit)=?,
+        ~onRemove: option(Js.t({..}) => unit)=?,
+        ~id: option(string)=?,
+        ~className: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~children: option(React.element)=?,
+      ) =>
+    React.createElement(
+      reactComponent,
+      makePropsDragger(
+        ~height?,
         ~accept?,
-        ~action,
+        ~action?,
         ~directory?,
         ~beforeUpload?,
         ~customRequest?,
         ~disabled?,
-        ~listType=?Js.Option.map((. b) => listTypeToJs(b), listType),
+        ~listType=Belt.Option.map(listType, listTypeToJs),
+        ~_type?,
         ~multiple?,
         ~name?,
         ~showUploadList?,
@@ -75,10 +167,11 @@ let make =
         ~id?,
         ~className?,
         ~style?,
+        ~children?,
         (),
       ),
-    children,
-  );
+    );
+};
 
 /*
  accept	File types that can be accepted. See input accept Attribute	string	-
@@ -101,3 +194,4 @@ let make =
  onPreview	A callback function, will be executed when file link or preview icon is clicked.	Function(file)	-
  onRemove	A callback function, will be executed when removing file button is clicked, remove event will be prevented when return value is false or a Promise which resolve(false) or reject.	Function(file): boolean | Promise	-
  */
+let make = make;

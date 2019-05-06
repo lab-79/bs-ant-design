@@ -1,10 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/alert";
-
-[%bs.raw {|require("antd/lib/alert/style")|}];
-
-[@bs.deriving jsConverter]
-type alertType = [ | `success | `info | `warning | `error];
-
 /*
  afterClose	Called when close animation is finished	() => void	-
  banner	Whether to show as banner	boolean	false
@@ -17,19 +10,33 @@ type alertType = [ | `success | `info | `warning | `error];
  type	Type of Alert styles, options: success, info, warning, error	string	info, in banner mode default is warning
  onClose	Callback when Alert is closed	(e: MouseEvent) => void	-
     */
+[%bs.raw {|require("antd/lib/alert/style")|}];
+
+[@bs.deriving jsConverter]
+type alertType = [ | `success | `info | `warning | `error];
+
+// module Internal = {
+//   [@bs.module] [@react.component]
+//   external make:
+//     (
+
+//     ) =>
+//     React.element =
+//     "antd/lib/alert";
+// };
 
 [@bs.obj]
-external makeProps:
+external makePropsAlert:
   (
     ~afterClose: unit => unit=?,
     ~banner: bool=?,
     ~closable: bool=?,
-    ~closeText: ReasonReact.reactElement=?,
-    ~description: ReasonReact.reactElement=?,
+    ~closeText: React.element=?,
+    ~description: React.element=?,
     ~iconType: string=?,
-    ~message: ReasonReact.reactElement=?,
+    ~message: React.element=?,
     ~showIcon: bool=?,
-    ~_type: string=?,
+    ~_type: option(string)=?,
     ~onClose: ReactEvent.Mouse.t => unit=?,
     ~id: string=?,
     ~className: string=?,
@@ -39,41 +46,43 @@ external makeProps:
   _ =
   "";
 
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/alert";
+
+[@react.component]
 let make =
     (
-      ~afterClose=?,
-      ~banner=?,
-      ~closable=?,
-      ~closeText=?,
-      ~description=?,
-      ~iconType=?,
-      ~message=?,
-      ~showIcon=?,
-      ~_type=?,
-      ~onClose=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~afterClose: option(unit => unit)=?,
+      ~banner: option(bool)=?,
+      ~closable: option(bool)=?,
+      ~closeText: option(React.element)=?,
+      ~description: option(React.element)=?,
+      ~iconType: option(string)=?,
+      ~message: option(React.element)=?,
+      ~showIcon: option(bool)=?,
+      ~_type: option(alertType)=?,
+      ~onClose: option(ReactEvent.Mouse.t => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~afterClose?,
-        ~banner?,
-        ~closable?,
-        ~closeText?,
-        ~description?,
-        ~iconType?,
-        ~message?,
-        ~showIcon?,
-        ~_type=?Js.Option.map((. b) => alertTypeToJs(b), _type),
-        ~onClose?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsAlert(
+      ~afterClose?,
+      ~banner?,
+      ~closable?,
+      ~closeText?,
+      ~description?,
+      ~iconType?,
+      ~message?,
+      ~showIcon?,
+      ~_type={
+        Js.Option.map((. b) => alertTypeToJs(b), _type);
+      },
+      ~onClose?,
+      ~id?,
+      ~className?,
+      ~style?,
+      (),
+    ),
   );

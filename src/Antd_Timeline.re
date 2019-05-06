@@ -11,37 +11,48 @@ type modeType = [ | `left | `alternate | `right];
  reverse	reverse nodes or not	boolean	false
  mode	By sending alternate the timeline will distribute the nodes to the left and right.	left | alternate | right	left
     */
-
 [@bs.obj]
-external makeProps:
+external makePropsTimeline:
   (
-    ~pending: ReasonReact.reactElement=?,
-    ~pendingDot: ReasonReact.reactElement=?,
+    ~pending: React.element=?,
+    ~pendingDot: React.element=?,
     ~reverse: bool=?,
-    ~mode: string=?,
+    ~mode: option(string)=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
     unit
   ) =>
   _ =
   "";
 
-let make = (~pending=?, ~pendingDot=?, ~reverse=?, ~mode=?, ~id=?, ~className=?, ~style=?, children) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~pending?,
-        ~pendingDot?,
-        ~reverse?,
-        ~mode=?Js.Option.map((. b) => modeTypeToJs(b), mode),
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/timeline";
+
+[@react.component]
+let make =
+    (
+      ~pending: option(React.element)=?,
+      ~pendingDot: option(React.element)=?,
+      ~reverse: option(bool)=?,
+      ~mode: option(modeType)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsTimeline(
+      ~pending?,
+      ~pendingDot?,
+      ~reverse?,
+      ~mode=Belt.Option.map(mode, modeTypeToJs),
+      ~id?,
+      ~className?,
+      ~style?,
+      (),
+    ),
   );
 
 /*
@@ -50,19 +61,16 @@ let make = (~pending=?, ~pendingDot=?, ~reverse=?, ~mode=?, ~id=?, ~className=?,
    */
 
 module Item = {
-  [@bs.module "antd/lib/timeline"] external reactClass: ReasonReact.reactClass = "Item";
-  [@bs.obj]
-  external makeProps:
+  [@bs.module "antd/lib/timeline"] [@reac.component]
+  external make:
     (
       ~color: string=?,
-      ~dot: ReasonReact.reactElement=?,
+      ~dot: React.element=?,
       ~className: string=?,
-      ~tab: ReasonReact.reactElement=?,
+      ~tab: React.element=?,
       ~style: ReactDOMRe.Style.t=?,
-      unit
+      ~children: React.element=?
     ) =>
-    _ =
-    "";
-  let make = (~color=?, ~dot=?, ~className=?, ~style=?, children) =>
-    ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(~color?, ~dot?, ~className?, ~style?, ()), children);
+    React.element =
+    "Item";
 };

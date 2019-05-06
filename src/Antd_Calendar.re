@@ -1,14 +1,3 @@
-module Locale = Antd_DatePicker.Locale;
-
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/calendar";
-
-[%bs.raw {|require("antd/lib/calendar/style")|}];
-
-[@bs.deriving jsConverter]
-type mode = [ | `month | `year];
-
-type moment = MomentRe.Moment.t;
-
 /*
  dateCellRender	Customize the display of the date cell, the returned content will be appended to the cell	function(date: moment): ReactNode	-
  dateFullCellRender	Customize the display of the date cell, the returned content will override the cell	function(date: moment): ReactNode	-
@@ -25,19 +14,25 @@ type moment = MomentRe.Moment.t;
  onSelect	Callback for when a date is selected	function(date: moment?	-
  onChange	Callback for when date changes	function(date: moment?	-
    */
+[%bs.raw {|require("antd/lib/calendar/style")|}];
+module Locale = Antd_DatePicker.Locale;
+
+[@bs.deriving jsConverter]
+type mode = [ | `month | `year];
+type moment = MomentRe.Moment.t;
 
 [@bs.obj]
-external makeProps:
+external makePropsCalendar:
   (
-    ~dateCellRender: (string, moment) => ReasonReact.reactElement=?,
-    ~dateFullCellRender: (string, moment) => ReasonReact.reactElement=?,
+    ~dateCellRender: moment => React.element=?,
+    ~dateFullCellRender: moment => React.element=?,
     ~defaultValue: moment=?,
     ~disabledDate: moment => bool=?,
     ~fullscreen: bool=?,
     ~locale: 'c=?,
-    ~mode: string=?,
-    ~monthCellRender: moment => ReasonReact.reactElement=?,
-    ~monthFullCellRender: moment => ReasonReact.reactElement=?,
+    ~mode: option(string)=?,
+    ~monthCellRender: moment => React.element=?,
+    ~monthFullCellRender: moment => React.element=?,
     ~validRange: array(moment)=?,
     ~value: moment=?,
     ~onPanelChange: (moment, string) => unit=?,
@@ -51,49 +46,52 @@ external makeProps:
   _ =
   "";
 
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/calendar";
+
+[@react.component]
 let make =
     (
-      ~dateCellRender=?,
-      ~dateFullCellRender=?,
-      ~defaultValue=?,
-      ~disabledDate=?,
-      ~fullscreen=?,
-      ~locale=?,
-      ~mode=?,
-      ~monthCellRender=?,
-      ~monthFullCellRender=?,
-      ~validRange=?,
-      ~value=?,
-      ~onPanelChange=?,
-      ~onSelect=?,
-      ~onChange=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~dateCellRender: option(moment => React.element)=?,
+      ~dateFullCellRender: option(moment => React.element)=?,
+      ~defaultValue: option(moment)=?,
+      ~disabledDate: option(moment => bool)=?,
+      ~fullscreen: option(bool)=?,
+      ~locale: option('c)=?,
+      ~mode: option(mode)=?,
+      ~monthCellRender: option(moment => React.element)=?,
+      ~monthFullCellRender: option(moment => React.element)=?,
+      ~validRange: option(array(moment))=?,
+      ~value: option(moment)=?,
+      ~onPanelChange: option((moment, string) => unit)=?,
+      ~onSelect: option(moment => unit)=?,
+      ~onChange: option(moment => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~dateCellRender?,
-        ~dateFullCellRender?,
-        ~defaultValue?,
-        ~disabledDate?,
-        ~fullscreen?,
-        ~locale?,
-        ~mode=?Js.Option.map((. b) => modeToJs(b), mode),
-        ~monthCellRender?,
-        ~monthFullCellRender?,
-        ~validRange=?Js.Option.map((. b) => Array.of_list(b), validRange),
-        ~value?,
-        ~onPanelChange?,
-        ~onSelect?,
-        ~onChange?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsCalendar(
+      ~dateCellRender?,
+      ~dateFullCellRender?,
+      ~defaultValue?,
+      ~disabledDate?,
+      ~fullscreen?,
+      ~locale?,
+      ~mode={
+        Js.Option.map((. b) => modeToJs(b), mode);
+      },
+      ~monthCellRender?,
+      ~monthFullCellRender?,
+      ~validRange?,
+      ~value?,
+      ~onPanelChange?,
+      ~onSelect?,
+      ~onChange?,
+      ~id?,
+      ~className?,
+      ~style?,
+      (),
+    ),
   );

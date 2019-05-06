@@ -1,26 +1,3 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/popover";
-
-[%bs.raw {|require("antd/lib/popover/style")|}];
-
-[@bs.deriving jsConverter]
-type placementType = [
-  | `top
-  | `left
-  | `right
-  | `bottom
-  | `topLeft
-  | `topRight
-  | `bottomLeft
-  | `bottomRight
-  | `leftTop
-  | `leftBottom
-  | `rightTop
-  | `rightBottom
-];
-
-[@bs.deriving jsConverter]
-type triggerType = [ | `hover | `focus | `click | `contextMenu];
-
 /*
  COMMON API
  -----------------------
@@ -45,8 +22,28 @@ type triggerType = [ | `hover | `focus | `click | `contextMenu];
  title	Title of the card	string|ReactNode	-
  */
 
+[%bs.raw {|require("antd/lib/popover/style")|}];
+
+[@bs.deriving jsConverter]
+type placementType = [
+  | `top
+  | `left
+  | `right
+  | `bottom
+  | `topLeft
+  | `topRight
+  | `bottomLeft
+  | `bottomRight
+  | `leftTop
+  | `leftBottom
+  | `rightTop
+  | `rightBottom
+];
+
+[@bs.deriving jsConverter]
+type triggerType = [ | `hover | `focus | `click | `contextMenu];
 [@bs.obj]
-external makeProps:
+external makePropsPopOver:
   (
     ~arrowPointAtCenter: bool=?,
     ~autoAdjustOverflow: bool=?,
@@ -56,12 +53,12 @@ external makeProps:
     ~mouseLeaveDelay: float=?,
     ~overlayClassName: string=?,
     ~overlayStyle: ReactDOMRe.Style.t=?,
-    ~placement: string=?,
-    ~trigger: string=?,
+    ~placement: option(string)=?,
+    ~trigger: option(string)=?,
     ~visible: bool=?,
     ~onVisibleChange: bool => unit=?,
-    ~content: ReasonReact.reactElement=?,
-    ~title: ReasonReact.reactElement=?,
+    ~content: React.element=?,
+    ~title: React.element=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -70,49 +67,54 @@ external makeProps:
   _ =
   "";
 
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/popover";
+
+[@react.component]
 let make =
     (
-      ~arrowPointAtCenter=?,
-      ~autoAdjustOverflow=?,
-      ~defaultVisible=?,
-      ~getPopupContainer=?,
-      ~mouseEnterDelay=?,
-      ~mouseLeaveDelay=?,
-      ~overlayClassName=?,
-      ~overlayStyle=?,
-      ~placement=?,
-      ~trigger=?,
-      ~visible=?,
-      ~onVisibleChange=?,
-      ~content=?,
-      ~title=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~arrowPointAtCenter: option(bool)=?,
+      ~autoAdjustOverflow: option(bool)=?,
+      ~defaultVisible: option(bool)=?,
+      ~getPopupContainer: option(Dom.element => Dom.htmlElement)=?,
+      ~mouseEnterDelay: option(float)=?,
+      ~mouseLeaveDelay: option(float)=?,
+      ~overlayClassName: option(string)=?,
+      ~overlayStyle: option(ReactDOMRe.Style.t)=?,
+      ~placement: option(placementType)=?,
+      ~trigger: option(triggerType)=?,
+      ~visible: option(bool)=?,
+      ~onVisibleChange: option(bool => unit)=?,
+      ~content: option(React.element)=?,
+      ~title: option(React.element)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~arrowPointAtCenter?,
-        ~autoAdjustOverflow?,
-        ~defaultVisible?,
-        ~getPopupContainer?,
-        ~mouseEnterDelay?,
-        ~mouseLeaveDelay?,
-        ~overlayClassName?,
-        ~overlayStyle?,
-        ~placement=?Js.Option.map((. b) => placementTypeToJs(b), placement),
-        ~trigger=?Js.Option.map((. b) => triggerTypeToJs(b), trigger),
-        ~visible?,
-        ~onVisibleChange?,
-        ~content?,
-        ~title?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsPopOver(
+      ~arrowPointAtCenter?,
+      ~autoAdjustOverflow?,
+      ~defaultVisible?,
+      ~getPopupContainer?,
+      ~mouseEnterDelay?,
+      ~mouseLeaveDelay?,
+      ~overlayClassName?,
+      ~overlayStyle?,
+      ~placement={
+        Belt.Option.map(placement, placementTypeToJs);
+      },
+      ~trigger={
+        Belt.Option.map(trigger, triggerTypeToJs);
+      },
+      ~visible?,
+      ~onVisibleChange?,
+      ~content?,
+      ~title?,
+      ~id?,
+      ~className?,
+      ~style?,
+      (),
+    ),
   );

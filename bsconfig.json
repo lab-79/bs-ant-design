@@ -1,14 +1,13 @@
 {
   "name": "bs-ant-design-alt",
-  "reason": { "react-jsx": 2 },
+  "reason": { "react-jsx": 3 },
   "sources": [{ "dir": "src", "subdirs": true }],
   "package-specs": [
     {
       "module": "commonjs",
-      "in-source": false
+      "in-source": true
     }
   ],
-  "suffix": ".js",
   "namespace": false,
   "bs-dependencies": ["reason-react", "re-classnames", "bs-moment"],
   "refmt": 3

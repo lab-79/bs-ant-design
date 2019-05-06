@@ -1,14 +1,12 @@
-[@bs.module] external spin: ReasonReact.reactClass = "antd/lib/spin";
-
 [%bs.raw {|require("antd/lib/spin/style")|}];
 
 [@bs.deriving jsConverter]
 type size = [ | `default | `small | `large];
 
 [@bs.obj]
-external makeProps:
+external makePropsSpin:
   (
-    ~size: string=?,
+    ~size: option(string)=?,
     ~spinning: bool=?,
     ~tip: string=?,
     ~delay: int=?,
@@ -16,36 +14,39 @@ external makeProps:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
     unit
   ) =>
   _ =
   "";
 
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/spin";
+
+[@react.component]
 let make =
     (
-      ~size=?,
-      ~spinning=?,
-      ~tip=?,
-      ~delay=?,
-      ~wrapperClassName=?,
-      ~id=?,
-      ~className=?,
-      ~style=?,
-      children,
+      ~size: option(size)=?,
+      ~spinning: option(bool)=?,
+      ~tip: option(string)=?,
+      ~delay: option(int)=?,
+      ~wrapperClassName: option(string)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass=spin,
-    ~props=
-      makeProps(
-        ~size=?Js.Option.map((. b) => sizeToJs(b), size),
-        ~spinning?,
-        ~tip?,
-        ~delay?,
-        ~wrapperClassName?,
-        ~id?,
-        ~className?,
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsSpin(
+      ~size=Belt.Option.map(size, sizeToJs),
+      ~spinning?,
+      ~tip?,
+      ~delay?,
+      ~wrapperClassName?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
   );
