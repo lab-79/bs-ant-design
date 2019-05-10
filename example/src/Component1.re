@@ -17,6 +17,7 @@ let make = () =>
     <Button />
     <Calendar />
     <Card />
+    <Carousel />
     <Checkbox />
     <Collapse />
     <DatePicker />

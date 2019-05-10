@@ -16,6 +16,8 @@ module Calendar = Antd_Calendar;
 
 module Card = Antd_Card;
 
+module Carousel = Antd_Carousel;
+
 module Checkbox = Antd_Checkbox;
 
 module Collapse = Antd_Collapse;

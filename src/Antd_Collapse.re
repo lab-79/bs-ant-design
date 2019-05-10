@@ -26,9 +26,13 @@ type panelProps = {
   "forceRender": bool,
 };
 
-[@bs.module] [@react.component]
-external make:
+[@bs.deriving jsConverter]
+type expandIconPosition = [ | `left | `right];
+
+[@bs.obj]
+external makePropsCollapse:
   (
+    ~expandIconPosition: option(string)=?,
     ~accordion: bool=?,
     ~activeKey: array(string)=?,
     ~bordered: bool=?,
@@ -39,10 +43,50 @@ external make:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
+    ~children: React.element=?,
+    unit
   ) =>
-  React.element =
-  "antd/lib/collapse";
+  _ =
+  "";
+
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/collapse";
+
+[@react.component]
+let make =
+    (
+      ~expandIconPosition: option(expandIconPosition)=?,
+      ~accordion: option(bool)=?,
+      ~activeKey: option(array(string))=?,
+      ~bordered: option(bool)=?,
+      ~defaultActiveKey: option(array(string))=?,
+      ~onChange: option(string => unit)=?,
+      ~destroyInactivePanel: option(bool)=?,
+      ~expandIcon: option(panelProps => React.element)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsCollapse(
+      ~expandIconPosition=
+        Belt.Option.map(expandIconPosition, expandIconPositionToJs),
+      ~accordion?,
+      ~activeKey?,
+      ~bordered?,
+      ~defaultActiveKey?,
+      ~onChange?,
+      ~destroyInactivePanel?,
+      ~expandIcon?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );
 
 module Panel = {
   [@bs.module "antd/lib/collapse"] [@react.component]

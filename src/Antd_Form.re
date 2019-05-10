@@ -71,6 +71,7 @@ module Item = {
   [@bs.obj]
   external makePropsItem:
     (
+      ~htmlFor: string=?,
       ~prefixCls: string=?,
       ~className: string=?,
       ~id: string=?,
@@ -95,6 +96,7 @@ module Item = {
   [@react.component]
   let make =
       (
+        ~htmlFor: option(string)=?,
         ~prefixCls: option(string)=?,
         ~className: option(string)=?,
         ~id: option(string)=?,
@@ -113,6 +115,7 @@ module Item = {
     React.createElement(
       reactComponent,
       makePropsItem(
+        ~htmlFor?,
         ~prefixCls?,
         ~className?,
         ~id?,
