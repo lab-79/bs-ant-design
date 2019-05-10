@@ -112,6 +112,7 @@ module Item = {
   [@bs.obj]
   external makePropsItem:
     (
+      ~rootPrefixCls: string=?,
       ~disabled: bool=?,
       ~id: string=?,
       ~className: string=?,
@@ -126,6 +127,7 @@ module Item = {
   [@react.component]
   let make =
       (
+        ~rootPrefixCls: option(string)=?,
         ~disabled: option(bool)=?,
         ~id: option(string)=?,
         ~className: option(string)=?,
@@ -137,6 +139,7 @@ module Item = {
     React.createElement(
       reactComponent,
       makePropsItem(
+        ~rootPrefixCls?,
         ~disabled?,
         ~id?,
         ~className?,

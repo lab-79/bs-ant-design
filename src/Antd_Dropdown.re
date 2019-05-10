@@ -12,6 +12,7 @@
 [%bs.raw {|require("antd/lib/dropdown/style")|}];
 
 module Menu = Antd_Menu;
+module IconName = Antd_IconName;
 
 [@bs.deriving jsConverter]
 type placement = [
@@ -115,6 +116,7 @@ module Button = {
   [@bs.module "antd/lib/dropdown"] [@react.component]
   external make:
     (
+      ~icon: IconName.t=?,
       ~disabled: bool=?,
       ~overlay: React.element=?,
       ~placement: string=?,

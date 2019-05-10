@@ -22,6 +22,32 @@ let itemRender =
     : <span> {String.concat(" / ", paths |> Array.to_list) |> str} </span>;
 };
 
+let overlay =
+  <Menu>
+    <Menu.Item>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="http://www.alipay.com/">
+        {"General" |> str}
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="http://www.taobao.com/">
+        {"Layout" |> str}
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a
+        target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+        {"Navigation" |> str}
+      </a>
+    </Menu.Item>
+  </Menu>;
+
 [@react.component]
 let make = () =>
   <Section name="Breadcrumb">
@@ -46,4 +72,16 @@ let make = () =>
       <Breadcrumb.Item> {"Application" |> str} </Breadcrumb.Item>
     </Breadcrumb>
     <Breadcrumb itemRender routes />
+    <div>
+      <Breadcrumb>
+        <Breadcrumb.Item> {"Ant Design" |> str} </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href=""> {"Component" |> str} </a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item overlay>
+          <a href=""> {"General" |> str} </a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item> {"Button" |> str} </Breadcrumb.Item>
+      </Breadcrumb>
+    </div>
   </Section>;

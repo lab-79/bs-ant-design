@@ -29,6 +29,7 @@ module Item = {
       ~separator: string=?,
       ~onClick: ReactEvent.Mouse.t => unit=?,
       ~href: string=?,
+      ~overlay: React.element=?,
       ~id: string=?,
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,

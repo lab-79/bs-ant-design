@@ -3,8 +3,8 @@
 [@bs.deriving jsConverter]
 type size = [ | `large | `default | `small];
 
-[@bs.module] [@react.component]
-external make:
+[@bs.obj]
+external makePropsTreeSelect:
   (
     ~allowClear: bool=?,
     ~autoClearSearchValue: bool=?,
@@ -24,7 +24,7 @@ external make:
     ~searchValue: string=?,
     ~treeIcon: bool=?,
     ~showSearch: bool=?,
-    ~size: string=?,
+    ~size: option(string)=?,
     ~suffixIcon: React.element=?,
     ~treeCheckable: bool=?,
     /* treeData */
@@ -38,10 +38,89 @@ external make:
     ~onSearch: string => unit=?,
     ~onSelect: (string, React.element) => unit=?,
     ~onTreeExpand: list(string) => unit=?,
-    ~children: React.element=?
+    ~children: React.element=?,
+    unit
   ) =>
-  React.element =
-  "antd/lib/tree-select";
+  _ =
+  "";
+
+[@bs.module]
+external reactComponent: React.component('a) = "antd/lib/tree-select";
+
+[@react.component]
+let make =
+    (
+      ~allowClear: option(bool)=?,
+      ~autoClearSearchValue: option(bool)=?,
+      ~className: option(string)=?,
+      ~defaultValue: option(string)=?,
+      ~disabled: option(bool)=?,
+      ~dropdownClassName: option(string)=?,
+      ~dropdownMatchSelectWidth: option(bool)=?,
+      ~dropdownStyle: option(ReactDOMRe.Style.t)=?,
+      ~filterTreeNode: option(bool)=?,
+      ~labelInValue: option(bool)=?,
+      ~maxTagCount: option(int)=?,
+      ~maxTagPlaceholder: option(React.element)=?,
+      ~multiple: option(bool)=?,
+      ~placeholder: option(string)=?,
+      ~searchPlaceholder: option(string)=?,
+      ~searchValue: option(string)=?,
+      ~treeIcon: option(bool)=?,
+      ~showSearch: option(bool)=?,
+      ~size: option(size)=?,
+      ~suffixIcon: option(React.element)=?,
+      ~treeCheckable: option(bool)=? /* treeData */,
+      ~treeDefaultExpandAll: option(bool)=?,
+      ~treeDefaultExpandedKeys: option(list(string))=?,
+      ~treeExpandedKeys: option(list(string))=?,
+      ~treeNodeFilterProp: option(string)=?,
+      ~treeNodeLabelProp: option(string)=?,
+      ~value: option(string)=?,
+      ~onChange: option((string, string) => unit)=?,
+      ~onSearch: option(string => unit)=?,
+      ~onSelect: option((string, React.element) => unit)=?,
+      ~onTreeExpand: option(list(string) => unit)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsTreeSelect(
+      ~allowClear?,
+      ~autoClearSearchValue?,
+      ~className?,
+      ~defaultValue?,
+      ~disabled?,
+      ~dropdownClassName?,
+      ~dropdownMatchSelectWidth?,
+      ~dropdownStyle?,
+      ~filterTreeNode?,
+      ~labelInValue?,
+      ~maxTagCount?,
+      ~maxTagPlaceholder?,
+      ~multiple?,
+      ~placeholder?,
+      ~searchPlaceholder?,
+      ~searchValue?,
+      ~treeIcon?,
+      ~showSearch?,
+      ~size=Belt.Option.map(size, sizeToJs),
+      ~suffixIcon?,
+      ~treeCheckable?,
+      ~treeDefaultExpandAll?,
+      ~treeDefaultExpandedKeys?,
+      ~treeExpandedKeys?,
+      ~treeNodeFilterProp?,
+      ~treeNodeLabelProp?,
+      ~value?,
+      ~onChange?,
+      ~onSearch?,
+      ~onSelect?,
+      ~onTreeExpand?,
+      ~children?,
+      (),
+    ),
+  );
 /* allowClear	Whether allow clear	boolean	false
    autoClearSearchValue	auto clear search input value when multiple select is selected/deselected	boolean	true
    defaultValue	To set the initial selected treeNode(s).	string|string[]	-

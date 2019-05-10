@@ -31,7 +31,6 @@ let menu =
 [@react.component]
 let make = () =>
   <Section name="Dropdown">
-    <Alert _type=`error message={"DOES NOT WORK" |> str} />
     <Dropdown overlay=menu>
       <a className="ant-dropdown-link" href="#">
         {"Hover me" |> str}

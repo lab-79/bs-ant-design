@@ -16,6 +16,7 @@ let make = () =>
       <Button> {"Default" |> str} </Button>
       <Button _type=`dashed> {"Dashed" |> str} </Button>
       <Button _type=`danger> {"Danger" |> str} </Button>
+      <Button _type=`link> {"Link" |> str} </Button>
     </div>
     <div>
       <Button _type=`primary shape=`circle icon=IconName.search />

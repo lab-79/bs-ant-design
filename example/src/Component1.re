@@ -29,4 +29,5 @@ let make = () =>
     <Rate />
     <Table />
     <Tooltip />
+    <TreeSelect />
   </React.Fragment>;
