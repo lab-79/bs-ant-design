@@ -8,3 +8,4 @@ npm-debug.log
 /src/**/*.js
 .idea
 *.tgz
+.vscode/*
