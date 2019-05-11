@@ -96,11 +96,17 @@ module TimePicker = Antd_TimePicker;
 
 module Tooltip = Antd_Tooltip;
 
+module Typography = Antd_Typography;
+
 module Upload = Antd_Upload;
+
+module PageHeader = Antd_PageHeader;
 
 module Pagination = Antd_Pagination;
 
 module Progress = Antd_Progress;
+
+module Statistic = Antd_Statistic;
 
 module TreeSelect = Antd_TreeSelect;
 

@@ -25,10 +25,13 @@ let make = () =>
     <Form />
     <Input />
     <Modal />
+    <PageHeader />
     <Pagination />
     <Radio />
     <Rate />
+    <Statistic />
     <Table />
     <Tooltip />
     <TreeSelect />
+    <Typography />
   </React.Fragment>;
