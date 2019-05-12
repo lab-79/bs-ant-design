@@ -5,44 +5,21 @@ let str = React.string;
 [@react.component]
 let make = () =>
   <Section name="Alert">
+    <Alert message={"Success Text" |> str} _type=`success />
+    <Alert message={"Info Text" |> str} _type=`info />
+    <Alert message={"Warning Text" |> str} _type=`warning />
+    <Alert message={"Error Text" |> str} _type=`error />
+    <Alert message={"Closable" |> str} _type=`error closable=true />
     <Alert
-      className=Theme.stdWidth
-      message={"Success Text" |> str}
-      _type=`success
-    />
-    <Alert className=Theme.stdWidth message={"Info Text" |> str} _type=`info />
-    <Alert
-      className=Theme.stdWidth
-      message={"Warning Text" |> str}
-      _type=`warning
-    />
-    <Alert
-      className=Theme.stdWidth
-      message={"Error Text" |> str}
-      _type=`error
-    />
-    <Alert
-      className=Theme.stdWidth
-      message={"Closable" |> str}
-      _type=`error
-      closable=true
-    />
-    <Alert
-      className=Theme.stdWidth
       message={"Success Text" |> str}
       _type=`success
       description={"Description Hey Description Hey" |> str}
     />
+    <Alert message={"Success Text" |> str} _type=`success showIcon=true />
+    <Alert message={"Success Text" |> str} _type=`success banner=true />
     <Alert
-      className=Theme.stdWidth
-      message={"Success Text" |> str}
-      _type=`success
-      showIcon=true
-    />
-    <Alert
-      className=Theme.stdWidth
-      message={"Success Text" |> str}
-      _type=`success
-      banner=true
+      message={"Info Text" |> str}
+      _type=`info
+      closeText={"Close Now" |> str}
     />
   </Section>;

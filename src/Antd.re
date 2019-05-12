@@ -18,6 +18,8 @@ module Card = Antd_Card;
 
 module Carousel = Antd_Carousel;
 
+module Cascader = Antd_Cascader;
+
 module Checkbox = Antd_Checkbox;
 
 module Collapse = Antd_Collapse;

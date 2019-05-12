@@ -4,11 +4,11 @@ module Styles = {
   let section =
     style([
       borderBottom(`px(1), `solid, `rgb((200, 200, 200))),
-      paddingBottom(`px(15)),
+      paddingBottom(`px(35)),
       display(`flex),
       flexDirection(`column),
     ]);
-  let name = style([fontSize(`px(20))]);
+  let name = style([fontSize(`px(25))]);
 };
 
 [@react.component]
