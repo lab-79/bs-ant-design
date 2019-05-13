@@ -25,14 +25,14 @@ module Styles = {
 let make = () =>
   <Section name="Avatar">
     <div className=Styles.wrapper>
-      <Avatar size=`large icon=IconName.user />
+      <Avatar size={Size(`large)} icon=IconName.user />
       <Avatar icon=IconName.user />
-      <Avatar size=`small icon=IconName.user />
+      <Avatar size={Size(`small)} icon=IconName.user />
     </div>
     <div className=Styles.wrapper>
-      <Avatar shape=`square size=`large icon=IconName.user />
+      <Avatar shape=`square size={Size(`large)} icon=IconName.user />
       <Avatar shape=`square icon=IconName.user />
-      <Avatar shape=`square size=`small icon=IconName.user />
+      <Avatar shape=`square size={Size(`small)} icon=IconName.user />
     </div>
     <div className=Styles.wrapper>
       <Avatar> {"U" |> str} </Avatar>
@@ -41,5 +41,10 @@ let make = () =>
         src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
       />
       <Avatar className=Styles.withStyle> {"U" |> str} </Avatar>
+    </div>
+    <div className=Styles.wrapper>
+      <Avatar size={Int(10)} icon=IconName.user />
+      <Avatar icon=IconName.user />
+      <Avatar size={Int(70)} icon=IconName.user />
     </div>
   </Section>;

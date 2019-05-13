@@ -13,14 +13,29 @@ module IconName = Antd_IconName;
 type avatarShape = [ | `circle | `square];
 
 [@bs.deriving jsConverter]
-type avatarSize = [ | `small | `default | `large];
+type sizeType = [ | `small | `default | `large];
+type size =
+  | Int(int)
+  | Size(sizeType);
+
+module AvatarSize = {
+  type t;
+  external int: int => t = "%identity";
+  external size: string => t = "%identity";
+};
+
+let setAvatarSize = (a: size) =>
+  switch (a) {
+  | Int(int) => AvatarSize.int(int)
+  | Size(avatarSize) => avatarSize |> sizeTypeToJs |> AvatarSize.size
+  };
 
 [@bs.obj]
 external makePropsAvatar:
   (
     ~icon: IconName.t=?,
     ~shape: option(string)=?,
-    ~size: option(string)=?,
+    ~size: option(AvatarSize.t)=?,
     ~src: string=?,
     ~alt: string=?,
     ~onError: unit => bool=?,
@@ -46,7 +61,7 @@ let make =
     (
       ~icon: option(IconName.t)=?,
       ~shape: option(avatarShape)=?,
-      ~size: option(avatarSize)=?,
+      ~size: option(size)=?,
       ~src: option(string)=?,
       ~alt: option(string)=?,
       ~onError: option(unit => bool)=?,
@@ -68,9 +83,7 @@ let make =
       ~shape={
         Js.Option.map((. b) => avatarShapeToJs(b), shape);
       },
-      ~size={
-        Js.Option.map((. b) => avatarSizeToJs(b), size);
-      },
+      ~size=Belt.Option.map(size, setAvatarSize),
       ~src?,
       ~alt?,
       ~onError?,
