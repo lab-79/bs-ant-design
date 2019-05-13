@@ -37,7 +37,7 @@ let make =
       ~id: option(string)=?,
       ~className: option(string)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      ~children: option(React.element)=?,
+      ~children: React.element,
     ) =>
   React.createElement(
     reactComponent,
@@ -50,7 +50,7 @@ let make =
       ~id?,
       ~className?,
       ~style?,
-      ~children?,
+      ~children,
     ),
   );
 
