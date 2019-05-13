@@ -8,8 +8,8 @@
  visible	Whether the Tag is closed or not	boolean	true
    */
 
-[@bs.module] [@react.component]
-external make:
+[@bs.module]
+external makePropsTag:
   (
     ~afterClose: unit => unit=?,
     ~closable: bool=?,
@@ -21,8 +21,38 @@ external make:
     ~style: ReactDOMRe.Style.t=?,
     ~children: React.element
   ) =>
-  React.element =
-  "antd/lib/tag";
+  _ =
+  "";
+
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/tag";
+
+[@react.component]
+let make =
+    (
+      ~afterClose: option(unit => unit)=?,
+      ~closable: option(bool)=?,
+      ~color: option(string)=?,
+      ~onClose: option(ReactEvent.Mouse.t => unit)=?,
+      ~visible: option(bool)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsTag(
+      ~afterClose?,
+      ~closable?,
+      ~color?,
+      ~onClose?,
+      ~visible?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+    ),
+  );
 
 /*
  checked	Checked status of Tag	boolean	false
