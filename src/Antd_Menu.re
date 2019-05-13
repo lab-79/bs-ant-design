@@ -18,7 +18,7 @@ external makePropsMenu:
   (
     ~id: string=?,
     ~theme: string=?,
-    ~_mode: option(string)=?,
+    ~mode: option(string)=?,
     ~selectable: bool=?,
     ~selectedKeys: array(string)=?,
     ~defaultSelectedKeys: array(string)=?,
@@ -50,7 +50,7 @@ let make =
     (
       ~id: option(string)=?,
       ~theme: option(theme)=?,
-      ~_mode: option(mode)=?,
+      ~mode: option(mode)=?,
       ~selectable: option(bool)=?,
       ~selectedKeys: option(array(string))=?,
       ~defaultSelectedKeys: option(array(string))=?,
@@ -75,13 +75,13 @@ let make =
     makePropsMenu(
       ~id?,
       ~theme=?Js.Option.map((. b) => themeToJs(b), theme),
-      ~_mode=
+      ~mode=
         Js.Option.map(
           (. b) => {
             Js.log(modeToJs(b));
             modeToJs(b);
           },
-          _mode,
+          mode,
         ),
       ~selectable?,
       ~selectedKeys?,

@@ -62,6 +62,7 @@ external makePropsPopOver:
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
+    ~children: React.element=?,
     unit
   ) =>
   _ =
@@ -90,6 +91,7 @@ let make =
       ~id: option(string)=?,
       ~className: option(string)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
   React.createElement(
     reactComponent,
@@ -115,6 +117,7 @@ let make =
       ~id?,
       ~className?,
       ~style?,
+      ~children?,
       (),
     ),
   );

@@ -53,10 +53,8 @@ external make:
  */
 
 module TabPane = {
-  [@bs.module "antd/lib/tabs"]
-  external reactClass: ReasonReact.reactClass = "TabPane";
   [@bs.module "antd/lib/tabs"] [@react.component]
-  external makeProps:
+  external make:
     (
       ~forceRender: bool=?,
       ~key: string=?,

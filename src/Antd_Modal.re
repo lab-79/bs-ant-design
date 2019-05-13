@@ -59,6 +59,7 @@ external makePropsModal:
     ~onOk: ReactEvent.Mouse.t => unit=?,
     ~id: string=?,
     ~className: string=?,
+    ~children: React.element=?,
     unit
   ) =>
   _ =
@@ -95,6 +96,7 @@ let make =
       ~onOk: option(ReactEvent.Mouse.t => unit)=?,
       ~id: option(string)=?,
       ~className: option(string)=?,
+      ~children: option(React.element)=?,
     ) =>
   React.createElement(
     reactComponent,
@@ -125,6 +127,7 @@ let make =
       ~onOk?,
       ~id?,
       ~className?,
+      ~children?,
       (),
     ),
   );

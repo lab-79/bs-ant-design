@@ -14,7 +14,7 @@
  */
 [%bs.raw {|require("antd/lib/input-number/style")|}];
 
-[@bs.module]
+[@bs.module] [@react.component]
 external make:
   (
     ~autoFocus: bool=?,

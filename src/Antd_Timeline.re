@@ -40,6 +40,7 @@ let make =
       ~id: option(string)=?,
       ~className: option(string)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
     ) =>
   React.createElement(
     reactComponent,
@@ -51,6 +52,7 @@ let make =
       ~id?,
       ~className?,
       ~style?,
+      ~children?,
       (),
     ),
   );
@@ -61,7 +63,7 @@ let make =
    */
 
 module Item = {
-  [@bs.module "antd/lib/timeline"] [@reac.component]
+  [@bs.module "antd/lib/timeline"] [@react.component]
   external make:
     (
       ~color: string=?,
