@@ -8,7 +8,7 @@
  visible	Whether the Tag is closed or not	boolean	true
    */
 
-[@bs.module]
+[@bs.obj]
 external makePropsTag:
   (
     ~afterClose: unit => unit=?,
