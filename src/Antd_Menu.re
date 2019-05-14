@@ -3,8 +3,15 @@
 [@bs.deriving jsConverter]
 type theme = [ | `light | `dark];
 
-[@bs.deriving jsConverter]
 type mode = [ | `horizontal | `vertical | `inline];
+
+// [@bs.deriving jsConverter] does not match this case
+let modeToJs = mode =>
+  switch (mode) {
+  | `horizontal => "horizontal"
+  | `inline => "inline"
+  | _ => "vertical"
+  };
 
 type clickParams = {
   .
@@ -75,14 +82,7 @@ let make =
     makePropsMenu(
       ~id?,
       ~theme=?Js.Option.map((. b) => themeToJs(b), theme),
-      ~mode=
-        Js.Option.map(
-          (. b) => {
-            Js.log(modeToJs(b));
-            modeToJs(b);
-          },
-          mode,
-        ),
+      ~mode=Belt.Option.map(mode, modeToJs),
       ~selectable?,
       ~selectedKeys?,
       ~defaultSelectedKeys?,
