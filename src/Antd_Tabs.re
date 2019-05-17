@@ -33,18 +33,44 @@
 
 [%bs.raw {|require("antd/lib/tabs/style")|}];
 
-[@bs.module] [@react.component]
-external make:
+[@bs.obj]
+external makePropsTabs:
   (
     ~defaultActiveKey: string=?,
     ~onChange: string => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
+    ~children: React.element=?,
+    unit
   ) =>
-  React.element =
-  "antd/lib/tabs";
+  _ =
+  "";
+
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/tabs";
+
+[@react.component]
+let make =
+    (
+      ~defaultActiveKey: option(string)=?,
+      ~onChange: option(string => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsTabs(
+      ~defaultActiveKey?,
+      ~onChange?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );
 
 /*
  forceRender	Forced render of content in tabs, not lazy render after clicking on tabs	boolean	false

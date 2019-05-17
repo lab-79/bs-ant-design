@@ -31,6 +31,7 @@ type components = [
   | `rate
   | `statistic
   | `table
+  | `tabs
   | `tooltip
   | `treeselect
   | `typography
@@ -61,6 +62,7 @@ let varToComp = var =>
   | `rate => <Rate />
   | `statistic => <Statistic />
   | `table => <Table />
+  | `tabs => <Tabs />
   | `tooltip => <Tooltip />
   | `treeselect => <TreeSelect />
   | `typography => <Typography />
@@ -90,6 +92,7 @@ let comps = [|
   `rate,
   `statistic,
   `table,
+  `tabs,
   `tooltip,
   `treeselect,
   `typography,
