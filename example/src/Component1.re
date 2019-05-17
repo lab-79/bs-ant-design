@@ -29,6 +29,7 @@ type components = [
   | `pagination
   | `radio
   | `rate
+  | `select
   | `statistic
   | `table
   | `tabs
@@ -60,6 +61,7 @@ let varToComp = var =>
   | `pagination => <Pagination />
   | `radio => <Radio />
   | `rate => <Rate />
+  | `select => <Select />
   | `statistic => <Statistic />
   | `table => <Table />
   | `tabs => <Tabs />
@@ -90,6 +92,7 @@ let comps = [|
   `pagination,
   `radio,
   `rate,
+  `select,
   `statistic,
   `table,
   `tabs,
