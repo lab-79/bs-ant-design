@@ -47,8 +47,8 @@ module Row = {
     | ResponsiveBreakpoints(complexGutter) => complexGutter
     };
 
-  [@bs.module] [@react.component]
-  external make:
+  [@bs.obj]
+  external makePropsGridRow:
     (
       ~className: string=?,
       ~_type: string=?,
@@ -57,10 +57,41 @@ module Row = {
       ~gutter: 'a=?,
       ~style: ReactDOMRe.Style.t=?,
       ~prefixCls: string=?,
-      ~children: React.element=?
+      ~children: React.element=?,
+      unit
     ) =>
-    React.element =
-    "antd/lib/grid/row";
+    _ =
+    "";
+
+  [@bs.module]
+  external reactComponent: React.component('a) = "antd/lib/grid/row";
+
+  [@react.component]
+  let make =
+      (
+        ~className: option(string)=?,
+        ~_type: option(string)=?,
+        ~align: option(string)=?,
+        ~justify: option(string)=?,
+        ~gutter: option('a)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~prefixCls: option(string)=?,
+        ~children: option(React.element)=?,
+      ) =>
+    React.createElement(
+      reactComponent,
+      makePropsGridRow(
+        ~className?,
+        ~_type?,
+        ~align?,
+        ~justify?,
+        ~gutter?,
+        ~style?,
+        ~prefixCls?,
+        ~children?,
+        (),
+      ),
+    );
 };
 
 module Col = {
@@ -88,8 +119,8 @@ module Col = {
 
   type props;
 
-  [@bs.module "antd/lib/grid/col"] [@react.component]
-  external make:
+  [@bs.obj]
+  external makePropsGridCol:
     (
       ~className: string=?,
       ~span: int=?,
@@ -105,10 +136,55 @@ module Col = {
       ~xxl: 'f=?,
       ~prefixCls: string=?,
       ~style: ReactDOMRe.Style.t=?,
-      ~children: React.element=?
+      ~children: React.element=?,
+      unit
     ) =>
-    React.element =
-    "default";
+    _ =
+    "";
+
+  [@bs.module]
+  external reactComponent: React.component('a) = "antd/lib/grid/col";
+
+  [@react.component]
+  let make =
+      (
+        ~className: option(string)=?,
+        ~span: option(int)=?,
+        ~order: option(int)=?,
+        ~offset: option(int)=?,
+        ~push: option(int)=?,
+        ~pull: option(int)=?,
+        ~xs: option('a)=?,
+        ~sm: option('b)=?,
+        ~md: option('c)=?,
+        ~lg: option('d)=?,
+        ~xl: option('e)=?,
+        ~xxl: option('f)=?,
+        ~prefixCls: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
+        ~children: option(React.element)=?,
+      ) =>
+    React.createElement(
+      reactComponent,
+      makePropsGridCol(
+        ~className?,
+        ~span?,
+        ~order?,
+        ~offset?,
+        ~push?,
+        ~pull?,
+        ~xs?,
+        ~sm?,
+        ~md?,
+        ~lg?,
+        ~xl?,
+        ~xxl?,
+        ~prefixCls?,
+        ~style?,
+        ~children?,
+        (),
+      ),
+    );
 };
 
 let makeGutterBreakpoints = Row.makeGutterBreakpoints;

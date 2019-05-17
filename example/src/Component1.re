@@ -23,6 +23,7 @@ type components = [
   | `datepicker
   | `dropdown
   | `form
+  | `grid
   | `input
   | `modal
   | `pageheader
@@ -55,6 +56,7 @@ let varToComp = var =>
   | `datepicker => <DatePicker />
   | `dropdown => <Dropdown />
   | `form => <Form />
+  | `grid => <Grid />
   | `input => <Input />
   | `modal => <Modal />
   | `pageheader => <PageHeader />
@@ -86,6 +88,7 @@ let comps = [|
   `datepicker,
   `dropdown,
   `form,
+  `grid,
   `input,
   `modal,
   `pageheader,
