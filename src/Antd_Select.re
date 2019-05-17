@@ -73,6 +73,7 @@ external make:
     ~value: 'value=?,
     ~onBlur: 'value => unit=?,
     ~onChange: 'value => unit=?,
+    ~onSearch: string => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
