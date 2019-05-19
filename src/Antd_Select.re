@@ -47,8 +47,8 @@ type value =
   | String(string)
   | List(list(string));
 
-[@bs.module] [@react.component]
-external make:
+[@bs.obj]
+external makePropsSelect:
   (
     ~allowClear: bool=?,
     ~autoFocus: bool=?,
@@ -74,13 +74,86 @@ external make:
     ~onBlur: 'value => unit=?,
     ~onChange: 'value => unit=?,
     ~onSearch: string => unit=?,
+    ~onSelect: 'value => unit=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
-    ~children: React.element=?
+    ~children: React.element=?,
+    unit
   ) =>
-  React.element =
-  "antd/lib/select";
+  _ =
+  "";
+
+[@bs.module] external reactComponent: React.component('a) = "antd/lib/select";
+
+[@react.component]
+let make =
+    (
+      ~allowClear: option(bool)=?,
+      ~autoFocus: option(bool)=?,
+      ~defaultActiveFirstOption: option(bool)=?,
+      ~defaultValue: option('value)=?,
+      ~disabled: option(bool)=?,
+      ~dropdownClassName: option(string)=?,
+      ~dropdownMatchSelectWidth: option(bool)=?,
+      ~dropdownStyle: option(ReactDOMRe.Style.t)=?,
+      ~filterOption: option(bool)=?,
+      ~firstActiveValue: option(array(string))=?,
+      ~labelInValue: option(bool)=?,
+      ~maxTagCount: option(int)=?,
+      ~maxTagPlaceholder: option(React.element)=?,
+      ~mode: option(string)=?,
+      ~notFoundContent: option(string)=?,
+      ~placeholder: option(React.element)=?,
+      ~showArrow: option(bool)=?,
+      ~showSearch: option(bool)=?,
+      ~size: option(string)=?,
+      ~tokenSeparators: option(array(string))=?,
+      ~value: option('value)=?,
+      ~onBlur: option('value => unit)=?,
+      ~onChange: option('value => unit)=?,
+      ~onSearch: option(string => unit)=?,
+      ~onSelect: option('value => unit)=?,
+      ~id: option(string)=?,
+      ~className: option(string)=?,
+      ~style: option(ReactDOMRe.Style.t)=?,
+      ~children: option(React.element)=?,
+    ) =>
+  React.createElement(
+    reactComponent,
+    makePropsSelect(
+      ~allowClear?,
+      ~autoFocus?,
+      ~defaultActiveFirstOption?,
+      ~defaultValue?,
+      ~disabled?,
+      ~dropdownClassName?,
+      ~dropdownMatchSelectWidth?,
+      ~dropdownStyle?,
+      ~filterOption?,
+      ~firstActiveValue?,
+      ~labelInValue?,
+      ~maxTagCount?,
+      ~maxTagPlaceholder?,
+      ~mode?,
+      ~notFoundContent?,
+      ~placeholder?,
+      ~showArrow?,
+      ~showSearch?,
+      ~size?,
+      ~tokenSeparators?,
+      ~value?,
+      ~onBlur?,
+      ~onChange?,
+      ~onSearch?,
+      ~onSelect?,
+      ~id?,
+      ~className?,
+      ~style?,
+      ~children?,
+      (),
+    ),
+  );
 
 /*
  disabled	Disable this option	boolean	false

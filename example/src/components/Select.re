@@ -6,6 +6,7 @@ let str = React.string;
 let make = () => {
   <Section name="Select">
     <Select
+      onSelect={v => Js.log(v)}
       showSearch=true
       className=Theme.stdWidth
       placeholder={"Select a person" |> str}>
