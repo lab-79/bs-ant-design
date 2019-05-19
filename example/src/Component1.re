@@ -114,9 +114,11 @@ let make = () => {
     componentsToJs(value)
     |> Js.String.includes(searchValue |> Js.String.toLowerCase);
   <div className=Styles.body>
-    <Antd.Input.Search
-      onChange={v => setSearchValue(ReactEvent.Form.target(v)##value)}
-    />
+    <Antd.Affix offsetTop=0>
+      <Antd.Input.Search
+        onChange={v => setSearchValue(ReactEvent.Form.target(v)##value)}
+      />
+    </Antd.Affix>
     {comps |> Js.Array.filter(filter) |> Array.map(varToComp) |> React.array}
   </div>;
 };

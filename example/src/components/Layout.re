@@ -1,4 +1,5 @@
 open Antd.Layout;
+module Layout = Antd.Layout;
 
 let str = React.string;
 
