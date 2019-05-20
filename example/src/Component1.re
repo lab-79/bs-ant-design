@@ -22,6 +22,7 @@ type components = [
   | `collaspe
   | `datepicker
   | `dropdown
+  | `empty
   | `form
   | `grid
   | `input
@@ -56,6 +57,7 @@ let varToComp = var =>
   | `collaspe => <Collapse />
   | `datepicker => <DatePicker />
   | `dropdown => <Dropdown />
+  | `empty => <Empty />
   | `form => <Form />
   | `grid => <Grid />
   | `input => <Input />
@@ -89,6 +91,7 @@ let comps = [|
   `collaspe,
   `datepicker,
   `dropdown,
+  `empty,
   `form,
   `grid,
   `input,

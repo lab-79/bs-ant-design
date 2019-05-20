@@ -32,6 +32,8 @@ module Divider = Antd_Divider;
 
 module Dropdown = Antd_Dropdown;
 
+module Empty = Antd_Empty;
+
 module Form = Antd_Form;
 
 module Grid = Antd_Grid;

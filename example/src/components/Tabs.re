@@ -1,4 +1,4 @@
-open Antd;
+open! Antd;
 
 let str = React.string;
 

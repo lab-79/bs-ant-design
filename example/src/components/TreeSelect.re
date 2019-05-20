@@ -1,4 +1,4 @@
-open Antd;
+open! Antd;
 
 module TreeNode = TreeSelect.TreeNode;
 
