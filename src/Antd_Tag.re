@@ -71,6 +71,6 @@ module CheckableTag = {
       ~children: React.element
     ) =>
     React.element =
-    "Checkabletag";
+    "CheckableTag";
   let make = make;
 };
