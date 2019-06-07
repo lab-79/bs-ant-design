@@ -21,6 +21,7 @@ type components = [
   | `checkbox
   | `collaspe
   | `datepicker
+  | `drawer
   | `dropdown
   | `empty
   | `form
@@ -56,6 +57,7 @@ let varToComp = var =>
   | `checkbox => <Checkbox />
   | `collaspe => <Collapse />
   | `datepicker => <DatePicker />
+  | `drawer => <Drawer />
   | `dropdown => <Dropdown />
   | `empty => <Empty />
   | `form => <Form />
@@ -90,6 +92,7 @@ let comps = [|
   `checkbox,
   `collaspe,
   `datepicker,
+  `drawer,
   `dropdown,
   `empty,
   `form,

@@ -30,6 +30,8 @@ module DatePicker = Antd_DatePicker;
 
 module Divider = Antd_Divider;
 
+module Drawer = Antd_Drawer;
+
 module Dropdown = Antd_Dropdown;
 
 module Empty = Antd_Empty;
