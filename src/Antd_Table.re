@@ -60,13 +60,27 @@ type sizeType = [ | `default | `middle | `small];
 [@bs.deriving abstract] // TODO: finish
 type record = {. "name": string};
 
+// [@bs.deriving abstract]
+// type columnParams = {
+//   .
+//   "title": React.element,
+//   "dataIndex": string,
+//   "key": string,
+//   "render": (string, record) => React.element,
+// };
+
 [@bs.deriving abstract]
 type columnParams = {
-  .
-  "title": React.element,
-  "dataIndex": string,
-  "key": string,
-  "render": (string, record) => React.element,
+  [@bs.optional]
+  align: string,
+  [@bs.optional]
+  title: React.element,
+  [@bs.optional]
+  dataIndex: string,
+  [@bs.optional]
+  key: string,
+  [@bs.optional]
+  render: (string, record) => React.element,
 };
 
 [@bs.obj]
@@ -76,7 +90,13 @@ external makePropsTable:
     ~childrenColumnName: array(string)=?,
     ~columns: array(columnParams)=?,
     ~dataSource: 'a=?,
+    ~defaultExpandAllRows: bool=?,
+    ~defaultExpandedRowKeys: array(string)=?,
+    ~expandRowByClick: bool=?,
     ~pagination: Js.t({..})=?,
+    ~showHeader: bool=?,
+    ~size: option(string)=?,
+    ~title: 'a => React.element=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -94,7 +114,13 @@ let make =
       ~childrenColumnName: option(array(string))=?,
       ~columns: option(array(columnParams))=?,
       ~dataSource: option('a)=?,
+      ~defaultExpandAllRows: option(bool)=?,
+      ~defaultExpandedRowKeys: option(array(string))=?,
+      ~expandRowByClick: option(bool)=?,
       ~pagination: option(Js.t({..}))=?,
+      ~showHeader: option(bool)=?,
+      ~size: option(sizeType)=?,
+      ~title: option('a => React.element)=?,
       ~id: option(string)=?,
       ~className: option(string)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -106,7 +132,15 @@ let make =
       ~childrenColumnName?,
       ~columns?,
       ~dataSource?,
+      ~defaultExpandAllRows?,
+      ~defaultExpandedRowKeys?,
+      ~expandRowByClick?,
       ~pagination?,
+      ~showHeader?,
+      ~size={
+        Belt.Option.map(size, sizeTypeToJs);
+      },
+      ~title?,
       ~id?,
       ~className?,
       ~style?,
