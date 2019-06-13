@@ -60,15 +60,6 @@ type sizeType = [ | `default | `middle | `small];
 [@bs.deriving abstract] // TODO: finish
 type record = {. "name": string};
 
-// [@bs.deriving abstract]
-// type columnParams = {
-//   .
-//   "title": React.element,
-//   "dataIndex": string,
-//   "key": string,
-//   "render": (string, record) => React.element,
-// };
-
 [@bs.deriving abstract]
 type columnParams = {
   [@bs.optional]
@@ -79,6 +70,8 @@ type columnParams = {
   dataIndex: string,
   [@bs.optional]
   key: string,
+  [@bs.optional]
+  width: string,
   [@bs.optional]
   render: (string, record) => React.element,
 };
