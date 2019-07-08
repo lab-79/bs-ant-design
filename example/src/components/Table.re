@@ -77,4 +77,12 @@ let data = [|
 
 [@react.component]
 let make = () =>
-  <Section name="Table"> <Table columns dataSource=data /> </Section>;
+  <Section name="Table">
+    <Table
+      onRow={(row, _index) =>
+        Table.mouseEvents(~onClick=_event => Js.log(row##name), ())
+      }
+      columns
+      dataSource=data
+    />
+  </Section>;

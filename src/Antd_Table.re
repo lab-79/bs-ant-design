@@ -61,6 +61,20 @@ type sizeType = [ | `default | `middle | `small];
 type record = {. "name": string};
 
 [@bs.deriving abstract]
+type mouseEvents = {
+  [@bs.optional]
+  onClick: ReactEvent.Mouse.t => unit,
+  [@bs.optional]
+  onDoubleClick: ReactEvent.Mouse.t => unit,
+  [@bs.optional]
+  onContextMenu: ReactEvent.Mouse.t => unit,
+  [@bs.optional]
+  onMouseEnter: ReactEvent.Mouse.t => unit,
+  [@bs.optional]
+  onMouseLeave: ReactEvent.Mouse.t => unit,
+};
+
+[@bs.deriving abstract]
 type columnParams = {
   .
   "title": React.element,
@@ -78,6 +92,7 @@ external makePropsTable:
     ~dataSource: 'a=?,
     ~loading: bool=?,
     ~pagination: Js.t({..})=?,
+    ~onRow: (Js.t({..}), int) => mouseEvents=?,
     ~id: string=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -97,6 +112,7 @@ let make =
       ~dataSource: option('a)=?,
       ~loading: option(bool)=?,
       ~pagination: option(Js.t({..}))=?,
+      ~onRow: option((Js.t({..}), int) => mouseEvents)=?,
       ~id: option(string)=?,
       ~className: option(string)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -110,6 +126,7 @@ let make =
       ~dataSource?,
       ~loading?,
       ~pagination?,
+      ~onRow?,
       ~id?,
       ~className?,
       ~style?,
