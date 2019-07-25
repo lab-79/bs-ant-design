@@ -3,7 +3,14 @@ module IconName = Antd_IconName;
 [%bs.raw {|require("antd/lib/button/style")|}];
 
 [@bs.deriving jsConverter]
-type buttonType = [ | `primary | `ghost | `dashed | `danger | `link];
+type buttonType = [
+  | `primary
+  | `ghost
+  | `dashed
+  | `danger
+  | `link
+  | `default
+];
 
 [@bs.deriving jsConverter]
 type buttonShape = [ | `circle | [@bs.as "circle-outline"] `circleOutline];
