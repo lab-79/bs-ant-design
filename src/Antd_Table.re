@@ -94,6 +94,7 @@ external makePropsTable:
     ~pagination: Js.t({..})=?,
     ~onRow: (Js.t({..}), int) => mouseEvents=?,
     ~id: string=?,
+    ~size: option(string)=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -113,6 +114,7 @@ let make =
       ~loading: option(bool)=?,
       ~pagination: option(Js.t({..}))=?,
       ~onRow: option((Js.t({..}), int) => mouseEvents)=?,
+      ~size: option(sizeType)=?,
       ~id: option(string)=?,
       ~className: option(string)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -127,6 +129,7 @@ let make =
       ~loading?,
       ~pagination?,
       ~onRow?,
+      ~size=Belt.Option.map(size, sizeTypeToJs),
       ~id?,
       ~className?,
       ~style?,
