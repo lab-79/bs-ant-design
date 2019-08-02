@@ -1,7 +1,7 @@
-/*
-     DO NOT EDIT
-     This is an generated file. Regenerate by executing `node ./code-generator/IconName.js`
-   */
+/* 
+  DO NOT EDIT 
+  This is an generated file. Regenerate by executing `node ./code-generator/IconName.js`
+*/
 type t = string;
 
 let toString = t => t;
@@ -46,21 +46,19 @@ let leftCircle = "left-circle";
 
 let rightCircle = "right-circle";
 
-let upCircleO = "up-circle-o";
-
-let downCircleO = "down-circle-o";
-
-let rightCircleO = "right-circle-o";
-
-let leftCircleO = "left-circle-o";
-
 let doubleRight = "double-right";
 
 let doubleLeft = "double-left";
 
-let verticleLeft = "verticle-left";
+let verticalLeft = "vertical-left";
 
-let verticleRight = "verticle-right";
+let verticalRight = "vertical-right";
+
+let verticalAlignTop = "vertical-align-top";
+
+let verticalAlignMiddle = "vertical-align-middle";
+
+let verticalAlignBottom = "vertical-align-bottom";
 
 let forward = "forward";
 
@@ -88,8 +86,6 @@ let arrowRight = "arrow-right";
 
 let playCircle = "play-circle";
 
-let playCircleO = "play-circle-o";
-
 let upSquare = "up-square";
 
 let downSquare = "down-square";
@@ -97,14 +93,6 @@ let downSquare = "down-square";
 let leftSquare = "left-square";
 
 let rightSquare = "right-square";
-
-let upSquareO = "up-square-o";
-
-let downSquareO = "down-square-o";
-
-let leftSquareO = "left-square-o";
-
-let rightSquareO = "right-square-o";
 
 let login = "login";
 
@@ -114,47 +102,65 @@ let menuFold = "menu-fold";
 
 let menuUnfold = "menu-unfold";
 
-let question = "question";
+let borderBottom = "border-bottom";
 
-let questionCircleO = "question-circle-o";
+let borderHorizontal = "border-horizontal";
+
+let borderInner = "border-inner";
+
+let borderOuter = "border-outer";
+
+let borderLeft = "border-left";
+
+let borderRight = "border-right";
+
+let borderTop = "border-top";
+
+let borderVerticle = "border-verticle";
+
+let picCenter = "pic-center";
+
+let picLeft = "pic-left";
+
+let picRight = "pic-right";
+
+let radiusBottomleft = "radius-bottomleft";
+
+let radiusBottomright = "radius-bottomright";
+
+let radiusUpleft = "radius-upleft";
+
+let radiusUpright = "radius-upright";
+
+let fullscreen = "fullscreen";
+
+let fullscreenExit = "fullscreen-exit";
+
+let question = "question";
 
 let questionCircle = "question-circle";
 
 let plus = "plus";
 
-let plusCircleO = "plus-circle-o";
-
 let plusCircle = "plus-circle";
 
 let pause = "pause";
-
-let pauseCircleO = "pause-circle-o";
 
 let pauseCircle = "pause-circle";
 
 let minus = "minus";
 
-let minusCircleO = "minus-circle-o";
-
 let minusCircle = "minus-circle";
 
 let plusSquare = "plus-square";
 
-let plusSquareO = "plus-square-o";
-
 let minusSquare = "minus-square";
 
-let minusSquareO = "minus-square-o";
-
 let info = "info";
-
-let infoCircleO = "info-circle-o";
 
 let infoCircle = "info-circle";
 
 let exclamation = "exclamation";
-
-let exclamationCircleO = "exclamation-circle-o";
 
 let exclamationCircle = "exclamation-circle";
 
@@ -162,31 +168,87 @@ let close = "close";
 
 let closeCircle = "close-circle";
 
-let closeCircleO = "close-circle-o";
-
 let closeSquare = "close-square";
-
-let closeSquareO = "close-square-o";
 
 let check = "check";
 
 let checkCircle = "check-circle";
 
-let checkCircleO = "check-circle-o";
-
 let checkSquare = "check-square";
-
-let checkSquareO = "check-square-o";
-
-let clockCircleO = "clock-circle-o";
 
 let clockCircle = "clock-circle";
 
 let warning = "warning";
 
-let lock = "lock";
+let issuesClose = "issues-close";
 
-let unlock = "unlock";
+let stop = "stop";
+
+let edit = "edit";
+
+let form = "form";
+
+let copy = "copy";
+
+let scissor = "scissor";
+
+let delete = "delete";
+
+let snippets = "snippets";
+
+let diff = "diff";
+
+let highlight = "highlight";
+
+let alignCenter = "align-center";
+
+let alignLeft = "align-left";
+
+let alignRight = "align-right";
+
+let bgColors = "bg-colors";
+
+let bold = "bold";
+
+let italic = "italic";
+
+let underline = "underline";
+
+let strikethrough = "strikethrough";
+
+let redo = "redo";
+
+let undo = "undo";
+
+let zoomIn = "zoom-in";
+
+let zoomOut = "zoom-out";
+
+let fontColors = "font-colors";
+
+let fontSize = "font-size";
+
+let lineHeight = "line-height";
+
+let dash = "dash";
+
+let smallDash = "small-dash";
+
+let sortAscending = "sort-ascending";
+
+let sortDescending = "sort-descending";
+
+let drag = "drag";
+
+let orderedList = "ordered-list";
+
+let unorderedList = "unordered-list";
+
+let radiusSetting = "radius-setting";
+
+let columnWidth = "column-width";
+
+let columnHeight = "column-height";
 
 let areaChart = "area-chart";
 
@@ -196,309 +258,29 @@ let barChart = "bar-chart";
 
 let dotChart = "dot-chart";
 
-let bars = "bars";
-
-let book = "book";
-
-let calendar = "calendar";
-
-let cloud = "cloud";
-
-let cloudDownload = "cloud-download";
-
-let code = "code";
-
-let codeO = "code-o";
-
-let copy = "copy";
-
-let creditCard = "credit-card";
-
-let delete = "delete";
-
-let desktop = "desktop";
-
-let download = "download";
-
-let edit = "edit";
-
-let ellipsis = "ellipsis";
-
-let file = "file";
-
-let fileText = "file-text";
-
-let fileUnknown = "file-unknown";
-
-let filePdf = "file-pdf";
-
-let fileWord = "file-word";
-
-let fileExcel = "file-excel";
-
-let fileJpg = "file-jpg";
-
-let filePpt = "file-ppt";
-
-let fileMarkdown = "file-markdown";
-
-let fileAdd = "file-add";
-
-let folder = "folder";
-
-let folderOpen = "folder-open";
-
-let folderAdd = "folder-add";
-
-let hdd = "hdd";
-
-let frown = "frown";
-
-let frownO = "frown-o";
-
-let meh = "meh";
-
-let mehO = "meh-o";
-
-let smile = "smile";
-
-let smileO = "smile-o";
-
-let inbox = "inbox";
-
-let laptop = "laptop";
-
-let appstoreO = "appstore-o";
-
-let appstore = "appstore";
-
 let lineChart = "line-chart";
 
-let link = "link";
+let radarChart = "radar-chart";
 
-let mail = "mail";
+let heatMap = "heat-map";
 
-let mobile = "mobile";
+let fall = "fall";
 
-let notification = "notification";
+let rise = "rise";
 
-let paperClip = "paper-clip";
+let stock = "stock";
 
-let picture = "picture";
+let boxPlot = "box-plot";
 
-let poweroff = "poweroff";
+let fund = "fund";
 
-let reload = "reload";
-
-let search = "search";
-
-let setting = "setting";
-
-let shareAlt = "share-alt";
-
-let shoppingCart = "shopping-cart";
-
-let tablet = "tablet";
-
-let tag = "tag";
-
-let tagO = "tag-o";
-
-let tags = "tags";
-
-let tagsO = "tags-o";
-
-let toTop = "to-top";
-
-let upload = "upload";
-
-let user = "user";
-
-let videoCamera = "video-camera";
-
-let home = "home";
-
-let loading = "loading";
-
-let loading3Quarters = "loading-3-quarters";
-
-let cloudUploadO = "cloud-upload-o";
-
-let cloudDownloadO = "cloud-download-o";
-
-let cloudUpload = "cloud-upload";
-
-let cloudO = "cloud-o";
-
-let starO = "star-o";
-
-let star = "star";
-
-let heartO = "heart-o";
-
-let heart = "heart";
-
-let environment = "environment";
-
-let environmentO = "environment-o";
-
-let eye = "eye";
-
-let eyeO = "eye-o";
-
-let camera = "camera";
-
-let cameraO = "camera-o";
-
-let save = "save";
-
-let team = "team";
-
-let solution = "solution";
-
-let phone = "phone";
-
-let filter = "filter";
-
-let exception_ = "exception";
-
-let export = "export";
-
-let customerService = "customer-service";
-
-let qrcode = "qrcode";
-
-let scan = "scan";
-
-let like = "like";
-
-let likeO = "like-o";
-
-let dislike = "dislike";
-
-let dislikeO = "dislike-o";
-
-let message = "message";
-
-let payCircle = "pay-circle";
-
-let payCircleO = "pay-circle-o";
-
-let calculator = "calculator";
-
-let pushpin = "pushpin";
-
-let pushpinO = "pushpin-o";
-
-let bulb = "bulb";
-
-let select = "select";
-
-let switcher = "switcher";
-
-let rocket = "rocket";
-
-let bell = "bell";
-
-let disconnect = "disconnect";
-
-let database = "database";
-
-let compass = "compass";
-
-let barcode = "barcode";
-
-let hourglass = "hourglass";
-
-let key = "key";
-
-let flag = "flag";
-
-let layout = "layout";
-
-let printer = "printer";
-
-let sound = "sound";
-
-let usb = "usb";
-
-let skin = "skin";
-
-let tool = "tool";
-
-let sync = "sync";
-
-let wifi = "wifi";
-
-let car = "car";
-
-let schedule = "schedule";
-
-let userAdd = "user-add";
-
-let userDelete = "user-delete";
-
-let usergroupAdd = "usergroup-add";
-
-let usergroupDelete = "usergroup-delete";
-
-let man = "man";
-
-let woman = "woman";
-
-let shop = "shop";
-
-let gift = "gift";
-
-let idcard = "idcard";
-
-let medicineBox = "medicine-box";
-
-let redEnvelope = "red-envelope";
-
-let coffee = "coffee";
-
-let copyright = "copyright";
-
-let trademark = "trademark";
-
-let safety = "safety";
-
-let wallet = "wallet";
-
-let bank = "bank";
-
-let trophy = "trophy";
-
-let contacts = "contacts";
-
-let global = "global";
-
-let shake = "shake";
-
-let api = "api";
-
-let fork = "fork";
-
-let dashboard = "dashboard";
-
-let form = "form";
-
-let table = "table";
-
-let profile = "profile";
+let sliders = "sliders";
 
 let android = "android";
 
-let androidO = "android-o";
-
 let apple = "apple";
 
-let appleO = "apple-o";
-
 let windows = "windows";
-
-let windowsO = "windows-o";
 
 let ie = "ie";
 
@@ -508,11 +290,7 @@ let github = "github";
 
 let aliwangwang = "aliwangwang";
 
-let aliwangwangO = "aliwangwang-o";
-
 let dingding = "dingding";
-
-let dingdingO = "dingding-o";
 
 let weiboSquare = "weibo-square";
 
@@ -554,6 +332,8 @@ let facebook = "facebook";
 
 let codepen = "codepen";
 
+let codeSandbox = "code-sandbox";
+
 let amazon = "amazon";
 
 let google = "google";
@@ -563,6 +343,8 @@ let codepenCircle = "codepen-circle";
 let alipay = "alipay";
 
 let antDesign = "ant-design";
+
+let antCloud = "ant-cloud";
 
 let aliyun = "aliyun";
 
@@ -583,3 +365,379 @@ let dribbbleSquare = "dribbble-square";
 let instagram = "instagram";
 
 let yuque = "yuque";
+
+let alibaba = "alibaba";
+
+let yahoo = "yahoo";
+
+let reddit = "reddit";
+
+let sketch = "sketch";
+
+let accountBook = "account-book";
+
+let alert = "alert";
+
+let api = "api";
+
+let appstore = "appstore";
+
+let audio = "audio";
+
+let bank = "bank";
+
+let bell = "bell";
+
+let book = "book";
+
+let bug = "bug";
+
+let bulb = "bulb";
+
+let calculator = "calculator";
+
+let build = "build";
+
+let calendar = "calendar";
+
+let camera = "camera";
+
+let car = "car";
+
+let carryOut = "carry-out";
+
+let cloud = "cloud";
+
+let code = "code";
+
+let compass = "compass";
+
+let contacts = "contacts";
+
+let container = "container";
+
+let control = "control";
+
+let creditCard = "credit-card";
+
+let crown = "crown";
+
+let customerService = "customer-service";
+
+let dashboard = "dashboard";
+
+let database = "database";
+
+let dislike = "dislike";
+
+let environment = "environment";
+
+let experiment = "experiment";
+
+let eyeInvisible = "eye-invisible";
+
+let eye = "eye";
+
+let fileAdd = "file-add";
+
+let fileExcel = "file-excel";
+
+let fileExclamation = "file-exclamation";
+
+let fileImage = "file-image";
+
+let fileMarkdown = "file-markdown";
+
+let filePdf = "file-pdf";
+
+let filePpt = "file-ppt";
+
+let fileText = "file-text";
+
+let fileUnknown = "file-unknown";
+
+let fileWord = "file-word";
+
+let fileZip = "file-zip";
+
+let file = "file";
+
+let filter = "filter";
+
+let fire = "fire";
+
+let flag = "flag";
+
+let folderAdd = "folder-add";
+
+let folder = "folder";
+
+let folderOpen = "folder-open";
+
+let frown = "frown";
+
+let funnelPlot = "funnel-plot";
+
+let gift = "gift";
+
+let hdd = "hdd";
+
+let heart = "heart";
+
+let home = "home";
+
+let hourglass = "hourglass";
+
+let idcard = "idcard";
+
+let insurance = "insurance";
+
+let interaction = "interaction";
+
+let layout = "layout";
+
+let like = "like";
+
+let lock = "lock";
+
+let mail = "mail";
+
+let medicineBox = "medicine-box";
+
+let meh = "meh";
+
+let message = "message";
+
+let mobile = "mobile";
+
+let moneyCollect = "money-collect";
+
+let payCircle = "pay-circle";
+
+let notification = "notification";
+
+let phone = "phone";
+
+let picture = "picture";
+
+let playSquare = "play-square";
+
+let printer = "printer";
+
+let profile = "profile";
+
+let project = "project";
+
+let pushpin = "pushpin";
+
+let propertySafety = "property-safety";
+
+let read = "read";
+
+let reconciliation = "reconciliation";
+
+let redEnvelope = "red-envelope";
+
+let rest = "rest";
+
+let rocket = "rocket";
+
+let safetyCertificate = "safety-certificate";
+
+let save = "save";
+
+let schedule = "schedule";
+
+let securityScan = "security-scan";
+
+let setting = "setting";
+
+let shop = "shop";
+
+let shopping = "shopping";
+
+let skin = "skin";
+
+let smile = "smile";
+
+let sound = "sound";
+
+let star = "star";
+
+let switcher = "switcher";
+
+let tablet = "tablet";
+
+let tag = "tag";
+
+let tags = "tags";
+
+let tool = "tool";
+
+let thunderbolt = "thunderbolt";
+
+let trophy = "trophy";
+
+let unlock = "unlock";
+
+let usb = "usb";
+
+let videoCamera = "video-camera";
+
+let wallet = "wallet";
+
+let apartment = "apartment";
+
+let audit = "audit";
+
+let barcode = "barcode";
+
+let bars = "bars";
+
+let block = "block";
+
+let border = "border";
+
+let branches = "branches";
+
+let ci = "ci";
+
+let cloudDownload = "cloud-download";
+
+let cloudServer = "cloud-server";
+
+let cloudSync = "cloud-sync";
+
+let cloudUpload = "cloud-upload";
+
+let cluster = "cluster";
+
+let coffee = "coffee";
+
+let copyright = "copyright";
+
+let deploymentUnit = "deployment-unit";
+
+let desktop = "desktop";
+
+let disconnect = "disconnect";
+
+let dollar = "dollar";
+
+let download = "download";
+
+let ellipsis = "ellipsis";
+
+let euro = "euro";
+
+let exception_ = "exception";
+
+let export = "export";
+
+let fileDone = "file-done";
+
+let fileJpg = "file-jpg";
+
+let fileProtect = "file-protect";
+
+let fileSync = "file-sync";
+
+let fileSearch = "file-search";
+
+let fork = "fork";
+
+let gateway = "gateway";
+
+let global = "global";
+
+let gold = "gold";
+
+let history = "history";
+
+let import = "import";
+
+let inbox = "inbox";
+
+let key = "key";
+
+let laptop = "laptop";
+
+let link = "link";
+
+let line = "line";
+
+let loading3Quarters = "loading-3-quarters";
+
+let loading = "loading";
+
+let man = "man";
+
+let menu = "menu";
+
+let monitor = "monitor";
+
+let more = "more";
+
+let number = "number";
+
+let percentage = "percentage";
+
+let paperClip = "paper-clip";
+
+let pound = "pound";
+
+let poweroff = "poweroff";
+
+let pullRequest = "pull-request";
+
+let qrcode = "qrcode";
+
+let reload = "reload";
+
+let safety = "safety";
+
+let robot = "robot";
+
+let scan = "scan";
+
+let search = "search";
+
+let select = "select";
+
+let shake = "shake";
+
+let shareAlt = "share-alt";
+
+let shoppingCart = "shopping-cart";
+
+let solution = "solution";
+
+let sync = "sync";
+
+let table = "table";
+
+let team = "team";
+
+let toTop = "to-top";
+
+let trademark = "trademark";
+
+let transaction = "transaction";
+
+let upload = "upload";
+
+let userAdd = "user-add";
+
+let userDelete = "user-delete";
+
+let usergroupAdd = "usergroup-add";
+
+let user = "user";
+
+let usergroupDelete = "usergroup-delete";
+
+let wifi = "wifi";
+
+let woman = "woman";
+
+

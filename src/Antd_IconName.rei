@@ -46,21 +46,19 @@ let leftCircle: t;
 
 let rightCircle: t;
 
-let upCircleO: t;
-
-let downCircleO: t;
-
-let rightCircleO: t;
-
-let leftCircleO: t;
-
 let doubleRight: t;
 
 let doubleLeft: t;
 
-let verticleLeft: t;
+let verticalLeft: t;
 
-let verticleRight: t;
+let verticalRight: t;
+
+let verticalAlignTop: t;
+
+let verticalAlignMiddle: t;
+
+let verticalAlignBottom: t;
 
 let forward: t;
 
@@ -88,8 +86,6 @@ let arrowRight: t;
 
 let playCircle: t;
 
-let playCircleO: t;
-
 let upSquare: t;
 
 let downSquare: t;
@@ -97,14 +93,6 @@ let downSquare: t;
 let leftSquare: t;
 
 let rightSquare: t;
-
-let upSquareO: t;
-
-let downSquareO: t;
-
-let leftSquareO: t;
-
-let rightSquareO: t;
 
 let login: t;
 
@@ -114,47 +102,65 @@ let menuFold: t;
 
 let menuUnfold: t;
 
-let question: t;
+let borderBottom: t;
 
-let questionCircleO: t;
+let borderHorizontal: t;
+
+let borderInner: t;
+
+let borderOuter: t;
+
+let borderLeft: t;
+
+let borderRight: t;
+
+let borderTop: t;
+
+let borderVerticle: t;
+
+let picCenter: t;
+
+let picLeft: t;
+
+let picRight: t;
+
+let radiusBottomleft: t;
+
+let radiusBottomright: t;
+
+let radiusUpleft: t;
+
+let radiusUpright: t;
+
+let fullscreen: t;
+
+let fullscreenExit: t;
+
+let question: t;
 
 let questionCircle: t;
 
 let plus: t;
 
-let plusCircleO: t;
-
 let plusCircle: t;
 
 let pause: t;
-
-let pauseCircleO: t;
 
 let pauseCircle: t;
 
 let minus: t;
 
-let minusCircleO: t;
-
 let minusCircle: t;
 
 let plusSquare: t;
 
-let plusSquareO: t;
-
 let minusSquare: t;
 
-let minusSquareO: t;
-
 let info: t;
-
-let infoCircleO: t;
 
 let infoCircle: t;
 
 let exclamation: t;
-
-let exclamationCircleO: t;
 
 let exclamationCircle: t;
 
@@ -162,31 +168,87 @@ let close: t;
 
 let closeCircle: t;
 
-let closeCircleO: t;
-
 let closeSquare: t;
-
-let closeSquareO: t;
 
 let check: t;
 
 let checkCircle: t;
 
-let checkCircleO: t;
-
 let checkSquare: t;
-
-let checkSquareO: t;
-
-let clockCircleO: t;
 
 let clockCircle: t;
 
 let warning: t;
 
-let lock: t;
+let issuesClose: t;
 
-let unlock: t;
+let stop: t;
+
+let edit: t;
+
+let form: t;
+
+let copy: t;
+
+let scissor: t;
+
+let delete: t;
+
+let snippets: t;
+
+let diff: t;
+
+let highlight: t;
+
+let alignCenter: t;
+
+let alignLeft: t;
+
+let alignRight: t;
+
+let bgColors: t;
+
+let bold: t;
+
+let italic: t;
+
+let underline: t;
+
+let strikethrough: t;
+
+let redo: t;
+
+let undo: t;
+
+let zoomIn: t;
+
+let zoomOut: t;
+
+let fontColors: t;
+
+let fontSize: t;
+
+let lineHeight: t;
+
+let dash: t;
+
+let smallDash: t;
+
+let sortAscending: t;
+
+let sortDescending: t;
+
+let drag: t;
+
+let orderedList: t;
+
+let unorderedList: t;
+
+let radiusSetting: t;
+
+let columnWidth: t;
+
+let columnHeight: t;
 
 let areaChart: t;
 
@@ -196,309 +258,29 @@ let barChart: t;
 
 let dotChart: t;
 
-let bars: t;
-
-let book: t;
-
-let calendar: t;
-
-let cloud: t;
-
-let cloudDownload: t;
-
-let code: t;
-
-let codeO: t;
-
-let copy: t;
-
-let creditCard: t;
-
-let delete: t;
-
-let desktop: t;
-
-let download: t;
-
-let edit: t;
-
-let ellipsis: t;
-
-let file: t;
-
-let fileText: t;
-
-let fileUnknown: t;
-
-let filePdf: t;
-
-let fileWord: t;
-
-let fileExcel: t;
-
-let fileJpg: t;
-
-let filePpt: t;
-
-let fileMarkdown: t;
-
-let fileAdd: t;
-
-let folder: t;
-
-let folderOpen: t;
-
-let folderAdd: t;
-
-let hdd: t;
-
-let frown: t;
-
-let frownO: t;
-
-let meh: t;
-
-let mehO: t;
-
-let smile: t;
-
-let smileO: t;
-
-let inbox: t;
-
-let laptop: t;
-
-let appstoreO: t;
-
-let appstore: t;
-
 let lineChart: t;
 
-let link: t;
+let radarChart: t;
 
-let mail: t;
+let heatMap: t;
 
-let mobile: t;
+let fall: t;
 
-let notification: t;
+let rise: t;
 
-let paperClip: t;
+let stock: t;
 
-let picture: t;
+let boxPlot: t;
 
-let poweroff: t;
+let fund: t;
 
-let reload: t;
-
-let search: t;
-
-let setting: t;
-
-let shareAlt: t;
-
-let shoppingCart: t;
-
-let tablet: t;
-
-let tag: t;
-
-let tagO: t;
-
-let tags: t;
-
-let tagsO: t;
-
-let toTop: t;
-
-let upload: t;
-
-let user: t;
-
-let videoCamera: t;
-
-let home: t;
-
-let loading: t;
-
-let loading3Quarters: t;
-
-let cloudUploadO: t;
-
-let cloudDownloadO: t;
-
-let cloudUpload: t;
-
-let cloudO: t;
-
-let starO: t;
-
-let star: t;
-
-let heartO: t;
-
-let heart: t;
-
-let environment: t;
-
-let environmentO: t;
-
-let eye: t;
-
-let eyeO: t;
-
-let camera: t;
-
-let cameraO: t;
-
-let save: t;
-
-let team: t;
-
-let solution: t;
-
-let phone: t;
-
-let filter: t;
-
-let exception_: t;
-
-let export: t;
-
-let customerService: t;
-
-let qrcode: t;
-
-let scan: t;
-
-let like: t;
-
-let likeO: t;
-
-let dislike: t;
-
-let dislikeO: t;
-
-let message: t;
-
-let payCircle: t;
-
-let payCircleO: t;
-
-let calculator: t;
-
-let pushpin: t;
-
-let pushpinO: t;
-
-let bulb: t;
-
-let select: t;
-
-let switcher: t;
-
-let rocket: t;
-
-let bell: t;
-
-let disconnect: t;
-
-let database: t;
-
-let compass: t;
-
-let barcode: t;
-
-let hourglass: t;
-
-let key: t;
-
-let flag: t;
-
-let layout: t;
-
-let printer: t;
-
-let sound: t;
-
-let usb: t;
-
-let skin: t;
-
-let tool: t;
-
-let sync: t;
-
-let wifi: t;
-
-let car: t;
-
-let schedule: t;
-
-let userAdd: t;
-
-let userDelete: t;
-
-let usergroupAdd: t;
-
-let usergroupDelete: t;
-
-let man: t;
-
-let woman: t;
-
-let shop: t;
-
-let gift: t;
-
-let idcard: t;
-
-let medicineBox: t;
-
-let redEnvelope: t;
-
-let coffee: t;
-
-let copyright: t;
-
-let trademark: t;
-
-let safety: t;
-
-let wallet: t;
-
-let bank: t;
-
-let trophy: t;
-
-let contacts: t;
-
-let global: t;
-
-let shake: t;
-
-let api: t;
-
-let fork: t;
-
-let dashboard: t;
-
-let form: t;
-
-let table: t;
-
-let profile: t;
+let sliders: t;
 
 let android: t;
 
-let androidO: t;
-
 let apple: t;
 
-let appleO: t;
-
 let windows: t;
-
-let windowsO: t;
 
 let ie: t;
 
@@ -508,11 +290,7 @@ let github: t;
 
 let aliwangwang: t;
 
-let aliwangwangO: t;
-
 let dingding: t;
-
-let dingdingO: t;
 
 let weiboSquare: t;
 
@@ -554,6 +332,8 @@ let facebook: t;
 
 let codepen: t;
 
+let codeSandbox: t;
+
 let amazon: t;
 
 let google: t;
@@ -563,6 +343,8 @@ let codepenCircle: t;
 let alipay: t;
 
 let antDesign: t;
+
+let antCloud: t;
 
 let aliyun: t;
 
@@ -583,5 +365,379 @@ let dribbbleSquare: t;
 let instagram: t;
 
 let yuque: t;
+
+let alibaba: t;
+
+let yahoo: t;
+
+let reddit: t;
+
+let sketch: t;
+
+let accountBook: t;
+
+let alert: t;
+
+let api: t;
+
+let appstore: t;
+
+let audio: t;
+
+let bank: t;
+
+let bell: t;
+
+let book: t;
+
+let bug: t;
+
+let bulb: t;
+
+let calculator: t;
+
+let build: t;
+
+let calendar: t;
+
+let camera: t;
+
+let car: t;
+
+let carryOut: t;
+
+let cloud: t;
+
+let code: t;
+
+let compass: t;
+
+let contacts: t;
+
+let container: t;
+
+let control: t;
+
+let creditCard: t;
+
+let crown: t;
+
+let customerService: t;
+
+let dashboard: t;
+
+let database: t;
+
+let dislike: t;
+
+let environment: t;
+
+let experiment: t;
+
+let eyeInvisible: t;
+
+let eye: t;
+
+let fileAdd: t;
+
+let fileExcel: t;
+
+let fileExclamation: t;
+
+let fileImage: t;
+
+let fileMarkdown: t;
+
+let filePdf: t;
+
+let filePpt: t;
+
+let fileText: t;
+
+let fileUnknown: t;
+
+let fileWord: t;
+
+let fileZip: t;
+
+let file: t;
+
+let filter: t;
+
+let fire: t;
+
+let flag: t;
+
+let folderAdd: t;
+
+let folder: t;
+
+let folderOpen: t;
+
+let frown: t;
+
+let funnelPlot: t;
+
+let gift: t;
+
+let hdd: t;
+
+let heart: t;
+
+let home: t;
+
+let hourglass: t;
+
+let idcard: t;
+
+let insurance: t;
+
+let interaction: t;
+
+let layout: t;
+
+let like: t;
+
+let lock: t;
+
+let mail: t;
+
+let medicineBox: t;
+
+let meh: t;
+
+let message: t;
+
+let mobile: t;
+
+let moneyCollect: t;
+
+let payCircle: t;
+
+let notification: t;
+
+let phone: t;
+
+let picture: t;
+
+let playSquare: t;
+
+let printer: t;
+
+let profile: t;
+
+let project: t;
+
+let pushpin: t;
+
+let propertySafety: t;
+
+let read: t;
+
+let reconciliation: t;
+
+let redEnvelope: t;
+
+let rest: t;
+
+let rocket: t;
+
+let safetyCertificate: t;
+
+let save: t;
+
+let schedule: t;
+
+let securityScan: t;
+
+let setting: t;
+
+let shop: t;
+
+let shopping: t;
+
+let skin: t;
+
+let smile: t;
+
+let sound: t;
+
+let star: t;
+
+let switcher: t;
+
+let tablet: t;
+
+let tag: t;
+
+let tags: t;
+
+let tool: t;
+
+let thunderbolt: t;
+
+let trophy: t;
+
+let unlock: t;
+
+let usb: t;
+
+let videoCamera: t;
+
+let wallet: t;
+
+let apartment: t;
+
+let audit: t;
+
+let barcode: t;
+
+let bars: t;
+
+let block: t;
+
+let border: t;
+
+let branches: t;
+
+let ci: t;
+
+let cloudDownload: t;
+
+let cloudServer: t;
+
+let cloudSync: t;
+
+let cloudUpload: t;
+
+let cluster: t;
+
+let coffee: t;
+
+let copyright: t;
+
+let deploymentUnit: t;
+
+let desktop: t;
+
+let disconnect: t;
+
+let dollar: t;
+
+let download: t;
+
+let ellipsis: t;
+
+let euro: t;
+
+let exception_: t;
+
+let export: t;
+
+let fileDone: t;
+
+let fileJpg: t;
+
+let fileProtect: t;
+
+let fileSync: t;
+
+let fileSearch: t;
+
+let fork: t;
+
+let gateway: t;
+
+let global: t;
+
+let gold: t;
+
+let history: t;
+
+let import: t;
+
+let inbox: t;
+
+let key: t;
+
+let laptop: t;
+
+let link: t;
+
+let line: t;
+
+let loading3Quarters: t;
+
+let loading: t;
+
+let man: t;
+
+let menu: t;
+
+let monitor: t;
+
+let more: t;
+
+let number: t;
+
+let percentage: t;
+
+let paperClip: t;
+
+let pound: t;
+
+let poweroff: t;
+
+let pullRequest: t;
+
+let qrcode: t;
+
+let reload: t;
+
+let safety: t;
+
+let robot: t;
+
+let scan: t;
+
+let search: t;
+
+let select: t;
+
+let shake: t;
+
+let shareAlt: t;
+
+let shoppingCart: t;
+
+let solution: t;
+
+let sync: t;
+
+let table: t;
+
+let team: t;
+
+let toTop: t;
+
+let trademark: t;
+
+let transaction: t;
+
+let upload: t;
+
+let userAdd: t;
+
+let userDelete: t;
+
+let usergroupAdd: t;
+
+let user: t;
+
+let usergroupDelete: t;
+
+let wifi: t;
+
+let woman: t;
 
 
