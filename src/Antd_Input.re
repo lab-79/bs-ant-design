@@ -156,6 +156,7 @@ module TextArea = {
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
       ~id: string=?,
+      ~ref: React.Ref.t('ref)=?,
       ~children: React.element=?
     ) =>
     React.element =
