@@ -120,7 +120,7 @@ let make =
       ~onSelect?,
       ~onTreeExpand?,
       ~children?,
-      ~getPopupContainer?
+      ~getPopupContainer?,
       (),
     ),
   );
