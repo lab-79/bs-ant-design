@@ -22,6 +22,7 @@ type size = [ | `large | `default | `small];
 [@bs.obj]
 external makePropsInput:
   (
+    ~autoFocus: bool=?,
     ~placeholder: string=?,
     ~addonAfter: React.element=?,
     ~addonBefore: React.element=?,
@@ -56,6 +57,7 @@ external makePropsInput:
 [@react.component]
 let make =
     (
+      ~autoFocus: option(bool)=?,
       ~placeholder: option(string)=?,
       ~addonAfter: option(React.element)=?,
       ~addonBefore: option(React.element)=?,
@@ -84,6 +86,7 @@ let make =
   React.createElement(
     reactComponent,
     makePropsInput(
+      ~autoFocus?,
       ~placeholder?,
       ~addonAfter?,
       ~addonBefore?,
