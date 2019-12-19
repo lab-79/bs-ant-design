@@ -1,6 +1,6 @@
 {
   "name": "bs-ant-design-alt",
-  "version": "2.0.0-alpha.30",
+  "version": "2.0.0-alpha.31",
   "description": "Bucklescript bindings for Ant Design",
   "repository": {
     "type": "git",

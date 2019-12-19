@@ -47,6 +47,11 @@ let make = () =>
           </li>
         </ul>
       </Paragraph>
+      <Paragraph ellipsis={Obj(Paragraph.ellipsisObj(~rows=2, ()))}>
+        {Belt.Array.makeBy(500, _ => "Ant Design ellipsis")
+         |> Js.Array.joinWith(" ")
+         |> str}
+      </Paragraph>
     </div>
     <div>
       <Text> {"Ant Design" |> str} </Text>
