@@ -172,6 +172,55 @@ module Paragraph = {
   // onChange	Trigger when user edit the content	Function(string)	-
   // strong	bold style	boolean	false
   // type	Content type	secondary, warning, danger	-
+
+  [@bs.deriving abstract]
+  type editableObj = {
+    [@bs.optional]
+    editing: bool,
+    [@bs.optional]
+    onStart: unit => unit,
+    [@bs.optional]
+    onChange: string => unit,
+  };
+
+  module EditableValue = {
+    type t;
+    external bool: bool => t = "%identity";
+    external obj: editableObj => t = "%identity";
+  };
+  type editableType =
+    | Bool(bool)
+    | Obj(editableObj);
+  let setEditable = (a: editableType) =>
+    switch (a) {
+    | Bool(bool) => EditableValue.bool(bool)
+    | Obj(obj) => EditableValue.obj(obj)
+    };
+
+  [@bs.deriving abstract]
+  type ellipsisObj = {
+    [@bs.optional]
+    rows: int,
+    [@bs.optional]
+    expandable: bool,
+    [@bs.optional]
+    onExpand: unit => unit,
+  };
+
+  module EllipsisValue = {
+    type t;
+    external bool: bool => t = "%identity";
+    external obj: ellipsisObj => t = "%identity";
+  };
+  type ellipsisType =
+    | Bool(bool)
+    | Obj(ellipsisObj);
+  let setEllipsis = (a: ellipsisType) =>
+    switch (a) {
+    | Bool(bool) => EllipsisValue.bool(bool)
+    | Obj(obj) => EllipsisValue.obj(obj)
+    };
+
   [@bs.obj]
   external makePropsText:
     (
@@ -179,8 +228,8 @@ module Paragraph = {
       ~copyable: bool=?,
       ~delete: bool=?,
       ~disabled: bool=?,
-      ~editable: bool=?,
-      ~ellipsis: bool=?,
+      ~editable: option(EditableValue.t)=?,
+      ~ellipsis: option(EllipsisValue.t)=?,
       ~mark: bool=?,
       ~underline: bool=?,
       ~onChange: string => unit=?,
@@ -203,8 +252,8 @@ module Paragraph = {
         ~copyable: option(bool)=?,
         ~delete: option(bool)=?,
         ~disabled: option(bool)=?,
-        ~editable: option(bool)=?,
-        ~ellipsis: option(bool)=?,
+        ~editable: option(editableType)=?,
+        ~ellipsis: option(ellipsisType)=?,
         ~mark: option(bool)=?,
         ~underline: option(bool)=?,
         ~onChange: option(string => unit)=?,
@@ -221,8 +270,12 @@ module Paragraph = {
         ~copyable?,
         ~delete?,
         ~disabled?,
-        ~editable?,
-        ~ellipsis?,
+        ~editable={
+          Belt.Option.map(editable, setEditable);
+        },
+        ~ellipsis={
+          Belt.Option.map(ellipsis, setEllipsis);
+        },
         ~mark?,
         ~underline?,
         ~onChange?,
