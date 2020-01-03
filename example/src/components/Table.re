@@ -7,24 +7,28 @@ let columns: array(Table.columnParams) = [|
     "title": "Name" |> str,
     "dataIndex": "name",
     "key": "name",
+    "width": Some(Antd.Table.Str("150px")),
     "render": (text, _v) => <a href="javascript:;"> {text |> str} </a>,
   },
   {
     "title": "Age" |> str,
     "dataIndex": "age",
     "key": "age",
+    "width": None,
     "render": (text, _v) => text |> str,
   },
   {
     "title": "Address" |> str,
     "dataIndex": "address",
     "key": "address",
+    "width": None,
     "render": (text, _v) => text |> str,
   },
   {
     "title": "Tags" |> str,
     "key": "tags",
     "dataIndex": "tags",
+    "width": None,
     "render": (text, _v) => text |> str,
     //   render: tags => (
     //     <span>
@@ -42,6 +46,7 @@ let columns: array(Table.columnParams) = [|
     "title": "Action" |> str,
     "key": "action",
     "dataIndex": "action",
+    "width": None,
     "render": (text, record) =>
       <span>
         <a href="javascript:;"> {"Invite" ++ record##name |> str} </a>

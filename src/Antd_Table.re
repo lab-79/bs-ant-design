@@ -74,13 +74,48 @@ type mouseEvents = {
   onMouseLeave: ReactEvent.Mouse.t => unit,
 };
 
+type columnWidth =
+  | Int(int)
+  | Str(string);
+
+module ColumnWidth = {
+  type t;
+  external int: int => t = "%identity";
+  external str: string => t = "%identity";
+};
+
+let setColumnWidth = (a: columnWidth) =>
+  switch (a) {
+  | Int(int) => ColumnWidth.int(int)
+  | Str(string) => ColumnWidth.str(string)
+  };
+
 [@bs.deriving abstract]
 type columnParams = {
   .
   "title": React.element,
   "dataIndex": string,
+  "width": option(columnWidth),
   "key": string,
   "render": (string, record) => React.element,
+};
+
+[@bs.deriving abstract]
+type resolvedColumnParams = {
+  .
+  "title": React.element,
+  "dataIndex": string,
+  "width": option(ColumnWidth.t),
+  "key": string,
+  "render": (string, record) => React.element,
+};
+
+let parseColumnProps = (columnProps: columnParams): resolvedColumnParams => {
+  "title": columnProps##title,
+  "dataIndex": columnProps##dataIndex,
+  "width": Belt.Option.map(columnProps##width, setColumnWidth),
+  "key": columnProps##key,
+  "render": columnProps##render,
 };
 
 [@bs.obj]
@@ -88,7 +123,7 @@ external makePropsTable:
   (
     ~bordered: bool=?,
     ~childrenColumnName: array(string)=?,
-    ~columns: array(columnParams)=?,
+    ~columns: array(resolvedColumnParams)=?,
     ~dataSource: 'a=?,
     ~loading: bool=?,
     ~pagination: Js.t({..})=?,
@@ -124,7 +159,9 @@ let make =
     makePropsTable(
       ~bordered?,
       ~childrenColumnName?,
-      ~columns?,
+      ~columns=
+        Belt.Option.getWithDefault(columns, [||])
+        ->Belt.Array.map(parseColumnProps),
       ~dataSource?,
       ~loading?,
       ~pagination?,
