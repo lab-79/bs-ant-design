@@ -89,5 +89,6 @@ let make = () =>
       }
       columns
       dataSource=data
+      scroll={Antd.Table.scroll(~xScroll=Antd.Table.ScrollBool(false), ())}
     />
   </Section>;

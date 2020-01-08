@@ -118,6 +118,57 @@ let parseColumnProps = (columnProps: columnParams): resolvedColumnParams => {
   "render": columnProps##render,
 };
 
+type scrollVal =
+  | ScrollInt(int)
+  | ScrollStr(string)
+  | ScrollBool(bool);
+
+module ScrollVal = {
+  type t;
+  external int: int => t = "%identity";
+  external bool: bool => t = "%identity";
+  external string: string => t = "%identity";
+};
+
+let setScrollVal = scrollVal =>
+  switch (scrollVal) {
+  | ScrollInt(int) => ScrollVal.int(int)
+  | ScrollBool(bool) => ScrollVal.bool(bool)
+  | ScrollStr(string) => ScrollVal.string(string)
+  };
+
+[@bs.deriving abstract]
+type scroll = {
+  [@bs.optional]
+  xScroll: scrollVal,
+  [@bs.optional]
+  yScroll: scrollVal,
+};
+
+[@bs.deriving abstract]
+type scrollTranspiled = {
+  [@bs.optional]
+  x: ScrollVal.t,
+  [@bs.optional]
+  y: ScrollVal.t,
+};
+
+let transpileScroll = (scroll: option(scroll)): scrollTranspiled => {
+  switch (scroll) {
+  | Some(scroll) =>
+    let x = xScrollGet(scroll);
+    let y = yScrollGet(scroll);
+    switch (x, y) {
+    | (Some(x), Some(y)) =>
+      scrollTranspiled(~x=setScrollVal(x), ~y=setScrollVal(y), ())
+    | (Some(x), None) => scrollTranspiled(~x=setScrollVal(x), ())
+    | (None, Some(y)) => scrollTranspiled(~y=setScrollVal(y), ())
+    | _ => scrollTranspiled()
+    };
+  | _ => scrollTranspiled()
+  };
+};
+
 [@bs.obj]
 external makePropsTable:
   (
@@ -130,6 +181,7 @@ external makePropsTable:
     ~onRow: (Js.t({..}), int) => mouseEvents=?,
     ~id: string=?,
     ~size: option(string)=?,
+    ~scroll: scrollTranspiled=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -150,6 +202,7 @@ let make =
       ~pagination: option(Js.t({..}))=?,
       ~onRow: option((Js.t({..}), int) => mouseEvents)=?,
       ~size: option(sizeType)=?,
+      ~scroll: option(scroll)=?,
       ~id: option(string)=?,
       ~className: option(string)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -167,6 +220,7 @@ let make =
       ~pagination?,
       ~onRow?,
       ~size=Belt.Option.map(size, sizeTypeToJs),
+      ~scroll=transpileScroll(scroll),
       ~id?,
       ~className?,
       ~style?,
