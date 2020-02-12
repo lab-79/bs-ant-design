@@ -82,6 +82,7 @@ module TabPane = {
   [@bs.module "antd/lib/tabs"] [@react.component]
   external make:
     (
+      ~disabled: bool=?,
       ~forceRender: bool=?,
       ~key: string=?,
       ~className: string=?,
