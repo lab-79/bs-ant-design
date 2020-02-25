@@ -44,6 +44,7 @@ external makePropsInput:
     ~readOnly: bool=?,
     ~autoComplete: string=?,
     ~allowClear: bool=?,
+    ~ref: React.Ref.t('ref)=?,
     ~className: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~children: React.element=?,
@@ -80,6 +81,7 @@ let make =
       ~autoComplete: option(string)=?,
       ~allowClear: option(bool)=?,
       ~className: option(string)=?,
+      ~ref: option(React.Ref.t('ref))=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       ~children: option(React.element)=?,
     ) =>
@@ -108,6 +110,7 @@ let make =
       ~readOnly?,
       ~autoComplete?,
       ~allowClear?,
+      ~ref?,
       ~className?,
       ~style?,
       ~children?,
