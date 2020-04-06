@@ -1,7 +1,4 @@
-open! Antd;
-
 let str = React.string;
-
 let dataSource = [|
   "Input",
   "Output",
@@ -12,30 +9,28 @@ let dataSource = [|
   "something",
   "just testing",
 |];
-
-let filterOption = (inputValue, option: AutoComplete.optionType) =>
+let filterOption = (inputValue, option: Antd.AutoComplete.optionType) =>
   String.uppercase(option##props##children)
   |> (inputValue |> String.uppercase |> Js.String.indexOf) !== (-1);
-
 [@react.component]
 let make = () =>
   <Section name="Auto complete">
-    <AutoComplete
+    <Antd.AutoComplete
       className=Theme.stdWidth
       dataSource
       placeholder="input here"
-      filterOption={AutoComplete.Bool(false)}
+      filterOption={Antd.AutoComplete.Bool(false)}
     />
-    <AutoComplete
+    <Antd.AutoComplete
       className=Theme.stdWidth
       dataSource
       placeholder="input here"
-      filterOption={AutoComplete.Bool(true)}
+      filterOption={Antd.AutoComplete.Bool(true)}
     />
-    <AutoComplete
+    <Antd.AutoComplete
       className=Theme.stdWidth
       dataSource
       placeholder="input here"
-      filterOption={AutoComplete.Function(filterOption)}
+      filterOption={Antd.AutoComplete.Function(filterOption)}
     />
   </Section>;

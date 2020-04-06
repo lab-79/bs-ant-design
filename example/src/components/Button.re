@@ -1,7 +1,6 @@
-open! Antd;
-
 let str = React.string;
 
+// TODO: Icons
 module Styles = {
   open Css;
 
@@ -12,48 +11,60 @@ module Styles = {
 let make = () =>
   <Section name="Button">
     <div>
-      <Button _type=`primary> {"Primary" |> str} </Button>
-      <Button> {"Default" |> str} </Button>
-      <Button _type=`dashed> {"Dashed" |> str} </Button>
-      <Button _type=`danger> {"Danger" |> str} </Button>
-      <Button _type=`link> {"Link" |> str} </Button>
+      <Antd.Button autoFocus=true> {React.string("AutoFocus")} </Antd.Button>
     </div>
     <div>
-      <Button _type=`primary shape=`circle icon=IconName.search />
-      <Button _type=`primary icon=IconName.search> {"Search" |> str} </Button>
-      <Button shape=`circle icon=IconName.search />
-      <Button icon=IconName.search> {"Search" |> str} </Button>
+      <Antd.Button danger=true> {React.string("Danger")} </Antd.Button>
+    </div>
+    <div>
+      <Antd.Button block=true> {React.string("Block")} </Antd.Button>
+    </div>
+    <div>
+      <Antd.Button _type=`primary> {"Primary" |> str} </Antd.Button>
+      <Antd.Button> {"Default" |> str} </Antd.Button>
+      <Antd.Button _type=`dashed> {"Dashed" |> str} </Antd.Button>
+      <Antd.Button _type=`danger> {"Danger" |> str} </Antd.Button>
+      <Antd.Button _type=`link> {"Link" |> str} </Antd.Button>
+    </div>
+    <div>
+      <Antd.Button _type=`primary shape=`circle />
+      <Antd.Button _type=`primary> {"Search" |> str} </Antd.Button>
+      <Antd.Button shape=`circle />
+      <Antd.Button> {"Search" |> str} </Antd.Button>
       <br />
-      <Button shape=`circle icon=IconName.search />
-      <Button icon=IconName.search> {"Search" |> str} </Button>
-      <Button _type=`dashed shape=`circle icon=IconName.search />
-      <Button _type=`dashed icon=IconName.search> {"Search" |> str} </Button>
+      <Antd.Button shape=`circle />
+      <Antd.Button> {"Search" |> str} </Antd.Button>
+      <Antd.Button _type=`dashed shape=`circle />
+      <Antd.Button _type=`dashed> {"Search" |> str} </Antd.Button>
+      <Antd.Button danger=true> {"Danger prop" |> str} </Antd.Button>
     </div>
     <div>
-      <Button _type=`primary> {"Primary" |> str} </Button>
-      <Button _type=`primary disabled=true>
+      <Antd.Button _type=`primary> {"Primary" |> str} </Antd.Button>
+      <Antd.Button _type=`primary disabled=true>
         {"Primary(disabled)" |> str}
-      </Button>
+      </Antd.Button>
       <br />
-      <Button> {"Default" |> str} </Button>
-      <Button disabled=true> {"Default(disabled)" |> str} </Button>
+      <Antd.Button> {"Default" |> str} </Antd.Button>
+      <Antd.Button disabled=true> {"Default(disabled)" |> str} </Antd.Button>
       <br />
-      <Button _type=`dashed> {"Dashed" |> str} </Button>
-      <Button _type=`dashed disabled=true>
+      <Antd.Button _type=`dashed> {"Dashed" |> str} </Antd.Button>
+      <Antd.Button _type=`dashed disabled=true>
         {"Dashed(disabled)" |> str}
-      </Button>
+      </Antd.Button>
       <div className=Styles.btn1>
-        <Button ghost=true> {"Ghost" |> str} </Button>
-        <Button ghost=true disabled=true> {"Ghost(disabled)" |> str} </Button>
+        <Antd.Button ghost=true> {"Ghost" |> str} </Antd.Button>
+        <Antd.Button ghost=true disabled=true>
+          {"Ghost(disabled)" |> str}
+        </Antd.Button>
       </div>
     </div>
-    <Button.ButtonGroup>
-      <Button> {"Cancel" |> str} </Button>
-      <Button> {"OK" |> str} </Button>
-    </Button.ButtonGroup>
-    <Button.ButtonGroup size=`small>
-      <Button disabled=true> {"L" |> str} </Button>
-      <Button disabled=true> {"M" |> str} </Button>
-      <Button disabled=true> {"R" |> str} </Button>
-    </Button.ButtonGroup>
+    <Antd.Button.ButtonGroup>
+      <Antd.Button> {"Cancel" |> str} </Antd.Button>
+      <Antd.Button> {"OK" |> str} </Antd.Button>
+    </Antd.Button.ButtonGroup>
+    <Antd.Button.ButtonGroup size=`small>
+      <Antd.Button disabled=true> {"L" |> str} </Antd.Button>
+      <Antd.Button disabled=true> {"M" |> str} </Antd.Button>
+      <Antd.Button disabled=true> {"R" |> str} </Antd.Button>
+    </Antd.Button.ButtonGroup>
   </Section>;

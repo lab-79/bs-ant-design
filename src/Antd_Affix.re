@@ -1,8 +1,8 @@
 /*
- offsetBottom	Pixels to offset from bottom when calculating position of scroll	number	-
- offsetTop	Pixels to offset from top when calculating position of scroll	number	0
- target	specifies the scrollable area dom node	() => HTMLElement	() => window
- onChange	Callback for when affix state is changed	Function(affixed)	-
+ offsetBottom	Offset from the bottom of the viewport (in pixels)	number	-
+ offsetTop	Offset from the top of the viewport (in pixels)	number	0
+ target	Specifies the scrollable area DOM node	() => HTMLElement	() => window
+ onChange	Callback for when Affix state is changed	Function(affixed)	-
  */
 
 [%bs.raw {|require("antd/lib/affix/style")|}];

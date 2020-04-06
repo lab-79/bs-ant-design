@@ -1,18 +1,14 @@
-open! Antd;
-
 let str = React.string;
-
-let routes: array(Breadcrumb.route) = [|
+let routes: array(Antd.Breadcrumb.route) = [|
   {"path": "index", "breadcrumbName": "home"},
   {"path": "first", "breadcrumbName": "first"},
   {"path": "second", "breadcrumbName": "second"},
 |];
-
 let itemRender =
     (
-      route: Breadcrumb.route,
+      route: Antd.Breadcrumb.route,
       params,
-      routes: array(Breadcrumb.route),
+      routes: array(Antd.Breadcrumb.route),
       paths: array(string),
     ) => {
   let isLast =
@@ -21,67 +17,65 @@ let itemRender =
     ? <span> {route##breadcrumbName |> str} </span>
     : <span> {String.concat(" / ", paths |> Array.to_list) |> str} </span>;
 };
-
 let overlay =
-  <Menu>
-    <Menu.Item>
+  <Antd.Menu>
+    <Antd.Menu.Item>
       <a
         target="_blank"
         rel="noopener noreferrer"
         href="http://www.alipay.com/">
         {"General" |> str}
       </a>
-    </Menu.Item>
-    <Menu.Item>
+    </Antd.Menu.Item>
+    <Antd.Menu.Item>
       <a
         target="_blank"
         rel="noopener noreferrer"
         href="http://www.taobao.com/">
         {"Layout" |> str}
       </a>
-    </Menu.Item>
-    <Menu.Item>
+    </Antd.Menu.Item>
+    <Antd.Menu.Item>
       <a
         target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
         {"Navigation" |> str}
       </a>
-    </Menu.Item>
-  </Menu>;
-
+    </Antd.Menu.Item>
+  </Antd.Menu>;
 [@react.component]
 let make = () =>
-  <Section name="Breadcrumb">
-    <Breadcrumb>
-      <Breadcrumb.Item> {"Home" |> str} </Breadcrumb.Item>
-      <Breadcrumb.Item>
+  <Section name="Antd.Breadcrumb">
+    <Antd.Breadcrumb>
+      <Antd.Breadcrumb.Item> {"Home" |> str} </Antd.Breadcrumb.Item>
+      <Antd.Breadcrumb.Item>
         <a href=""> {"Application Center" |> str} </a>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>
+      </Antd.Breadcrumb.Item>
+      <Antd.Breadcrumb.Item>
         <a href=""> {"Application List" |> str} </a>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item> {"An Application" |> str} </Breadcrumb.Item>
-    </Breadcrumb>
-    <Breadcrumb>
-      <Breadcrumb.Item href="">
-        <IconUnsafe _type=IconName.home />
-      </Breadcrumb.Item>
-      <Breadcrumb.Item href="">
-        <IconUnsafe _type=IconName.user />
+      </Antd.Breadcrumb.Item>
+      <Antd.Breadcrumb.Item> {"An Application" |> str} </Antd.Breadcrumb.Item>
+    </Antd.Breadcrumb>
+    <Antd.Breadcrumb>
+      <Antd.Breadcrumb.Item href="">
+        <Antd.IconUnsafe _type=Antd.IconName.home />
+      </Antd.Breadcrumb.Item>
+      <Antd.Breadcrumb.Item href="">
+        <Antd.IconUnsafe _type=Antd.IconName.user />
         <span> {"Application List" |> str} </span>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item> {"Application" |> str} </Breadcrumb.Item>
-    </Breadcrumb>
-    <Breadcrumb itemRender routes />
+      </Antd.Breadcrumb.Item>
+      <Antd.Breadcrumb.Item> {"Application" |> str} </Antd.Breadcrumb.Item>
+    </Antd.Breadcrumb>
+    <Antd.Breadcrumb itemRender routes />
     <div>
-      <Breadcrumb>
-        <Breadcrumb.Item> {"Ant Design" |> str} </Breadcrumb.Item>
-        <Breadcrumb.Item>
+      <Antd.Breadcrumb>
+        <Antd.Breadcrumb.Item> {"Ant Design" |> str} </Antd.Breadcrumb.Item>
+        <Antd.Breadcrumb.Item>
           <a href=""> {"Component" |> str} </a>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item overlay>
+        </Antd.Breadcrumb.Item>
+        <Antd.Breadcrumb.Item overlay>
           <a href=""> {"General" |> str} </a>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item> {"Button" |> str} </Breadcrumb.Item>
-      </Breadcrumb>
+        </Antd.Breadcrumb.Item>
+        <Antd.Breadcrumb.Item> {"Button" |> str} </Antd.Breadcrumb.Item>
+      </Antd.Breadcrumb>
     </div>
   </Section>;

@@ -15,5 +15,4 @@ let make = (~name, ~className="", ~children) =>
   <div className={Css.merge([Styles.section, className])}>
     <span className=Styles.name> {name |> React.string} </span>
     children
-    <Antd.Divider />
   </div>;

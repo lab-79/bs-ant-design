@@ -44,38 +44,39 @@ type components = [
 
 let varToComp = var =>
   switch (var) {
-  | `alert => <Alert />
-  | `autoComplete => <AutoComplete />
-  | `avatar => <Avatar />
-  | `badge => <Badge />
-  | `breadcrumb => <Breadcrumb />
+  // | `alert => <Alert />
+  // | `autoComplete => <AutoComplete />
+  // | `avatar => <Avatar />
+  // | `badge => <Badge />
+  // | `breadcrumb => <Breadcrumb />
   | `button => <Button />
-  | `calendar => <Calendar />
-  | `card => <Card />
-  | `carousel => <Carousel />
-  | `cascader => <Cascader />
-  | `checkbox => <Checkbox />
-  | `collaspe => <Collapse />
-  | `datepicker => <DatePicker />
-  | `drawer => <Drawer />
-  | `dropdown => <Dropdown />
-  | `empty => <Empty />
-  | `form => <Form />
-  | `grid => <Grid />
-  | `input => <Input />
-  | `layout => <Layout />
-  | `modal => <Modal />
-  | `pageheader => <PageHeader />
-  | `pagination => <Pagination />
-  | `radio => <Radio />
-  | `rate => <Rate />
-  | `select => <Select />
-  | `statistic => <Statistic />
-  | `table => <Table />
-  | `tabs => <Tabs />
-  | `tooltip => <Tooltip />
-  | `treeselect => <TreeSelect />
+  // | `calendar => <Calendar />
+  // | `card => <Card />
+  // | `carousel => <Carousel />
+  // | `cascader => <Cascader />
+  // | `checkbox => <Checkbox />
+  // | `collaspe => <Collapse />
+  // | `datepicker => <DatePicker />
+  // | `drawer => <Drawer />
+  // | `dropdown => <Dropdown />
+  // | `empty => <Empty />
+  // | `form => <Form />
+  // | `grid => <Grid />
+  // | `input => <Input />
+  // | `layout => <Layout />
+  // | `modal => <Modal />
+  // | `pageheader => <PageHeader />
+  // | `pagination => <Pagination />
+  // | `radio => <Radio />
+  // | `rate => <Rate />
+  // | `select => <Select />
+  // | `statistic => <Statistic />
+  // | `table => <Table />
+  // | `tabs => <Tabs />
+  // | `tooltip => <Tooltip />
+  // | `treeselect => <TreeSelect />
   | `typography => <Typography />
+  | _ => React.null
   };
 
 let comps = [|
@@ -85,31 +86,31 @@ let comps = [|
   `badge,
   `breadcrumb,
   `button,
-  `calendar,
-  `card,
-  `carousel,
-  `cascader,
-  `checkbox,
-  `collaspe,
-  `datepicker,
-  `drawer,
-  `dropdown,
-  `empty,
-  `form,
-  `grid,
-  `input,
-  `layout,
-  `modal,
-  `pageheader,
-  `pagination,
-  `radio,
-  `rate,
-  `select,
-  `statistic,
-  `table,
-  `tabs,
-  `tooltip,
-  `treeselect,
+  // `calendar,
+  // `card,
+  // `carousel,
+  // `cascader,
+  // `checkbox,
+  // `collaspe,
+  // `datepicker,
+  // `drawer,
+  // `dropdown,
+  // `empty,
+  // `form,
+  // `grid,
+  // `input,
+  // `layout,
+  // `modal,
+  // `pageheader,
+  // `pagination,
+  // `radio,
+  // `rate,
+  // `select,
+  // `statistic,
+  // `table,
+  // `tabs,
+  // `tooltip,
+  // `treeselect,
   `typography,
 |];
 
@@ -120,11 +121,12 @@ let make = () => {
     componentsToJs(value)
     |> Js.String.includes(searchValue |> Js.String.toLowerCase);
   <div className=Styles.body>
-    <Antd.Affix offsetTop=0>
-      <Antd.Input.Search
-        onChange={v => setSearchValue(ReactEvent.Form.target(v)##value)}
-      />
-    </Antd.Affix>
-    {comps |> Js.Array.filter(filter) |> Array.map(varToComp) |> React.array}
-  </div>;
+    // <Antd.Affix offsetTop=0>
+    //   <Antd.Input.Search
+    //     onChange={v => setSearchValue(ReactEvent.Form.target(v)##value)}
+    //   />
+    // </Antd.Affix>
+
+      {comps |> Js.Array.filter(filter) |> Array.map(varToComp) |> React.array}
+    </div>;
 };

@@ -1,5 +1,4 @@
 let str = React.string;
-
 let dataSource = [|
   "Input",
   "Output",
@@ -10,10 +9,8 @@ let dataSource = [|
   "something",
   "just testing",
 |];
-
 module Styles = {
   open Css;
-
   let box =
     style([
       width(`px(30)),
@@ -21,7 +18,6 @@ module Styles = {
       background(`rgb((200, 200, 200))),
     ]);
 };
-
 let colors = [
   "pink",
   "red",
@@ -37,7 +33,6 @@ let colors = [
   "gold",
   "lime",
 ];
-
 [@react.component]
 let make = () =>
   <Section name="Badge">

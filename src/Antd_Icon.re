@@ -1,3 +1,5 @@
+// TODO: Bindings to 4.x
+
 /* svg not working */
 
 [@react.component]
