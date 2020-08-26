@@ -18,10 +18,10 @@ external makePropsIconUnsafe:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/icon";
+[@bs.module "antd/lib/icon"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

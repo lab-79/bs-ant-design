@@ -22,10 +22,10 @@ external makePropsForm:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/form";
+[@bs.module "antd/lib/form"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -87,11 +87,10 @@ module Item = {
       ~colon: bool=?,
       ~children: React.element=?
     ) =>
-    _ =
-    "";
+    _;
 
-  [@bs.module]
-  external reactComponent: React.component('a) = "antd/lib/form/FormItem";
+  [@bs.module "antd/lib/form/FormItem"]
+  external reactComponent: React.component('a) = "default";
 
   [@react.component]
   let make =

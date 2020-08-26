@@ -7,7 +7,7 @@
  onChange	The callback function that is triggered when the state changes.	Function(e:Event)
  */
 [%bs.raw {|require("antd/lib/checkbox/style")|}];
-[@bs.module] [@react.component]
+[@bs.module "antd/lib/checkbox"] [@react.component]
 external make:
   (
     ~autoFocus: bool=?,
@@ -22,11 +22,11 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "antd/lib/checkbox";
+  "default";
 let make = make;
 
 module Group = {
-  [@bs.module "antd/lib/checkbox"] [@react.component]
+  [@bs.module "antd/lib/checkbox"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~defaultValue: array(string)=?,

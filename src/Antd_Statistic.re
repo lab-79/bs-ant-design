@@ -26,11 +26,10 @@ external makePropsStatistic:
     ~className: string=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('b) = "antd/lib/statistic";
+[@bs.module "antd/lib/statistic"]
+external reactComponent: React.component('b) = "default";
 
 [@react.component]
 let make =
@@ -66,7 +65,7 @@ let make =
   );
 
 module Countdown = {
-  [@bs.module "antd/lib/statistic"] [@react.component]
+  [@bs.module "antd/lib/statistic"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~format: string=?,

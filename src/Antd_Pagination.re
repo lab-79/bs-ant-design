@@ -24,11 +24,10 @@ external makePropsPagination:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/pagination";
+[@bs.module "antd/lib/pagination"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

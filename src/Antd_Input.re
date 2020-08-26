@@ -49,10 +49,10 @@ external makePropsInput:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/input";
+[@bs.module "antd/lib/input"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -117,7 +117,7 @@ let make =
 
 /*
  Was in autocomplete file for some reason
- [@bs.module "antd/lib/input"] external reactClass: ReasonReact.reactClass = "TextArea";
+ [@bs.module "antd/lib/input"] [@bs.scope "default"] external reactClass: ReasonReact.reactClass = "TextArea";
  let make = (~value=?, ~defaultValue=?, ~onChange=?, ~onPressEnter=?, ~onBlur=?, ~className=?, ~style=?, children) =>
    ReasonReact.wrapJsForReason(
      ~reactClass,
@@ -135,7 +135,7 @@ let make =
  */
 
 module TextArea = {
-  [@bs.module "antd/lib/input"] [@react.component]
+  [@bs.module "antd/lib/input"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~placeholder: string=?,
@@ -159,7 +159,7 @@ module TextArea = {
       ~className: string=?,
       ~style: ReactDOMRe.Style.t=?,
       ~id: string=?,
-      ~ref: React.Ref.t('ref)=?,
+      ~ref: React.ref('ref)=?,
       ~children: React.element=?
     ) =>
     React.element =
@@ -198,8 +198,7 @@ module Search = {
       ~children: React.element=?,
       unit
     ) =>
-    _ =
-    "";
+    _;
 
   [@bs.module "antd/lib/input"]
   external reactComponent: React.component('a) = "Search";
@@ -299,8 +298,7 @@ module Group = {
       ~children: React.element=?,
       unit
     ) =>
-    _ =
-    "";
+    _;
 
   [@bs.module "antd/lib/input"]
   external reactComponent: React.component('a) = "Group";
@@ -398,8 +396,7 @@ module Password = {
       ~children: React.element=?,
       unit
     ) =>
-    _ =
-    "";
+    _;
 
   [@bs.module "antd/lib/input"]
   external reactComponent: React.component('a) = "Password";

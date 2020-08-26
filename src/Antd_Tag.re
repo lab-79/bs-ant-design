@@ -21,10 +21,10 @@ external makePropsTag:
     ~style: ReactDOMRe.Style.t=?,
     ~children: React.element
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/tag";
+[@bs.module "antd/lib/tag"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -60,7 +60,7 @@ let make =
   */
 
 module CheckableTag = {
-  [@bs.module "antd/lib/tag"] [@react.component]
+  [@bs.module "antd/lib/tag"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~checked: bool=?,

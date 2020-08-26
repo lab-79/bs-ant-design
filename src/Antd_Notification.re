@@ -19,14 +19,18 @@ type options = {
   "description": React.element,
 };
 type key = string;
-[@bs.module "antd/lib/notification"] external success: options => unit = "";
-[@bs.module "antd/lib/notification"] external error: options => unit = "";
-[@bs.module "antd/lib/notification"] external info: options => unit = "";
-[@bs.module "antd/lib/notification"] external warning: options => unit = "";
-[@bs.module "antd/lib/notification"] external warn: options => unit = "";
-[@bs.module "antd/lib/notification"] external close: key => unit = "";
-[@bs.module "antd/lib/notification"] external destroy: unit => unit = "";
-[@bs.module "antd/lib/notification"] external config: options => unit = "";
+[@bs.module "antd/lib/notification"]
+external success: options => unit = "success";
+[@bs.module "antd/lib/notification"] external error: options => unit = "error";
+[@bs.module "antd/lib/notification"] external info: options => unit = "info";
+[@bs.module "antd/lib/notification"]
+external warning: options => unit = "warning";
+[@bs.module "antd/lib/notification"] external warn: options => unit = "warn";
+[@bs.module "antd/lib/notification"] external close: key => unit = "close";
+[@bs.module "antd/lib/notification"]
+external destroy: unit => unit = "destroy";
+[@bs.module "antd/lib/notification"]
+external config: options => unit = "config";
 
 let success = options => success(options);
 

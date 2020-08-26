@@ -15,10 +15,10 @@ external makePropsEmpty:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/empty";
+[@bs.module "antd/lib/empty"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

@@ -46,11 +46,10 @@ external makePropsCollapse:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/collapse";
+[@bs.module "antd/lib/collapse"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -89,7 +88,7 @@ let make =
   );
 
 module Panel = {
-  [@bs.module "antd/lib/collapse"] [@react.component]
+  [@bs.module "antd/lib/collapse"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~disabled: bool=?,

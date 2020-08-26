@@ -44,10 +44,10 @@ external makePropsTabs:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/tabs";
+[@bs.module "antd/lib/tabs"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -79,7 +79,7 @@ let make =
  */
 
 module TabPane = {
-  [@bs.module "antd/lib/tabs"] [@react.component]
+  [@bs.module "antd/lib/tabs"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~forceRender: bool=?,

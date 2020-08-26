@@ -55,11 +55,10 @@ external makePropsDropdown:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/dropdown";
+[@bs.module "antd/lib/dropdown"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -113,7 +112,7 @@ let make =
  */
 
 module Button = {
-  [@bs.module "antd/lib/dropdown"] [@react.component]
+  [@bs.module "antd/lib/dropdown"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~icon: IconName.t=?,

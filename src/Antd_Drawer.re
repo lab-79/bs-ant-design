@@ -59,10 +59,10 @@ external maksePropsDrawer:
     ~children: React.element,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/drawer";
+[@bs.module "antd/lib/drawer"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

@@ -65,11 +65,10 @@ external makePropsPopOver:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/popover";
+[@bs.module "antd/lib/popover"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

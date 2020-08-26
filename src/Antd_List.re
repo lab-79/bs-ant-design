@@ -16,7 +16,7 @@ type grid = {
   "xxl": int,
 };
 
-[@bs.module] [@react.component]
+[@bs.module "antd/lib/list"] [@react.component]
 external make:
   (
     ~dataSource: array(React.element)=?,
@@ -37,7 +37,7 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "antd/lib/list";
+  "default";
 
 /*
  column	column of grid	number	-
@@ -71,7 +71,7 @@ external make:
  */
 
 module Item = {
-  [@bs.module "antd/lib/list"] [@react.component]
+  [@bs.module "antd/lib/list"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~actions: array(React.element)=?,
@@ -88,7 +88,7 @@ module Item = {
    */
 
 module Meta = {
-  [@bs.module "antd/lib/list"] [@react.component]
+  [@bs.module "antd/lib/list"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~avatar: React.element=?,

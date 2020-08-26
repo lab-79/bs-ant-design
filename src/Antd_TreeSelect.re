@@ -42,11 +42,10 @@ external makePropsTreeSelect:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/tree-select";
+[@bs.module "antd/lib/tree-select"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -169,7 +168,7 @@ module TreeNode = {
      title	Content showed on the treeNodes	string|ReactNode	'---'
      value	Will be treated as treeNodeFilterProp by default, should be unique in the tree	string	- */
 
-  [@bs.module "antd/lib/tree-select"] [@react.component]
+  [@bs.module "antd/lib/tree-select"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~className: string=?,

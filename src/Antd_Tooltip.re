@@ -64,11 +64,10 @@ external makePropsToolTip:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/tooltip";
+[@bs.module "antd/lib/tooltip"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

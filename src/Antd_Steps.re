@@ -1,4 +1,5 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/steps";
+[@bs.module "antd/lib/steps"]
+external reactClass: ReasonReact.reactClass = "default";
 
 [%bs.raw {|require("antd/lib/steps/style")|}];
 
@@ -13,10 +14,10 @@ external makePropsSteps:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/steps";
+[@bs.module "antd/lib/steps"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -36,7 +37,7 @@ let make =
   );
 
 module Step = {
-  [@bs.module "antd/lib/steps"] [@react.component]
+  [@bs.module "antd/lib/steps"] [@bs.scope "default"] [@react.component]
   external make:
     (~title: string=?, ~description: string=?, ~children: React.element=?) =>
     React.element =

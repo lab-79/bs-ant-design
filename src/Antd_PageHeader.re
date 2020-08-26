@@ -25,11 +25,10 @@ external makePropsPageHeader:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/page-header";
+[@bs.module "antd/lib/page-header"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

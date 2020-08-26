@@ -133,7 +133,7 @@ module Group = {
 };
 
 module Button = {
-  [@bs.module "antd/lib/radio"] [@react.component]
+  [@bs.module "antd/lib/radio"] [@bs.scope "default"][@react.component]
   external make:
     (
       ~prefixCls: string=?,

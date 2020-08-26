@@ -28,10 +28,10 @@ external makePropsUpload:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/upload";
+[@bs.module "antd/lib/upload"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -113,8 +113,7 @@ module Dragger = {
       ~children: React.element=?,
       unit
     ) =>
-    _ =
-    "";
+    _;
 
   [@bs.module "antd/lib/upload"]
   external reactComponent: React.component('a) = "Dragger";

@@ -38,10 +38,10 @@ external makePropsRate:
     ~id: string=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/rate";
+[@bs.module "antd/lib/rate"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

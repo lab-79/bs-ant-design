@@ -58,10 +58,9 @@ module Internal = {
       ~value: moment=?,
       unit
     ) =>
-    _ =
-    "";
-  [@bs.module]
-  external reactComponent: React.component('a) = "antd/lib/date-picker";
+    _;
+  [@bs.module "antd/lib/date-picker"]
+  external reactComponent: React.component('a) = "default";
 };
 [@react.component]
 let make =
@@ -143,7 +142,7 @@ let make =
 module RangePicker = {
   type t('a) = Js.t({. rangePickerProps: int} as 'a);
 
-  [@bs.module "antd/lib/date-picker"] [@react.component]
+  [@bs.module "antd/lib/date-picker"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~value: 'a=?,
@@ -185,7 +184,7 @@ module RangePicker = {
 module MonthPicker = {
   type t('a) = Js.t({. monthPickerProps: int} as 'a);
 
-  [@bs.module "antd/lib/date-picker"] [@react.component]
+  [@bs.module "antd/lib/date-picker"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~_open: bool=?,
@@ -222,7 +221,7 @@ module MonthPicker = {
 
 module WeekPicker = {
   type t('a) = Js.t({. weekPickerProps: int} as 'a);
-  [@bs.module "antd/lib/date-picker"] [@react.component]
+  [@bs.module "antd/lib/date-picker"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~_open: bool=?,
@@ -257,7 +256,7 @@ module WeekPicker = {
 };
 
 /*
- [@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/date-picker";
+ [@bs.module "antd/lib/date-picker"] external reactClass: ReasonReact.reactClass = "default";
 
  [%bs.raw {|require("antd/lib/date-picker/style")|}];
 

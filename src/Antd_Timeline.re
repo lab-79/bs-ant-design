@@ -1,4 +1,5 @@
-[@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/timeline";
+[@bs.module "antd/lib/timeline"]
+external reactClass: ReasonReact.reactClass = "default";
 
 [%bs.raw {|require("antd/lib/timeline/style")|}];
 
@@ -24,11 +25,10 @@ external makePropsTimeline:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/timeline";
+[@bs.module "antd/lib/timeline"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -63,7 +63,7 @@ let make =
    */
 
 module Item = {
-  [@bs.module "antd/lib/timeline"] [@react.component]
+  [@bs.module "antd/lib/timeline"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~color: string=?,

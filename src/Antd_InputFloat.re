@@ -14,7 +14,7 @@
  */
 [%bs.raw {|require("antd/lib/input-number/style")|}];
 
-[@bs.module] [@react.component]
+[@bs.module "antd/lib/input-number"] [@react.component]
 external make:
   (
     ~autoFocus: bool=?,
@@ -38,5 +38,5 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "antd/lib/input-number";
+  "default";
 let make = make;

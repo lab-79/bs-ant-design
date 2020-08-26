@@ -62,10 +62,10 @@ external makePropsModal:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/modal";
+[@bs.module "antd/lib/modal"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -139,11 +139,11 @@ type props = {
   "content": React.element,
 };
 
-[@bs.send] external info: (React.component('a), props) => unit = "";
-[@bs.send] external success: (React.component('a), props) => unit = "";
-[@bs.send] external error: (React.component('a), props) => unit = "";
-[@bs.send] external warning: (React.component('a), props) => unit = "";
-[@bs.send] external confirm: (React.component('a), props) => unit = "";
+[@bs.send] external info: (React.component('a), props) => unit = "info";
+[@bs.send] external success: (React.component('a), props) => unit = "success";
+[@bs.send] external error: (React.component('a), props) => unit = "error";
+[@bs.send] external warning: (React.component('a), props) => unit = "warning";
+[@bs.send] external confirm: (React.component('a), props) => unit = "confirm";
 
 let info = props => info(reactComponent, props);
 let success = props => success(reactComponent, props);

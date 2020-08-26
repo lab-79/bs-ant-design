@@ -6,7 +6,7 @@ type route = {
   "breadcrumbName": string,
 };
 
-[@bs.module] [@react.component]
+[@bs.module "antd/lib/breadcrumb"] [@react.component]
 external make:
   (
     ~routes: array(route)=?,
@@ -20,10 +20,10 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "antd/lib/breadcrumb";
+  "default";
 
 module Item = {
-  [@bs.module "antd/lib/breadcrumb"] [@react.component]
+  [@bs.module "antd/lib/breadcrumb"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~separator: string=?,

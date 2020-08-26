@@ -99,10 +99,10 @@ external makePropsTable:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/table";
+[@bs.module "antd/lib/table"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

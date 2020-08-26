@@ -43,11 +43,10 @@ external makePropsCalendar:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/calendar";
+[@bs.module "antd/lib/calendar"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

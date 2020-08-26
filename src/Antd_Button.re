@@ -48,7 +48,7 @@ module LoadingProps = {
 };
 
 module Button = {
-  [@bs.module "antd"] [@react.component]
+  [@bs.module "antd/es/button"] [@react.component]
   external make:
     (
       ~disabled: bool=?,
@@ -76,7 +76,7 @@ module Button = {
       ~children: React.element=?
     ) =>
     React.element =
-    "Button";
+    "default";
 };
 
 [@react.component]

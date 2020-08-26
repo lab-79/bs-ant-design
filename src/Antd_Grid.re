@@ -25,8 +25,7 @@ module Row = {
       ~xxl: string=?,
       unit
     ) =>
-    gutterBreakpoints =
-    "";
+    gutterBreakpoints;
   let makeGutterBreakpoints = (~xs=?, ~sm=?, ~md=?, ~lg=?, ~xl=?, ~xxl=?, ()) =>
     /* ant design uses strings here even though it makes more sense to be number */
     makeStringGutterConfig(
@@ -60,11 +59,10 @@ module Row = {
       ~children: React.element=?,
       unit
     ) =>
-    _ =
-    "";
+    _;
 
-  [@bs.module]
-  external reactComponent: React.component('a) = "antd/lib/grid/row";
+  [@bs.module "antd/lib/grid/row"]
+  external reactComponent: React.component('a) = "default";
 
   [@react.component]
   let make =
@@ -106,8 +104,7 @@ module Col = {
       ~pull: int=?,
       unit
     ) =>
-    fullColSize =
-    "";
+    fullColSize;
   type colSize(_) =
     | SingleColSize(int): colSize(int)
     | FullColSize(fullColSize): colSize(fullColSize);
@@ -139,11 +136,10 @@ module Col = {
       ~children: React.element=?,
       unit
     ) =>
-    _ =
-    "";
+    _;
 
-  [@bs.module]
-  external reactComponent: React.component('a) = "antd/lib/grid/col";
+  [@bs.module "antd/lib/grid/col"]
+  external reactComponent: React.component('a) = "default";
 
   [@react.component]
   let make =

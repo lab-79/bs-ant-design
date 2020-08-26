@@ -16,13 +16,13 @@
 type alertType = [ | `success | `info | `warning | `error];
 
 // module Internal = {
-//   [@bs.module] [@react.component]
+//   [@bs.module "antd/lib/alert"] [@react.component]
 //   external make:
 //     (
 
 //     ) =>
 //     React.element =
-//     "antd/lib/alert";
+//     "default";
 // };
 
 [@bs.obj]
@@ -43,10 +43,10 @@ external makePropsAlert:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/alert";
+[@bs.module "antd/lib/alert"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

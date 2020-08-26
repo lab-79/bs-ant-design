@@ -16,8 +16,8 @@ external makePropsDivider:
   _ =
   "";
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/divider";
+[@bs.module "antd/lib/divider"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

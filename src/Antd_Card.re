@@ -48,10 +48,10 @@ external makePropsCard:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/card";
+[@bs.module "antd/lib/card"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -93,9 +93,7 @@ let make =
       ~title?,
       ~_type?,
       ~onTabChange?,
-      ~size={
-        Js.Option.map((. b) => sizeToJs(b), size);
-      },
+      ~size=Js.Option.map((. b) => sizeToJs(b), size),
       ~id?,
       ~className?,
       ~style?,
@@ -105,7 +103,7 @@ let make =
   );
 
 module Grid = {
-  [@bs.module "antd/lib/card"] [@react.component]
+  [@bs.module "antd/lib/card"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~className: string=?,
@@ -125,7 +123,7 @@ module Grid = {
  */
 
 module Meta = {
-  [@bs.module "antd/lib/card"] [@react.component]
+  [@bs.module "antd/lib/card"][@bs.scope "default"] [@react.component]
   external make:
     (
       ~avatar: React.element=?,

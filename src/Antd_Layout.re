@@ -11,10 +11,10 @@ external makePropsLayout:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module] external reactComponent: React.component('a) = "antd/lib/layout";
+[@bs.module "antd/lib/layout"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -37,7 +37,7 @@ let make =
  */
 
 module Header = {
-  [@bs.module "antd/lib/layout"] [@react.component]
+  [@bs.module "antd/lib/layout"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~hasSider: bool=?,
@@ -51,7 +51,7 @@ module Header = {
 };
 
 module Footer = {
-  [@bs.module "antd/lib/layout"] [@react.component]
+  [@bs.module "antd/lib/layout"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~hasSider: bool=?,
@@ -65,7 +65,7 @@ module Footer = {
 };
 
 module Content = {
-  [@bs.module "antd/lib/layout"] [@react.component]
+  [@bs.module "antd/lib/layout"] [@bs.scope "default"] [@react.component]
   external make:
     (
       ~hasSider: bool=?,
@@ -115,8 +115,7 @@ module Sider = {
       ~children: React.element=?,
       unit
     ) =>
-    _ =
-    "";
+    _;
 
   [@bs.module "antd/lib/layout"]
   external reactComponent: React.component('a) = "Sider";

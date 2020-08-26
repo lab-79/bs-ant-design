@@ -7,7 +7,7 @@ type pickerSize = [ | `small | `default | `large];
 
 type t('a) = Js.t({. timePickerProps: int} as 'a);
 
-[@bs.module "antd/lib/time-picker"] [@reac.component]
+[@bs.module "antd/lib/time-picker"]
 external makeTimePickerProps:
   (
     ~size: option(string)=?,
@@ -42,10 +42,10 @@ external makeTimePickerProps:
     unit
   ) =>
   _ =
-  "";
+  "makeTimePickerProps";
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/time-picker";
+[@bs.module "antd/lib/time-picker"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
@@ -115,7 +115,7 @@ let make =
   );
 
 /*
- [@bs.module] external reactClass: ReasonReact.reactClass = "antd/lib/time-picker";
+ [@bs.module "antd/lib/time-picker"] external reactClass: ReasonReact.reactClass = "default";
 
  [%bs.raw {|require("antd/lib/time-picker/style")|}];
 

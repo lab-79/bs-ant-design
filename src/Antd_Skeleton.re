@@ -37,7 +37,7 @@ type paragraphProps = {
  title	Show title placeholder	boolean | SkeletonTitleProps	true
  */
 
-[@bs.module] [@react.component]
+[@bs.module "antd/lib/skeleton"] [@react.component]
 external make:
   (
     ~active: bool=?,
@@ -51,6 +51,6 @@ external make:
     ~children: React.element=?
   ) =>
   React.element =
-  "antd/lib/skeleton";
+  "default";
 
 let make = make;

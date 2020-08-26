@@ -33,11 +33,10 @@ external makePropsProgress:
     ~successPercent: float=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/progress";
+[@bs.module "antd/lib/progress"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

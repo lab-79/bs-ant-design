@@ -43,8 +43,8 @@ let boolOrFn = (type a, boolOrFn: filterOption(a)): a =>
 
 [%bs.raw {|require("antd/lib/auto-complete/style")|}];
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/auto-complete";
+[@bs.module "antd/lib/auto-complete"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

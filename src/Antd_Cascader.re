@@ -68,11 +68,10 @@ external makePropsCascader:
     ~onPopupVisibleChange: string => unit=?,
     ~id: string=?
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/cascader";
+[@bs.module "antd/lib/cascader"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =

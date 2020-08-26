@@ -75,11 +75,10 @@ external makePropsPopConfirm:
     ~children: React.element=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
-[@bs.module]
-external reactComponent: React.component('a) = "antd/lib/popconfirm";
+[@bs.module "antd/lib/popconfirm"]
+external reactComponent: React.component('a) = "default";
 
 [@react.component]
 let make =
